@@ -17,6 +17,7 @@
 		</xsl:element>
 	</xsl:template>
 	<xsl:template match="xhtml:br"/>
+	<xsl:template match="xhtml:hr"/>
 	<xsl:template match="xhtml:div[@class = 'footnotes']/xhtml:hr"/>
 	<xsl:template match="xhtml:div[@class = 'article']/xhtml:div[@class = 'titlepage']//xhtml:h2[@class = 'title']">
 		<xsl:element name="h1">
