@@ -30,7 +30,8 @@
 			<xsl:copy-of select="@*"/>
 			<xsl:apply-templates/>
 			<!-- Insert a footer. -->
-			<div class="footer">
+			<div id="footer">
+				<hr />
 				<p>
 					This page is <strong><span class="valid">valid</span><xsl:text> </xsl:text>
 						<span class="structure">XHTML 1.0 Transitional,
