@@ -11,6 +11,7 @@
 		indent="no"
 		doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN"
 		doctype-system="http://www.w3.org/TR/html4/loose.dtd"/>
+	<xsl:namespace-alias stylesheet-prefix="xhtml" result-prefix="#default" />
 	<xsl:template match="xhtml:body">
 		<xsl:copy>
 			<xsl:copy-of select="@*"/>

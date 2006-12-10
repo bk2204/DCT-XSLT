@@ -3,14 +3,15 @@
 	version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
 	exclude-result-prefixes="xsl">
 	<xsl:template match="xhtml:link[@rel = 'stylesheet']">
-		<xsl:element name="link">
+		<link>
 			<xsl:attribute name="rel"><xsl:text>stylesheet</xsl:text></xsl:attribute>
 			<xsl:attribute name="title"><xsl:text>Default</xsl:text></xsl:attribute>
 			<xsl:attribute name="type"><xsl:text>text/css</xsl:text></xsl:attribute>
 			<xsl:copy-of select="@href"/>
-		</xsl:element>
+		</link>
 	</xsl:template>
 	<xsl:template match="xhtml:br"/>
 	<xsl:template match="xhtml:hr"/>
