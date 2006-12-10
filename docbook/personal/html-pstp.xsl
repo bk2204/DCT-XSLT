@@ -20,6 +20,7 @@
 					<a href="http://validator.w3.org/check/referer">HTML 4.01</a>
 				</xsl:with-param>
 			</xsl:call-template>
+		</xsl:copy>
 	</xsl:template>
 </xsl:stylesheet>
 <!-- vim: set filetype=xslt tw=0 ts=2 sw=2 noet: -->

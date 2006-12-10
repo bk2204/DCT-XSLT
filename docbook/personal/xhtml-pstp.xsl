@@ -17,6 +17,7 @@
 					XHTML 1.0 Transitional, XHTML 1.0 Strict, <em>and</em><xsl:text>&#x0020;</xsl:text> <a href="http://validator.w3.org/check/referer">XHTML 1.1</a>,
 				</xsl:with-param>
 			</xsl:call-template>
+		</xsl:copy>
 	</xsl:template>
 </xsl:stylesheet>
 <!-- vim: set filetype=xslt tw=0 ts=2 sw=2 noet: -->
