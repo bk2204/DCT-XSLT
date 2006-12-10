@@ -8,6 +8,7 @@
 	<xsl:import href="../xhtml-pstp.xsl" />
 	<xsl:import href="./pstp.xsl" />
 	<xsl:output method="xml" encoding="UTF-8" indent="no" doctype-public="-//W3C//DTD XHTML 1.1//EN" doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"/>
+	<xsl:namespace-alias stylesheet-prefix="xhtml" result-prefix="#default" />
 	<xsl:template match="xhtml:body">
 		<xsl:copy>
 			<xsl:copy-of select="@*"/>
