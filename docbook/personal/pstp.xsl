@@ -37,7 +37,7 @@
 				<strong><span class="valid">valid</span>
 					<xsl:text> </xsl:text><a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a></strong>.
 			</p>
-		<xsl:element>
+		</xsl:element>
 	</xsl:template>
 </xsl:stylesheet>
 <!-- vim: set filetype=xslt tw=0 ts=2 sw=2 noet: -->
