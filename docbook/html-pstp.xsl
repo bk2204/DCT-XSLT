@@ -6,7 +6,7 @@
 	exclude-result-prefixes="xsl">
 	<xsl:import href="./pstp.xsl" />
 	<xsl:output method="html"
-		encoding="UTF-8"
+		encoding="US-ASCII"
 		indent="no"
 		doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN"
 		doctype-system="http://www.w3.org/TR/html4/loose.dtd"/>
