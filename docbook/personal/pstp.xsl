@@ -6,7 +6,7 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	exclude-result-prefixes="xsl">
 	<xsl:template match="xhtml:link[@rel = 'stylesheet']">
-		<xsl:element name="link">
+		<xsl:element name="link" namespace="http://www.w3.org/1999/xhtml">
 			<xsl:attribute name="rel"><xsl:text>stylesheet</xsl:text></xsl:attribute>
 			<xsl:attribute name="title"><xsl:text>Default</xsl:text></xsl:attribute>
 			<xsl:attribute name="type"><xsl:text>text/css</xsl:text></xsl:attribute>
@@ -25,7 +25,7 @@
 	<xsl:template name="footer">
 		<xsl:param name="structure"/>
 		<!-- Insert a footer. -->
-		<xsl:element name="div">
+		<xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
 			<xsl:attribute name="id"><xsl:text>footer</xsl:text></xsl:attribute>
 			<xsl:attribute name="class"><xsl:text>footer</xsl:text></xsl:attribute>
 			<hr />
