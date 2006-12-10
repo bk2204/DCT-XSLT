@@ -28,7 +28,7 @@
 			<hr />
 			<p>
 				This page is <strong><span class="valid">valid</span><xsl:text> </xsl:text>
-					<span class="structure"><xsl:copy-of select="$footer"/></span>
+					<span class="structure"><xsl:copy-of select="$structure"/></span>
 				</strong>
 				and uses
 				<strong><span class="valid">valid</span>
