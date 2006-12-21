@@ -16,7 +16,7 @@
 	<xsl:template match="@align"/>
 	<xsl:template match="@clear"/>
 	<!-- Get rid of empty divs. -->
-	<xsl:template match="xhtml:div[not(@class) and not(@id)]]">
+	<xsl:template match="xhtml:div[not(@class) and not(@id)]">
 		<xsl:apply-templates />
 	</xsl:template>
 	<xsl:template match="xhtml:meta"/>
