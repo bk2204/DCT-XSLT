@@ -22,6 +22,13 @@
 			<xsl:apply-templates/>
 		</xsl:element>
 	</xsl:template>
+	<!-- FIXME: should probably refactor -->
+	<xsl:template match="xhtml:body/xhtml:div[not(@class = 'footer')]">
+		<xsl:copy>
+			<xsl:attribute name="class"><xsl:value-of select="@class"/>&#x0020;toplevel</xsl:attribute>
+			<xsl:apply-templates select="@*[not(name(.) = 'class')]|node()"/>
+		</xsl:copy>
+	</xsl:template>
 	<xsl:template match="xhtml:body/xhtml:div/xhtml:div[not(@class = 'titlepage')]">
 		<xsl:copy>
 			<xsl:attribute name="class"><xsl:value-of select="@class"/>&#x0020;noninitial</xsl:attribute>
