@@ -9,8 +9,8 @@
 	<xsl:output method="html"
 		encoding="US-ASCII"
 		indent="no"
-		doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN"
-		doctype-system="http://www.w3.org/TR/html4/loose.dtd"/>
+		doctype-public="-//W3C//DTD HTML 4.01//EN"
+		doctype-system="http://www.w3.org/TR/html4/strict.dtd"/>
 	<xsl:template match="*" mode="maybensnuke">
 		<xsl:choose>
 			<xsl:when test="self::xhtml:*">
