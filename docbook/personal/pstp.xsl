@@ -16,11 +16,29 @@
 	<xsl:template match="xhtml:br"/>
 	<xsl:template match="xhtml:hr"/>
 	<xsl:template match="xhtml:div[@class = 'footnotes']/xhtml:hr"/>
-	<xsl:template match="xhtml:div[@class = 'article']/xhtml:div[@class = 'titlepage']//xhtml:h2[@class = 'title']">
-		<xsl:element name="h1">
+	<xsl:template name="header">
+		<xsl:param name="level"/>
+		<xsl:element name="h{$level}" namespace="http://www.w3.org/1999/xhtml">
 			<xsl:copy-of select="@class"/>
 			<xsl:apply-templates/>
 		</xsl:element>
+	</xsl:template>
+	<!-- The colophon is special, so fix it up on its own. -->
+	<xsl:template match="xhtml:body/xhtml:div/xhtml:div[@class = 'colophon']/xhtml:*[@class = 'title']">
+		<xsl:call-template name="header">
+			<xsl:with-param name="level" select="1"/>
+		</xsl:call-template>
+	</xsl:template>
+	<!-- Fix up the divisions so that they have the proper header levels. -->
+	<xsl:template match="xhtml:body/xhtml:div/xhtml:div[not(@class = 'titlepage')]/xhtml:*[@class = 'title']">
+		<xsl:call-template name="header">
+			<xsl:with-param name="level" select="1"/>
+		</xsl:call-template>
+	</xsl:template>
+	<xsl:template match="xhtml:div[@class = 'article']/xhtml:div[@class = 'titlepage']//xhtml:h2[@class = 'title']">
+		<xsl:call-template name="header">
+			<xsl:with-param name="level" select="1"/>
+		</xsl:call-template>
 	</xsl:template>
 	<!-- FIXME: should probably refactor -->
 	<xsl:template match="xhtml:body/xhtml:div[not(@class = 'footer')]">
