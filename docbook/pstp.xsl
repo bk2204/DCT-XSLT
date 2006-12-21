@@ -15,6 +15,10 @@
 	<xsl:template match="@width"/>
 	<xsl:template match="@align"/>
 	<xsl:template match="@clear"/>
+	<!-- Get rid of empty divs. -->
+	<xsl:template match="xhtml:div[not(@class) and not(@id)]]">
+		<xsl:apply-templates />
+	</xsl:template>
 	<xsl:template match="xhtml:meta"/>
 	<xsl:template match="xhtml:h1/xhtml:a"/>
 	<xsl:template match="xhtml:h2/xhtml:a"/>
