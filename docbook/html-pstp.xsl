@@ -15,7 +15,8 @@
 		<xsl:choose>
 			<xsl:when test="self::xhtml:*">
 				<xsl:element name="{local-name(.)}">
-					<xsl:copy-of select="@*[not(name(.) = 'xml:id')]" />
+					<!-- We have to punt on xml:space="preserve". -->
+					<xsl:copy-of select="@*[not(name(.) = 'xml:id') and not(name(.) = 'xml:space')]" />
 					<xsl:apply-templates mode="maybensnuke" />
 				</xsl:element>
 			</xsl:when>
