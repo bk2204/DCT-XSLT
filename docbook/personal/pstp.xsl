@@ -23,6 +23,13 @@
 			<xsl:apply-templates/>
 		</xsl:element>
 	</xsl:template>
+	<xsl:template name="add-class">
+		<xsl:param name="class"/>
+		<xsl:copy>
+			<xsl:attribute name="class"><xsl:value-of select="@class"/><xsl:text>&#x0020;</xsl:text><xsl:value-of select="$class"/></xsl:attribute>
+			<xsl:apply-templates select="@*[not(name(.) = 'class')]|node()"/>
+		</xsl:copy>
+	</xsl:template>
 	<!-- The colophon is special, so fix it up on its own. -->
 	<xsl:template match="xhtml:body/xhtml:div/xhtml:div[@class = 'colophon']/xhtml:*[@class = 'title']">
 		<xsl:call-template name="header">
@@ -40,18 +47,15 @@
 			<xsl:with-param name="level" select="1"/>
 		</xsl:call-template>
 	</xsl:template>
-	<!-- FIXME: should probably refactor -->
 	<xsl:template match="xhtml:body/xhtml:div[not(@class = 'footer')]">
-		<xsl:copy>
-			<xsl:attribute name="class"><xsl:value-of select="@class"/>&#x0020;toplevel</xsl:attribute>
-			<xsl:apply-templates select="@*[not(name(.) = 'class')]|node()"/>
-		</xsl:copy>
+		<xsl:call-template name="add-class">
+			<xsl:with-param name="class"><xsl:text>toplevel</xsl:text></xsl:with-param>
+		</xsl:call-template>
 	</xsl:template>
 	<xsl:template match="xhtml:body/xhtml:div/xhtml:div[not(@class = 'titlepage')]">
-		<xsl:copy>
-			<xsl:attribute name="class"><xsl:value-of select="@class"/>&#x0020;noninitial</xsl:attribute>
-			<xsl:apply-templates select="@*[not(name(.) = 'class')]|node()"/>
-		</xsl:copy>
+		<xsl:call-template name="add-class">
+			<xsl:with-param name="class"><xsl:text>noninitial</xsl:text></xsl:with-param>
+		</xsl:call-template>
 	</xsl:template>
 	<xsl:template name="footer">
 		<xsl:param name="structure"/>
