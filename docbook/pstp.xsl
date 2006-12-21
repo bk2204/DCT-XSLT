@@ -3,7 +3,8 @@
 	version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	exclude-result-prefixes="xsl">
+	xmlns:exsl="http://exslt.org/common"
+	exclude-result-prefixes="xsl exsl">
 	<xsl:template match="node()|@*">
 		<xsl:copy>
 			<xsl:apply-templates select="@*|node()"/>
@@ -22,5 +23,12 @@
 	<xsl:template match="xhtml:h5/xhtml:a"/>
 	<xsl:template match="xhtml:h6/xhtml:a"/>
 	<xsl:template match="xhtml:ol/@type"/>
+	<!-- This idea comes thanks to Norman Walsh and the DocBook stylesheets. -->
+	<xsl:template match="/">
+		<xsl:variable name="nons">
+			<xsl:apply-templates />
+		</xsl:variable>
+		<xsl:apply-templates select="exsl:node-set($nons)" mode="maybensnuke" />
+	</xsl:template>
 </xsl:stylesheet>
 <!-- vim: set filetype=xslt tw=0 ts=2 sw=2 noet: -->
