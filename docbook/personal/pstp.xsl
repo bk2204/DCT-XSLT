@@ -22,6 +22,14 @@
 			<xsl:apply-templates/>
 		</xsl:element>
 	</xsl:template>
+	<xsl:template match="xhtml:body/xhtml:div/xhtml:div[not(@class = 'titlepage')]">
+		<xsl:copy name="h1">
+			<xsl:copy-of select="not(@class)"/>
+			<xsl:attribute name="class">
+				<xsl:text><xsl:value-of select="@class"/>&#x0020;noninitial</xsl:text>
+			</xsl:attribute>
+		</xsl:copy>
+	</xsl:template>
 	<xsl:template name="footer">
 		<xsl:param name="structure"/>
 		<!-- Insert a footer. -->
