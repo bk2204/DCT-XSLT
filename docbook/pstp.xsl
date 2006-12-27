@@ -27,6 +27,7 @@
 	<xsl:template match="xhtml:h5/xhtml:a"/>
 	<xsl:template match="xhtml:h6/xhtml:a"/>
 	<xsl:template match="xhtml:ol/@type"/>
+	<xsl:template match="xhtml:ul/@type"/>
 	<!--
 	Apparently, table elements are not output in the correct namespace, so
 	we need to fix that.  This might only be a problem with DocBook 5.
