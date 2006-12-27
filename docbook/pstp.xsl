@@ -27,6 +27,18 @@
 	<xsl:template match="xhtml:h5/xhtml:a"/>
 	<xsl:template match="xhtml:h6/xhtml:a"/>
 	<xsl:template match="xhtml:ol/@type"/>
+	<!--
+	Apparently, table elements are not output in the correct namespace, so
+	we need to fix that.  This might only be a problem with DocBook 5.
+	-->
+	<xsl:template match="table|thead|caption|td|tr|th|tbody">
+		<xsl:if test="namespace-uri(.)=''">
+			<xsl:message>Broken null-namespace tag <xsl:value-of select="name(.)" /> fixed up.</xsl:message>
+			<xsl:element name="{local-name(.)}" namespace="http://www.w3.org/1999/xhtml">
+			<xsl:apply-templates select="@*|node()"/>
+			</xsl:element>
+		</xsl:if>
+	</xsl:template>
 	<!-- This idea comes thanks to Norman Walsh and the DocBook stylesheets. -->
 	<xsl:template match="/">
 		<xsl:variable name="nons">
