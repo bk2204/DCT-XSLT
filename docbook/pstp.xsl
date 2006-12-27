@@ -35,7 +35,7 @@
 		<xsl:if test="namespace-uri(.)=''">
 			<xsl:message>Broken null-namespace tag <xsl:value-of select="name(.)" /> fixed up.</xsl:message>
 			<xsl:element name="{local-name(.)}" namespace="http://www.w3.org/1999/xhtml">
-			<xsl:apply-templates select="@*|node()"/>
+				<xsl:apply-templates select="@*|node()"/>
 			</xsl:element>
 		</xsl:if>
 	</xsl:template>
