@@ -16,7 +16,11 @@
 	<xsl:template match="xhtml:body">
 		<xsl:copy>
 			<xsl:copy-of select="@*"/>
-			<xsl:apply-templates/>
+			<xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
+				<xsl:attribute name="class">content</xsl:attribute>
+				<xsl:apply-templates/>
+			</xsl:element>
+			<xsl:apply-templates select="xhtml:div[@class='article']/xhtml:div[@class = 'section' and position()=last()]" mode="nav-fixup"/>
 			<xsl:call-template name="footer">
 				<xsl:with-param name="structure">
 					<a href="http://validator.w3.org/check/referer">HTML 4.01 Strict</a>
