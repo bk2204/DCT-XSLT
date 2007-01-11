@@ -57,6 +57,43 @@
 			<xsl:with-param name="class"><xsl:text>noninitial</xsl:text></xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
+	<xsl:template match="node()|@*" mode="nav-fixup">
+		<xsl:apply-templates/>
+	</xsl:template>
+	<xsl:template match="xhtml:div[@class='article']/xhtml:div[@class = 'section' and position()=last()]">
+		<xsl:copy>
+			<xsl:choose>
+				<xsl:when test="normalize-space(./xhtml:div[@class = 'titlepage']//xhtml:h2[@class = 'title']/text())='Site Map'">
+					<!-- Eliminate a node if we would have already fixed it up. -->
+					<xsl:message>Eliminating node not in nav-fixup mode.</xsl:message>
+				</xsl:when>
+				<xsl:otherwise>
+					<!-- Don't eliminate useful nodes that haven't already been considered. -->
+					<xsl:message>Not eliminating node.</xsl:message>
+					<xsl:apply-templates select="@*|node()"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:copy>
+	</xsl:template>
+	<xsl:template match="xhtml:div[@class='article']/xhtml:div[@class = 'section' and position()=last()]" mode="nav-fixup">
+		<xsl:message>Running in nav-fixup mode.</xsl:message>
+		<xsl:copy>
+			<xsl:choose>
+				<xsl:when test="normalize-space(./xhtml:div[@class = 'titlepage']//xhtml:h2[@class = 'title']/text())='Site Map'">
+					<!-- Fix up a sitemap. -->
+					<xsl:message>Fixing up sitemap.</xsl:message>
+					<xsl:call-template name="add-class">
+						<xsl:with-param name="class"><xsl:text>navigation</xsl:text></xsl:with-param>
+					</xsl:call-template>
+				</xsl:when>
+				<xsl:otherwise>
+					<!-- Ignore an object that should already be handled. -->
+					<xsl:message>Not hacking up object <xsl:value-of select="generate-id(.)"/>.</xsl:message>
+					<!--<xsl:apply-templates select="@*|node()"/>-->
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:copy>
+	</xsl:template>
 	<xsl:template name="footer">
 		<xsl:param name="structure"/>
 		<!-- Insert a footer. -->
