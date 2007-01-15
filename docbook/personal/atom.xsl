@@ -85,5 +85,14 @@
 		</xsl:element>
 	</xsl:template>
 	<xsl:template match="db:article">
+		<xsl:element name="entry" namespace="http://www.w3.org/2005/Atom">
+			<xsl:apply-templates select="db:title|db:info/db:title"/>
+			<xsl:element name="content" namespace="http://www.w3.org/2005/Atom">
+				<xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
+					<xsl:attribute name="class">atom-entry</xsl:attribute>
+					<xsl:apply-imports/>
+				</xsl:element>
+			</xsl:element>
+		</xsl:element>
 	</xsl:template>
 </xsl:stylesheet>
