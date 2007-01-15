@@ -12,6 +12,10 @@
 	</xsl:template>
 	<xsl:template match="/">
 		<xsl:element name="feed" namespace="http://www.w3.org/2005/Atom">
+			<xsl:element name="generator" namespace="http://www.w3.org/2005/Atom">
+				<xsl:attribute name="version">unreleased (pre-v1)</xsl:attribute>
+				<xsl:text>Crusty Toothpaste xsl-sheets atom.xsl</xsl:text>
+			</xsl:element>
 			<xsl:apply-templates/>
 		</xsl:element>
 	</xsl:template>
