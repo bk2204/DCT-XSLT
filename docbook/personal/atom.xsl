@@ -15,6 +15,23 @@
 			<xsl:apply-templates/>
 		</xsl:element>
 	</xsl:template>
+	<!-- atom elements:
+	feed
+	entry
+	content
+	generator
+	icon
+	id
+	link
+	logo
+	published
+	rights
+	source
+	subtitle
+	summary
+	title
+	updated
+	-->
 	<!-- In the rather simple subset of DocBook that is handled, the following conventions apply:
 	article: one entry
 	part: one section; a tag
