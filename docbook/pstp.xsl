@@ -8,7 +8,7 @@
 	exclude-result-prefixes="xsl exsl">
 	<xsl:template match="node()|@*" mode="ctxsl:all-xhtml2xhtml">
 		<xsl:copy>
-			<xsl:apply-templates select="@*|node()"/>
+			<xsl:apply-templates select="@*|node()" mode="ctxsl:all-xhtml2xhtml"/>
 		</xsl:copy>
 	</xsl:template>
 	<xsl:template match="@lang" mode="ctxsl:all-xhtml2xhtml"/>
