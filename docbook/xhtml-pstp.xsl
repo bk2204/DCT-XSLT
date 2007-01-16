@@ -9,10 +9,8 @@
 	>
 	<xsl:import href="./pstp.xsl" />
 	<xsl:output method="xml" encoding="UTF-8" indent="no" doctype-public="-//W3C//DTD XHTML 1.1//EN" doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"/>
-	<xsl:template match="@lang" mode="ctxsl:all-xhtml2xhtml">
-		<xsl:attribute name="lang" namespace="http://www.w3.org/XML/1998/namespace">
-			<xsl:value-of select="." />
-		</xsl:attribute>
+	<xsl:template match="@xml:lang" mode="ctxsl:all-xhtml2xhtml">
+		<xsl:copy-of select="." />
 	</xsl:template>
 	<xsl:template match="*" mode="ctxsl:maybensnuke">
 		<xsl:copy>

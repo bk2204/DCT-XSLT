@@ -12,6 +12,9 @@
 		indent="no"
 		doctype-public="-//W3C//DTD HTML 4.01//EN"
 		doctype-system="http://www.w3.org/TR/html4/strict.dtd"/>
+	<xsl:template match="@*[name(.)='lang']" mode="ctxsl:all-xhtml2xhtml">
+		<xsl:copy-of select="." />
+	</xsl:template>
 	<xsl:template match="*" mode="ctxsl:maybensnuke">
 		<xsl:choose>
 			<xsl:when test="self::xhtml:*">
