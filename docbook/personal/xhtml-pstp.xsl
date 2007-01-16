@@ -10,15 +10,15 @@
 	<xsl:import href="./pstp.xsl" />
 	<xsl:output method="xml" encoding="UTF-8" indent="no" doctype-public="-//W3C//DTD XHTML 1.1//EN" doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"/>
 	<xsl:namespace-alias stylesheet-prefix="xhtml" result-prefix="#default" />
-	<xsl:template match="/" priority="-1">
-		<xsl:apply-templates select="." mode="ctxsl:personal-xhtml2xhtml"/>
+	<xsl:template match="/">
+		<xsl:apply-templates select="." mode="ctxsl:all-xhtml2xhtml"/>
 	</xsl:template>
-	<xsl:template match="xhtml:body" mode="ctxsl:personal-xhtml2xhtml">
+	<xsl:template match="xhtml:body" mode="ctxsl:all-xhtml2xhtml">
 		<xsl:copy>
 			<xsl:copy-of select="@*"/>
 			<xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
 				<xsl:attribute name="class">content</xsl:attribute>
-				<xsl:apply-templates/>
+				<xsl:apply-templates mode="ctxsl:all-xhtml2xhtml"/>
 			</xsl:element>
 			<xsl:apply-templates select="xhtml:div[@class='article']/xhtml:div[@class = 'section' and position()=last()]" mode="ctxsl:personal-xhtml-navfixup"/>
 			<xsl:call-template name="ctxsl:footer">
