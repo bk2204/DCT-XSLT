@@ -11,6 +11,8 @@
 			<xsl:apply-templates select="@*|node()" mode="ctxsl:all-xhtml2xhtml"/>
 		</xsl:copy>
 	</xsl:template>
+	<xsl:template match="@lang" mode="ctxsl:all-xhtml2xhtml"/>
+	<xsl:template match="@xml:lang" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="@target" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="@width" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="@align" mode="ctxsl:all-xhtml2xhtml"/>
