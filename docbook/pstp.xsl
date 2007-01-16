@@ -44,7 +44,7 @@
 	<!-- This idea comes thanks to Norman Walsh and the DocBook stylesheets. -->
 	<xsl:template match="/" mode="ctxsl:all-xhtml2xhtml">
 		<xsl:variable name="ctxsl:nons">
-			<xsl:apply-templates />
+			<xsl:apply-templates mode="ctxsl:all-xhtml2xhtml" />
 		</xsl:variable>
 		<xsl:apply-templates select="exsl:node-set($ctxsl:nons)" mode="ctxsl:maybensnuke" />
 	</xsl:template>
