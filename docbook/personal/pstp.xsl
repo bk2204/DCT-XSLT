@@ -19,7 +19,7 @@
 	<xsl:template match="xhtml:div[@class = 'footnotes']/xhtml:hr" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template name="ctxsl:header" mode="ctxsl:all-xhtml2xhtml">
 		<xsl:param name="ctxsl:level"/>
-		<xsl:element name="h{$level}" namespace="http://www.w3.org/1999/xhtml">
+		<xsl:element name="h{$ctxsl:level}" namespace="http://www.w3.org/1999/xhtml">
 			<xsl:copy-of select="@class"/>
 			<xsl:apply-templates/>
 		</xsl:element>
