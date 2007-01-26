@@ -13,7 +13,8 @@
 	<xsl:namespace-alias stylesheet-prefix="xhtml" result-prefix="#default" />
 	<!-- Don't use this rule by default.  However, if this is the top-level
 	stylesheet, then it will be used. -->
-	<xsl:template match="/" priority="-1">
+	<xsl:template match="/">
+		<xsl:apply-templates mode="ctxsl:all-xhtml" />
 	</xsl:template>
 	<xsl:template match="/" mode="ctxsl:all-xhtml">
 		<xsl:variable name="ctxsl:all-db2xhtml">
