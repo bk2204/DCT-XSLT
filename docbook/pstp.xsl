@@ -34,7 +34,7 @@
 	Apparently, table elements are not output in the correct namespace, so
 	we need to fix that.  This might only be a problem with DocBook 5.
 	-->
-	<xsl:template match="table|thead|caption|td|tr|th|tbody" mode="ctxsl:all-xhtml2xhtml">
+	<xsl:template match="table|thead|caption|td|tr|th|tbody|tbody//*" mode="ctxsl:all-xhtml2xhtml">
 		<xsl:if test="namespace-uri(.)=''">
 			<xsl:message>Broken null-namespace tag <xsl:value-of select="name(.)" /> fixed up.</xsl:message>
 			<xsl:element name="{local-name(.)}" namespace="http://www.w3.org/1999/xhtml">
