@@ -8,10 +8,17 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	exclude-result-prefixes="xsl xhtml ctxsl xi">
 	<xsl:template match="xhtml:link[@rel = 'stylesheet']" mode="ctxsl:all-xhtml2xhtml">
+		<link type="text/css" title="Default" rel="stylesheet" href="http://crustytoothpaste.ath.cx/css/docbook-xhtml/default.css"/>
+		<link type="text/css" title="Complexspiral" rel="alternate stylesheet" href="http://crustytoothpaste.ath.cx/css/docbook-xhtml/complexspiral.css"/>
+		<link type="text/css" title="Elegant Blue" rel="alternate stylesheet" href="http://crustytoothpaste.ath.cx/css/docbook-xhtml/elegant-blue.css"/>
+		<link type="text/css" title="Subtle" rel="alternate stylesheet" href="http://crustytoothpaste.ath.cx/css/docbook-xhtml/subtle.css"/>
+		<link type="text/css" title="Subtle" rel="alternate stylesheet" href="http://crustytoothpaste.ath.cx/css/docbook-xhtml/subtle.css"/>
+		<!--
 		<xi:include href="stylesheet.xml" parse="xml"
 			xpointer="xmlns(sht=http://crustytoothpaste.ath.cx/ns/stylesheet)xpointer(sht:result/*)">
 			<xi:fallback><xsl:message terminate="yes">Can't XInclude stylesheet list whilst processing</xsl:message></xi:fallback>
 		</xi:include>
+		-->
 	</xsl:template>
 	<xsl:template match="xhtml:br" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="xhtml:hr" mode="ctxsl:all-xhtml2xhtml"/>
