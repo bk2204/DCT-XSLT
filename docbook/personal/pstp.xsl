@@ -7,12 +7,20 @@
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
 	exclude-result-prefixes="xsl xhtml ctxsl xi">
+	<xsl:param name="dry-run" select="0" />
 	<xsl:template match="xhtml:link[@rel = 'stylesheet']" mode="ctxsl:all-xhtml2xhtml">
-		<link type="text/css" title="Default" rel="stylesheet" href="http://crustytoothpaste.ath.cx/css/docbook-xhtml/default.css"/>
-		<link type="text/css" title="Complexspiral" rel="alternate stylesheet" href="http://crustytoothpaste.ath.cx/css/docbook-xhtml/complexspiral.css"/>
-		<link type="text/css" title="Elegant Blue" rel="alternate stylesheet" href="http://crustytoothpaste.ath.cx/css/docbook-xhtml/elegant-blue.css"/>
-		<link type="text/css" title="Subtle" rel="alternate stylesheet" href="http://crustytoothpaste.ath.cx/css/docbook-xhtml/subtle.css"/>
-		<link type="text/css" title="Subtle" rel="alternate stylesheet" href="http://crustytoothpaste.ath.cx/css/docbook-xhtml/subtle.css"/>
+		<xsl:choose>
+			<xsl:when test="$dry-run">
+				<xsl:copy-of select="."/>
+			</xsl:when>
+			<xsl:otherwise>
+				<link type="text/css" title="Default" rel="stylesheet" href="http://crustytoothpaste.ath.cx/css/docbook-xhtml/default.css"/>
+				<link type="text/css" title="Complexspiral" rel="alternate stylesheet" href="http://crustytoothpaste.ath.cx/css/docbook-xhtml/complexspiral.css"/>
+				<link type="text/css" title="Elegant Blue" rel="alternate stylesheet" href="http://crustytoothpaste.ath.cx/css/docbook-xhtml/elegant-blue.css"/>
+				<link type="text/css" title="Subtle" rel="alternate stylesheet" href="http://crustytoothpaste.ath.cx/css/docbook-xhtml/subtle.css"/>
+				<link type="text/css" title="Subtle" rel="alternate stylesheet" href="http://crustytoothpaste.ath.cx/css/docbook-xhtml/subtle.css"/>
+			</xsl:otherwise>
+		</xsl:choose>
 		<!--
 		<xi:include href="stylesheet.xml" parse="xml"
 			xpointer="xmlns(sht=http://crustytoothpaste.ath.cx/ns/stylesheet)xpointer(sht:result/*)">
