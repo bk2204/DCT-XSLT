@@ -3,10 +3,10 @@
 	version="1.0"
 	xmlns:ctxsl="http://crustytoothpaste.ath.cx/ns/xsl"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:xi="http://www.w3.org/2003/XInclude"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
-	exclude-result-prefixes="xsl xhtml ctxsl">
+	exclude-result-prefixes="xsl xhtml ctxsl xi">
 	<xsl:template match="xhtml:link[@rel = 'stylesheet']" mode="ctxsl:all-xhtml2xhtml">
 		<xi:include href="stylesheet.xml" parse="xml"
 			xpointer="xmlns(sht=http://crustytoothpaste.ath.cx/ns/stylesheet)xpointer(sht:result/*)">
