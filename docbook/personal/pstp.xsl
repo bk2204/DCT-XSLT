@@ -3,16 +3,13 @@
 	version="1.0"
 	xmlns:ctxsl="http://crustytoothpaste.ath.cx/ns/xsl"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:xi="http://www.w3.org/2001/XInclude"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
-	exclude-result-prefixes="xsl">
+	exclude-result-prefixes="xsl xhtml ctxsl">
 	<xsl:template match="xhtml:link[@rel = 'stylesheet']" mode="ctxsl:all-xhtml2xhtml">
-		<xsl:element name="link" namespace="http://www.w3.org/1999/xhtml">
-			<xsl:attribute name="rel"><xsl:text>stylesheet</xsl:text></xsl:attribute>
-			<xsl:attribute name="title"><xsl:text>Default</xsl:text></xsl:attribute>
-			<xsl:attribute name="type"><xsl:text>text/css</xsl:text></xsl:attribute>
-			<xsl:copy-of select="@href"/>
-		</xsl:element>
+		<xi:include href="./stylesheet.xml" parse="xml"
+			xpointer="xmlns(sht=http://crustytoothpaste.ath.cx/ns/stylesheet)xpointer(sht:result/*)"/>
 	</xsl:template>
 	<xsl:template match="xhtml:br" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="xhtml:hr" mode="ctxsl:all-xhtml2xhtml"/>
