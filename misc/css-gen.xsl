@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xsl:stylesheet version="1.0"
-	exclude-result-prefixes="xhtml sht xsl"
+	exclude-result-prefixes="xsl"
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	xmlns:sht="http://crustytoothpaste.ath.cx/ns/stylesheet"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:param name="css-base"/>
+	<xsl:template match="sht:stylesheet-list">
+		<sht:result>
+			<xsl:apply-templates/>
+		</sht:result>
+	</xsl:template>
 	<xsl:template match="sht:stylesheet">
 		<xsl:element name="link" namespace="http://www.w3.org/1999/xhtml">
 			<xsl:copy-of select="@type|@title"/>
