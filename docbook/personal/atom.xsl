@@ -95,7 +95,6 @@
 				<xsl:attribute name="version">unreleased (pre-v1)</xsl:attribute>
 				<xsl:text>Crusty Toothpaste xsl-sheets atom.xsl</xsl:text>
 			</xsl:element>
-			<xsl:apply-templates select="./db:*/db:info/db:releaseinfo/db:link" />
 			<xsl:apply-templates/>
 		</xsl:element>
 	</xsl:template>
