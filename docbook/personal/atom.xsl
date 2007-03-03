@@ -82,14 +82,14 @@
 					<xsl:value-of select="date:date-time()"/>
 				</xsl:element>
 			</xsl:if>
-			<xsl:apply-templates/>
+			<xsl:apply-templates select="db:title|db:subtitle|db:date|db:releaseinfo"/>
 	</xsl:template>
 	<xsl:template match="db:date">
 			<xsl:element name="updated" namespace="http://www.w3.org/2005/Atom">
 				<xsl:apply-templates/>
 			</xsl:element>
 	</xsl:template>
-	<xsl:template match="db:book">
+	<xsl:template match="/">
 		<xsl:element name="feed" namespace="http://www.w3.org/2005/Atom">
 			<xsl:element name="generator" namespace="http://www.w3.org/2005/Atom">
 				<xsl:attribute name="version">unreleased (pre-v1)</xsl:attribute>
@@ -98,11 +98,17 @@
 			<xsl:apply-templates/>
 		</xsl:element>
 	</xsl:template>
+	<xsl:template match="db:book">
+		<xsl:apply-templates/>
+	</xsl:template>
 	<xsl:template match="db:part">
+		<!--
 		<xsl:element name="category" namespace="http://www.w3.org/2005/Atom">
 			<xsl:attribute name="term"><xsl:value-of select="@xml:id"/></xsl:attribute>
 			<xsl:attribute name="label"><xsl:apply-templates select="db:title|db:info/db:title"/></xsl:attribute>
 		</xsl:element>
+		-->
+		<xsl:apply-templates select="db:*[local-name()!='info']"/>
 	</xsl:template>
 	<xsl:template match="db:article">
 		<xsl:element name="entry" namespace="http://www.w3.org/2005/Atom">
