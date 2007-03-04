@@ -8,10 +8,10 @@
 			<xsl:apply-templates select="@*|node()"/>
 		</xsl:copy>
 	</xsl:template>
-	<xsl:template match="dbx:part|dbx:chapter|dbx:book">
+	<xsl:template match="dbx:book|dbx:part">
 		<xsl:copy>
-			<xsl:apply-templates select="dbx:*[local-name()!='article' and local-name()!='chapter' and local-name()!='book']" />
-			<xsl:apply-templates select="dbx:article[position()&lt;=$number]">
+			<xsl:apply-templates select="dbx:info[parent::dbx:book]" />
+			<xsl:apply-templates select=".//dbx:article[position()&lt;=$number]">
 				<xsl:sort select="dbx:info/dbx:date" lang="en" order="descending" />
 				<xsl:sort select="dbx:info/dbx:title" lang="en" order="descending" />
 			</xsl:apply-templates>
