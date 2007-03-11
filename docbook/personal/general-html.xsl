@@ -16,13 +16,5 @@
 	<xsl:param name="para.propagates.style" select="1" />
 	<xsl:param name="phrase.propagates.style" select="1" />
 	<xsl:param name="entry.propagates.style" select="1" />
-
-	<xsl:param name="fop1.extensions" select="1" />
-
-	<xsl:param name="monospace.font.family" select="'Courier'" />
-	<xsl:param name="sans.font.family" select="'Helvetica'" />
-	<xsl:param name="title.font.family" select="'Helvetica'" />
-	<xsl:param name="body.font.family" select="'Times'" />
-
 </xsl:stylesheet>
 <!-- vim: set filetype=xslt tw=0 ts=2 sw=2 noet: -->
