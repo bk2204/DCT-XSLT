@@ -8,9 +8,10 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	exclude-result-prefixes="xsl xhtml ctxsl xi">
 	<xsl:param name="dry-run" select="0" />
+	<xsl:param name="no-replace-stylesheet" select="0" />
 	<xsl:template match="xhtml:link[@rel = 'stylesheet']" mode="ctxsl:all-xhtml2xhtml">
 		<xsl:choose>
-			<xsl:when test="$dry-run">
+			<xsl:when test="$dry-run or $no-replace-stylesheet">
 				<xsl:copy-of select="."/>
 			</xsl:when>
 			<xsl:otherwise>
