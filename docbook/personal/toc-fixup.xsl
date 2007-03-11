@@ -67,6 +67,59 @@
 	IN THE SOFTWARE.
 
 	-->
+	<xsl:template match="toc/title|toc/info/title">
+		<xsl:element name="p" namespace="http://www.w3.org/1999/xhtml">
+			<xsl:element name="b" namespace="http://www.w3.org/1999/xhtml">
+				<xsl:apply-templates />
+			</xsl:element>
+		</xsl:element>
+	</xsl:template>
+<xsl:template match="toc">
+  <xsl:choose>
+    <xsl:when test="*">
+      <xsl:if test="$process.source.toc != 0">
+				<!-- if the toc isn't empty, process it -->
+				<xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
+					<xsl:attribute name="class">toc</xsl:attribute>
+					<xsl:apply-templates select="info/title|title"/>
+					<xsl:element name="{$toc.list.type}" namespace="http://www.w3.org/1999/xhtml">
+						<!--
+						<xsl:apply-templates select="*[local-name() != 'info' and local-name() != 'title' and (local-name()!='tocentry' and position()=last())]"/>
+						-->
+						<xsl:apply-templates select="tocentry[position()!=last()]"/>
+						<dt>
+		          <xsl:apply-templates select="tocentry[position()=last()]"/>
+						</dt>
+					</xsl:element>
+				</xsl:element>
+      </xsl:if>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:if test="$process.empty.source.toc != 0">
+        <xsl:choose>
+          <xsl:when test="parent::section                           or parent::sect1                           or parent::sect2                           or parent::sect3                           or parent::sect4                           or parent::sect5">
+            <xsl:apply-templates select="parent::*" mode="toc.for.section"/>
+          </xsl:when>
+          <xsl:when test="parent::article">
+            <xsl:apply-templates select="parent::*" mode="toc.for.component"/>
+          </xsl:when>
+          <xsl:when test="parent::book                           or parent::part">
+            <xsl:apply-templates select="parent::*" mode="toc.for.division"/>
+          </xsl:when>
+          <xsl:when test="parent::set">
+            <xsl:apply-templates select="parent::*" mode="toc.for.set"/>
+          </xsl:when>
+          <!-- there aren't any other contexts that allow toc -->
+          <xsl:otherwise>
+            <xsl:message>
+              <xsl:text>I don't know how to make a TOC in this context!</xsl:text>
+            </xsl:message>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:if>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
 <xsl:template match="tocpart|tocchap|tocdiv                      |toclevel1|toclevel2|toclevel3|toclevel4|toclevel5">
   <xsl:variable name="sub-toc">
     <xsl:if test="tocchap|tocdiv|toclevel1|toclevel2|toclevel3|toclevel4|toclevel5">
@@ -91,7 +144,7 @@
 
   <xsl:choose>
     <xsl:when test="$toc.list.type = 'dl'">
-      <dt>
+			<dt>
         <xsl:apply-templates select="tocentry[position() = last()]"/>
       </dt>
       <xsl:copy-of select="$sub-toc"/>
