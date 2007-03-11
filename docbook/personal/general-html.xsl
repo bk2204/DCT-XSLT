@@ -4,6 +4,7 @@
 	Items that are imported first have the lowest priority, followed by
 	later imports, followed by this sheet.
 	-->
+	<xsl:import href="toc-fixup.xsl" />
 	<!-- Don't use CSS attributes on items; we'll do it ourselves. -->
 	<xsl:param name="css.decoration" select="0" />
 	<!-- If we have an abstract, use it as the META description. -->
