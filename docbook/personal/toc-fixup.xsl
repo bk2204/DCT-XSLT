@@ -83,9 +83,6 @@
 					<xsl:attribute name="class">toc</xsl:attribute>
 					<xsl:apply-templates select="info/title|title"/>
 					<xsl:element name="{$toc.list.type}" namespace="http://www.w3.org/1999/xhtml">
-						<!--
-						<xsl:apply-templates select="*[local-name() != 'info' and local-name() != 'title' and (local-name()!='tocentry' and position()=last())]"/>
-						-->
 						<xsl:apply-templates select="tocentry[position()!=last()]"/>
 						<dt>
 		          <xsl:apply-templates select="tocentry[position()=last()]"/>
@@ -97,13 +94,13 @@
     <xsl:otherwise>
       <xsl:if test="$process.empty.source.toc != 0">
         <xsl:choose>
-          <xsl:when test="parent::section                           or parent::sect1                           or parent::sect2                           or parent::sect3                           or parent::sect4                           or parent::sect5">
+          <xsl:when test="parent::section or parent::sect1 or parent::sect2 or parent::sect3 or parent::sect4 or parent::sect5">
             <xsl:apply-templates select="parent::*" mode="toc.for.section"/>
           </xsl:when>
           <xsl:when test="parent::article">
             <xsl:apply-templates select="parent::*" mode="toc.for.component"/>
           </xsl:when>
-          <xsl:when test="parent::book                           or parent::part">
+          <xsl:when test="parent::book or parent::part">
             <xsl:apply-templates select="parent::*" mode="toc.for.division"/>
           </xsl:when>
           <xsl:when test="parent::set">
@@ -120,7 +117,7 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
-<xsl:template match="tocpart|tocchap|tocdiv                      |toclevel1|toclevel2|toclevel3|toclevel4|toclevel5">
+<xsl:template match="tocpart|tocchap|tocdiv|toclevel1|toclevel2|toclevel3|toclevel4|toclevel5">
   <xsl:variable name="sub-toc">
     <xsl:if test="tocchap|tocdiv|toclevel1|toclevel2|toclevel3|toclevel4|toclevel5">
       <xsl:choose>
