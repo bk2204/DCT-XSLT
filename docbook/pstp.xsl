@@ -21,6 +21,18 @@
 	<xsl:template match="xhtml:div[not(@class) and not(@id)]" mode="ctxsl:all-xhtml2xhtml">
 		<xsl:apply-templates mode="ctxsl:all-xhtml2xhtml" />
 	</xsl:template>
+	<xsl:template match="xhtml:div[@class!='titlepage']" mode="ctxsl:all-xhtml2xhtml">
+		<xsl:copy>
+			<xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
+				<xsl:if test="xhtml:div[@class='titlepage']//xhtml:*[@class='title']/xhtml:a[@id]">
+					<xsl:attribute name="id">
+						<xsl:value-of select="xhtml:div[@class='titlepage']//xhtml:*[@class='title']/xhtml:a/@id" />
+					</xsl:attribute>
+				</xsl:if>
+				<xsl:apply-templates select="@*|node()" mode="ctxsl:all-xhtml2xhtml"/>
+			</xsl:element>
+		</xsl:copy>
+	</xsl:template>
 	<xsl:template match="xhtml:meta" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="xhtml:h1/xhtml:a" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="xhtml:h2/xhtml:a" mode="ctxsl:all-xhtml2xhtml"/>
