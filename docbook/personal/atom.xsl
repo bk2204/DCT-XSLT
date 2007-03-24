@@ -109,18 +109,32 @@
 			<xsl:attribute name="label"><xsl:apply-templates select="db:title|db:info/db:title"/></xsl:attribute>
 		</xsl:element>
 		-->
-		<xsl:apply-templates select="db:*[local-name()!='info']"/>
+		<xsl:choose>
+			<xsl:when test="/db:part">
+				<xsl:apply-templates/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:apply-templates select="db:*[local-name()!='info']"/>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 	<xsl:template match="db:article">
-		<xsl:variable name="title"><xsl:value-of select="db:title|db:info/db:title"/><xsl:variable>
+		<xsl:variable name="title"><xsl:value-of select="db:title|db:info/db:title"/></xsl:variable>
 		<xsl:element name="entry" namespace="http://www.w3.org/2005/Atom">
 			<xsl:apply-templates select="db:title|db:info"/>
 			<xsl:element name="content" namespace="http://www.w3.org/2005/Atom">
 				<xsl:choose>
 					<xsl:when test="@xml:id">
 						<xsl:attribute name="type">xhtml</xsl:attribute>
-						<xi:include parse="xml" href="index.xhtml"
-							xpointer="xmlns(xhtml=http://www.w3.org/1999/xhtml)xpointer(xhtml:div[@xml:id={@xml:id}])" />
+						<xsl:element name="include" namespace="http://www.w3.org/2001/XInclude">
+							<xsl:attribute name="parse">xml</xsl:attribute>
+							<xsl:attribute name="href">index.xhtml</xsl:attribute>
+							<xsl:attribute name="xpointer">
+								<xsl:text>xmlns(xhtml=http://www.w3.org/1999/xhtml)xpointer(xhtml:div[@xml:id=</xsl:text>
+								<xsl:value-of select="@xml:id" />
+								<xsl:text>])</xsl:text>
+							</xsl:attribute>
+						</xsl:element>
 					</xsl:when>
 					<xsl:otherwise>
 						<xsl:attribute name="src"><xsl:apply-templates select="./db:info/db:releaseinfo/db:link"/></xsl:attribute>
