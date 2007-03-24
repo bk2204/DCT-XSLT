@@ -4,6 +4,7 @@
 	xmlns:xlink="http://www.w3.org/1999/xlink"
 	xmlns:date="http://exslt.org/dates-and-times"
 	xmlns:db="http://docbook.org/ns/docbook"
+	xmlns:xi="http://www.w3.org/2001/XInclude"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	xmlns:atom="http://www.w3.org/2005/Atom">
 	<xsl:template match="node()|@*" mode="strip">
@@ -111,10 +112,20 @@
 		<xsl:apply-templates select="db:*[local-name()!='info']"/>
 	</xsl:template>
 	<xsl:template match="db:article">
+		<xsl:variable name="title"><xsl:value-of select="db:title|db:info/db:title"/><xsl:variable>
 		<xsl:element name="entry" namespace="http://www.w3.org/2005/Atom">
 			<xsl:apply-templates select="db:title|db:info"/>
 			<xsl:element name="content" namespace="http://www.w3.org/2005/Atom">
-				<xsl:attribute name="src"><xsl:apply-templates select="./db:info/db:releaseinfo/db:link"/></xsl:attribute>
+				<xsl:choose>
+					<xsl:when test="@xml:id">
+						<xsl:attribute name="type">xhtml</xsl:attribute>
+						<xi:include parse="xml" href="index.xhtml"
+							xpointer="xmlns(xhtml=http://www.w3.org/1999/xhtml)xpointer(xhtml:div[@xml:id={@xml:id}])" />
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:attribute name="src"><xsl:apply-templates select="./db:info/db:releaseinfo/db:link"/></xsl:attribute>
+					</xsl:otherwise>
+				</xsl:choose>
 			</xsl:element>
 		</xsl:element>
 	</xsl:template>
