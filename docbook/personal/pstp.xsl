@@ -87,7 +87,9 @@
 				<xsl:otherwise>
 					<!-- Don't eliminate useful nodes that haven't already been considered. -->
 					<xsl:message>Not eliminating node.</xsl:message>
-					<xsl:apply-templates select="@*|node()" mode="ctxsl:all-xhtml2xhtml"/>
+					<xsl:call-template name="ctxsl:add-class">
+						<xsl:with-param name="ctxsl:class"><xsl:text>noninitial</xsl:text></xsl:with-param>
+					</xsl:call-template>
 				</xsl:otherwise>
 			</xsl:choose>
 		</xsl:copy>
