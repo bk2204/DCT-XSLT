@@ -10,5 +10,6 @@
 	<xsl:param name="line-height" select="2.0" />
 	<xsl:param name="body.start.indent">0pt</xsl:param>
 	<xsl:param name="body.font.master">12</xsl:param>
+	<xsl:param name="body.font.family" select="'Times'" />
 </xsl:stylesheet>
 <!-- vim: set filetype=xslt tw=0 ts=2 sw=2 noet: -->

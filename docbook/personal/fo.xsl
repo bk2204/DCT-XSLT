@@ -10,7 +10,7 @@
 	<xsl:param name="monospace.font.family" select="'Courier'" />
 	<xsl:param name="sans.font.family" select="'Helvetica'" />
 	<xsl:param name="title.font.family" select="'Helvetica'" />
-	<xsl:param name="body.font.family" select="'Times'" />
+	<xsl:param name="body.font.family" select="'Palatino'" />
 	<!-- The text should be flush left in verbatim sections such as address. -->
 	<xsl:attribute-set name="verbatim.properties">
 		<xsl:attribute name="space-before.minimum">0.8em</xsl:attribute>
