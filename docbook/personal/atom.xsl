@@ -128,12 +128,15 @@
 						<xsl:attribute name="type">xhtml</xsl:attribute>
 						<xsl:element name="include" namespace="http://www.w3.org/2001/XInclude">
 							<xsl:attribute name="parse">xml</xsl:attribute>
+							<xsl:attribute name="href">index.xhtml#<xsl:value-of select="@xml:id" /></xsl:attribute>
+							<!--
 							<xsl:attribute name="href">index.xhtml</xsl:attribute>
 							<xsl:attribute name="xpointer">
 								<xsl:text>xmlns(xhtml=http://www.w3.org/1999/xhtml)xpointer(xhtml:div[@xml:id=</xsl:text>
 								<xsl:value-of select="@xml:id" />
 								<xsl:text>])</xsl:text>
 							</xsl:attribute>
+							-->
 						</xsl:element>
 					</xsl:when>
 					<xsl:otherwise>
