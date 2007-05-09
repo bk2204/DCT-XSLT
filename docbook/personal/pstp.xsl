@@ -74,11 +74,13 @@
 			<xsl:with-param name="ctxsl:class"><xsl:text>toplevel</xsl:text></xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
+	<!--
 	<xsl:template match="xhtml:body/xhtml:div/xhtml:div[not(@class = 'titlepage')]" mode="ctxsl:all-xhtml2xhtml">
 		<xsl:call-template name="ctxsl:add-class">
 			<xsl:with-param name="ctxsl:class"><xsl:text>noninitial</xsl:text></xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
+	-->
 	<xsl:template match="node()|@*" mode="ctxsl:personal-xhtml-navfixup">
 		<xsl:apply-templates mode="ctxsl:all-xhtml2xhtml"/>
 	</xsl:template>
