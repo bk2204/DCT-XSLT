@@ -68,14 +68,14 @@
 		</xsl:for-each>
 	</xsl:template>
 	<xsl:template match="db:pubdate">
-			<xsl:element name="published" namespace="http://www.w3.org/2005/Atom">
-				<xsl:apply-templates select="."/>
-			</xsl:element>
+		<xsl:element name="published" namespace="http://www.w3.org/2005/Atom">
+			<xsl:apply-templates select="."/>
+		</xsl:element>
 	</xsl:template>
 	<xsl:template match="db:releaseinfo/db:link">
-			<xsl:element name="id" namespace="http://www.w3.org/2005/Atom">
-				<xsl:value-of select="@xlink:href"/>
-			</xsl:element>
+		<xsl:element name="id" namespace="http://www.w3.org/2005/Atom">
+			<xsl:value-of select="@xlink:href"/>
+		</xsl:element>
 	</xsl:template>
 	<xsl:template match="db:info">
 			<xsl:if test="not(./db:date)">
