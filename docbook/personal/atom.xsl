@@ -72,6 +72,16 @@
 			<xsl:apply-templates select="."/>
 		</xsl:element>
 	</xsl:template>
+	<xsl:template name="atom-link">
+		<xsl:param name="node" />
+		<xsl:param name="rel">alternate</xsl:param>
+		<xsl:element name="link" namespace="http://www.w3.org/2005/Atom">
+			<xsl:attribute name="href"><xsl:value-of select="$rel"/></xsl:attribute>
+			<xsl:attribute name="href">
+				<xsl:value-of select="@xlink:href[id(..)=id($node)]"/>
+			</xsl:attribute>
+		</xsl:element>
+	</xsl:template>
 	<xsl:template match="db:releaseinfo/db:link">
 		<xsl:element name="id" namespace="http://www.w3.org/2005/Atom">
 			<xsl:value-of select="@xlink:href"/>
@@ -122,6 +132,9 @@
 		<xsl:variable name="title"><xsl:value-of select="db:title|db:info/db:title"/></xsl:variable>
 		<xsl:element name="entry" namespace="http://www.w3.org/2005/Atom">
 			<xsl:apply-templates select="db:title|db:info"/>
+			<xsl:call-template name="atom-link">
+				<xsl:with-param name="node"><xsl:value-of select="db:info/db:releaseinfo/db:link"/></xsl:with-param>
+			</xsl:call-template>
 			<xsl:element name="content" namespace="http://www.w3.org/2005/Atom">
 				<xsl:choose>
 					<xsl:when test="@xml:id">
