@@ -40,8 +40,16 @@
 	<xsl:template name="user.head.content">
 		<xsl:param name="node" select="." />
 		<xsl:apply-templates select="/*/articleinfo/extendedlink" />
+		<xsl:apply-templates select="/*/partinfo/extendedlink" />
+		<xsl:apply-templates select="/*/bookinfo/extendedlink" />
 	</xsl:template>
 	<xsl:template match="/*/articleinfo/extendedlink">
+		<xsl:apply-templates select="arc" />
+	</xsl:template>
+	<xsl:template match="/*/partinfo/extendedlink">
+		<xsl:apply-templates select="arc" />
+	</xsl:template>
+	<xsl:template match="/*/bookinfo/extendedlink">
 		<xsl:apply-templates select="arc" />
 	</xsl:template>
 </xsl:stylesheet>
