@@ -38,7 +38,6 @@
 		</xsl:element>
 	</xsl:template>
 	<xsl:template name="ctxsl:map-extendedlink-arc">
-		<xsl:param name="node"/>
 		<xsl:param name="rel"/>
 		<xsl:param name="type"/>
 		<xsl:variable name="arcfrom"><xsl:value-of select="@xlink:from"/></xsl:variable>
@@ -58,7 +57,6 @@
 	<xsl:template match="extendedlink/arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/def/meta']">
 		<!-- Your metadata should be of application/rdf+xml anyway. -->
 		<xsl:call-template name="ctxsl:map-extendedlink-arc">
-			<xsl:with-param name="node" select="."/>
 			<xsl:with-param name="rel">meta</xsl:with-param>
 			<xsl:with-param name="type">application/rdf+xml</xsl:with-param>
 		</xsl:call-template>
