@@ -25,7 +25,6 @@
 		<xsl:copy>
 			<xsl:choose>
 				<xsl:when test="xhtml:div[@class='titlepage']//xhtml:*[@class='title']/xhtml:a[@id]">
-					<xsl:message>Processing id <xsl:value-of select="xhtml:div[@class='titlepage']//xhtml:*[@class='title']/xhtml:a/@id" />.</xsl:message>
 					<xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
 						<xsl:attribute name="id">
 							<xsl:value-of select="xhtml:div[@class='titlepage']//xhtml:*[@class='title']/xhtml:a/@id" />
