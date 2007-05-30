@@ -76,7 +76,7 @@
 		<xsl:param name="node" />
 		<xsl:param name="rel">alternate</xsl:param>
 		<xsl:element name="link" namespace="http://www.w3.org/2005/Atom">
-			<xsl:attribute name="href"><xsl:value-of select="$rel"/></xsl:attribute>
+			<xsl:attribute name="rel"><xsl:value-of select="$rel"/></xsl:attribute>
 			<xsl:attribute name="href">
 				<xsl:value-of select="@xlink:href[id(..)=id($node)]"/>
 			</xsl:attribute>
