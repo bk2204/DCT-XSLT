@@ -6,6 +6,7 @@
 	xmlns:db="http://docbook.org/ns/docbook"
 	xmlns:xi="http://www.w3.org/2001/XInclude"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:atom="http://www.w3.org/2005/Atom">
 	<xsl:template match="node()|@*" mode="strip">
 		<xsl:apply-templates select="@*|node()" mode="strip"/>
@@ -94,6 +95,7 @@
 				</xsl:element>
 			</xsl:if>
 			<xsl:apply-templates select="db:title|db:subtitle|db:date|db:releaseinfo"/>
+			<xsl:copy-of select="dc:*"/>
 	</xsl:template>
 	<xsl:template match="db:date">
 			<xsl:element name="updated" namespace="http://www.w3.org/2005/Atom">
