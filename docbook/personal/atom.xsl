@@ -88,6 +88,8 @@
 		<xsl:element name="id" namespace="http://www.w3.org/2005/Atom">
 			<xsl:value-of select="@xlink:href"/>
 		</xsl:element>
+	</xsl:template>
+	<xsl:template match="db:releaseinfo/db:link" mode="article">
 		<xsl:element name="link" namespace="http://www.w3.org/2005/Atom">
 			<xsl:attribute name="rel">alternate</xsl:attribute>
 			<xsl:attribute name="href">
@@ -141,6 +143,7 @@
 		<xsl:variable name="title"><xsl:value-of select="db:title|db:info/db:title"/></xsl:variable>
 		<xsl:element name="entry" namespace="http://www.w3.org/2005/Atom">
 			<xsl:apply-templates select="db:title|db:info"/>
+			<xsl:apply-templates select="db:info/db:releaseinfo/db:link" mode="article"/>
 			<xsl:element name="content" namespace="http://www.w3.org/2005/Atom">
 				<xsl:choose>
 					<xsl:when test="@xml:id">
