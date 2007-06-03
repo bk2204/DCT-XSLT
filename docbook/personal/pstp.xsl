@@ -52,23 +52,6 @@
 			<xsl:apply-templates select="@*[not(name(.) = 'class')]|node()" mode="ctxsl:all-xhtml2xhtml"/>
 		</xsl:copy>
 	</xsl:template>
-	<!-- The colophon is special, so fix it up on its own. -->
-	<xsl:template match="xhtml:body/xhtml:div/xhtml:div[@class = 'colophon']/xhtml:*[@class = 'title']" mode="ctxsl:all-xhtml2xhtml">
-		<xsl:call-template name="ctxsl:header">
-			<xsl:with-param name="ctxsl:level" select="1"/>
-		</xsl:call-template>
-	</xsl:template>
-	<!-- Fix up the divisions so that they have the proper header levels. -->
-	<xsl:template match="xhtml:body/xhtml:div/xhtml:div[not(@class = 'titlepage')]/xhtml:*[@class = 'title']" mode="ctxsl:all-xhtml2xhtml">
-		<xsl:call-template name="ctxsl:header">
-			<xsl:with-param name="ctxsl:level" select="1"/>
-		</xsl:call-template>
-	</xsl:template>
-	<xsl:template match="xhtml:div[@class = 'article']/xhtml:div[@class = 'titlepage']//xhtml:h2[@class = 'title']" mode="ctxsl:all-xhtml2xhtml">
-		<xsl:call-template name="ctxsl:header">
-			<xsl:with-param name="ctxsl:level" select="1"/>
-		</xsl:call-template>
-	</xsl:template>
 	<xsl:template match="xhtml:body/xhtml:div[not(@class = 'footer')]" mode="ctxsl:all-xhtml2xhtml">
 		<xsl:call-template name="ctxsl:add-class">
 			<xsl:with-param name="ctxsl:class"><xsl:text>toplevel</xsl:text></xsl:with-param>
