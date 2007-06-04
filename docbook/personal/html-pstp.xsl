@@ -24,7 +24,6 @@
 				<xsl:attribute name="class">content</xsl:attribute>
 				<xsl:apply-templates mode="ctxsl:all-xhtml2xhtml"/>
 			</xsl:element>
-			<xsl:apply-templates select="xhtml:div[@class='article']/xhtml:div[@class = 'section' and position()=last()]" mode="ctxsl:personal-xhtml-navfixup"/>
 			<xsl:call-template name="ctxsl:footer">
 				<xsl:with-param name="ctxsl:structure">
 					<a href="http://validator.w3.org/check/referer">HTML 4.01 Strict</a>
