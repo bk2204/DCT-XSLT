@@ -55,7 +55,8 @@
 			<xsl:with-param name="ctxsl:class"><xsl:value-of select="../@class"/></xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
-	<xsl:template match="xhtml:div[@class='literallayout']" mode="ctxsl:all-xhtml2xhtml">
+	<xsl:template match="xhtml:div[@class='literallayout' or @class='address']"
+		mode="ctxsl:all-xhtml2xhtml">
 		<xsl:apply-templates mode="ctxsl:copy-parent-class"/>
 	</xsl:template>
 	<!--
