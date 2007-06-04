@@ -15,11 +15,5 @@
 		</xsl:copy>
 	</xsl:template>
 	<xsl:template match="xhtml:div[@class='article']/xhtml:div[@class='titlepage']"/>
-	<xsl:template match="xhtml:div[@class='literallayout']">
-		<xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
-			<xsl:attribute name="xml:space">preserve</xsl:attribute>
-			<xsl:apply-templates select="@*|node()"/>
-		</xsl:element>
-	</xsl:template>
 </xsl:stylesheet>
 <!-- vim: set filetype=xslt tw=0 ts=2 sw=2 noet: -->
