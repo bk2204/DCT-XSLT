@@ -35,7 +35,6 @@
 		-->
 	</xsl:template>
 	<xsl:template match="@xml:space" mode="ctxsl:all-xhtml2xhtml"/>
-	<xsl:template match="xhtml:br" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="xhtml:hr" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="xhtml:div[@class = 'footnotes']/xhtml:hr" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template name="ctxsl:add-class">
