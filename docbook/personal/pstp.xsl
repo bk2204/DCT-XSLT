@@ -65,12 +65,11 @@
 			<xsl:attribute name="class"><xsl:text>footer</xsl:text></xsl:attribute>
 			<hr />
 			<p>
-				This page is <strong><span class="valid">valid</span><xsl:text> </xsl:text>
+				This page is <span class="valid">valid</span><xsl:text> </xsl:text>
 					<span class="structure"><xsl:copy-of select="$ctxsl:structure"/></span>
-				</strong>
 				and uses
-				<strong><span class="valid">valid</span>
-					<xsl:text> </xsl:text><a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a></strong>.
+				<span class="valid">valid</span>
+				<xsl:text> </xsl:text><span class="style-structure"><a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a></span>.
 			</p>
 		</xsl:element>
 	</xsl:template>
