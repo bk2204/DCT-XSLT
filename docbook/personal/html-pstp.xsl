@@ -17,19 +17,12 @@
 	<xsl:template match="/">
 		<xsl:apply-templates select="." mode="ctxsl:all-xhtml2xhtml"/>
 	</xsl:template>
-	<xsl:template match="xhtml:body" mode="ctxsl:all-xhtml2xhtml">
-		<xsl:copy>
-			<xsl:copy-of select="@*"/>
-			<xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
-				<xsl:attribute name="class">content</xsl:attribute>
-				<xsl:apply-templates mode="ctxsl:all-xhtml2xhtml"/>
-			</xsl:element>
-			<xsl:call-template name="ctxsl:footer">
-				<xsl:with-param name="ctxsl:structure">
-					<a href="http://validator.w3.org/check/referer">HTML 4.01 Strict</a>
-				</xsl:with-param>
-			</xsl:call-template>
-		</xsl:copy>
+	<xsl:template name="ctxsl:footer-cb">
+		<xsl:call-template name="ctxsl:footer">
+			<xsl:with-param name="ctxsl:structure">
+				<a href="http://validator.w3.org/check/referer">HTML 4.01 Strict</a>
+			</xsl:with-param>
+		</xsl:call-template>
 	</xsl:template>
 </xsl:stylesheet>
 <!-- vim: set filetype=xslt tw=0 ts=2 sw=2 noet: -->

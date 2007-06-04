@@ -83,5 +83,19 @@
 			</p>
 		</xsl:element>
 	</xsl:template>
+	<xsl:template match="xhtml:body" mode="ctxsl:all-xhtml2xhtml">
+		<xsl:copy>
+			<xsl:copy-of select="@*"/>
+			<xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
+				<xsl:attribute name="class">content</xsl:attribute>
+				<xsl:apply-templates mode="ctxsl:all-xhtml2xhtml"/>
+			</xsl:element>
+			<xsl:call-template name="ctxsl:footer-cb"/>
+		</xsl:copy>
+	</xsl:template>
+	<!--
+	Dummy implementation of the footer callback.
+	-->
+	<xsl:template name="ctxsl:footer-cb"/>
 </xsl:stylesheet>
 <!-- vim: set filetype=xslt tw=0 ts=2 sw=2 noet: -->
