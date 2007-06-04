@@ -50,6 +50,14 @@
 			<xsl:with-param name="ctxsl:class"><xsl:text>toplevel</xsl:text></xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
+	<xsl:template match="xhtml:*" mode="ctxsl:copy-parent-class">
+		<xsl:call-template name="ctxsl:add-class">
+			<xsl:with-param name="ctxsl:class"><xsl:value-of select="../@class"/></xsl:with-param>
+		</xsl:call-template>
+	</xsl:template>
+	<xsl:template match="xhtml:div[@class='literallayout']" mode="ctxsl:all-xhtml2xhtml">
+		<xsl:apply-templates mode="ctxsl:copy-parent-class"/>
+	</xsl:template>
 	<!--
 	<xsl:template match="xhtml:body/xhtml:div/xhtml:div[not(@class = 'titlepage')]" mode="ctxsl:all-xhtml2xhtml">
 		<xsl:call-template name="ctxsl:add-class">
