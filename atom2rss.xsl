@@ -1,8 +1,10 @@
 <?xml version="1.0"?> 
 
-<!-- Atom to RSS 1.0 Transformation, written by Rene Puls (rpuls@kcore.de) -->
+<!--
+Atom to RSS 1.0 Transformation, written by Rene Puls (rpuls@kcore.de)
 
-<!-- Snownews filter command for this extension: "xsltproc /path/to/atom2rss -" -->
+Available under the GPLv2 (according to http://kiza.kcore.de/software/snownews/snowscripts/extensions?file=atom2rss
+-->
 
 <xsl:stylesheet version="1.0" 
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
