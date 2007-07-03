@@ -26,5 +26,9 @@
 			<xsl:with-param name="type">application/atom+xml</xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
+	<!-- punt until later -->
+	<xsl:template match="extendedlink/arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/def/license']">
+		<xsl:copy-of select=".."/>
+	</xsl:template>
 </xsl:stylesheet>
 <!-- vim: set filetype=xslt tw=0 ts=2 sw=2 noet: -->
