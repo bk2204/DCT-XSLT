@@ -70,6 +70,21 @@
 		</xsl:call-template>
 	</xsl:template>
 	-->
+	<xsl:template name="ctxsl:emit-license-arc">
+		<xsl:variable name="arcfrom"><xsl:value-of select="@xlink:from"/></xsl:variable>
+		<xsl:variable name="arcto"><xsl:value-of select="@xlink:to"/></xsl:variable>
+		<xsl:for-each select="../locator[string-length(@xlink:href)=0 and @xlink:label=$arcfrom]">
+			<xsl:for-each select="../locator[@xlink:label=$arcto]">
+				<xsl:text>This page is licensed under </xsl:text>
+				<xsl:element name="a" namespace="http://www.w3.org/1999/xhtml">
+					<xsl:attribute name="href">
+						<xsl:value-of select="@xlink:href"/>
+					</xsl:attribute>
+					<xsl:value-of select="@xlink:title"/>
+				</xsl:element>.
+			</xsl:for-each>
+		</xsl:for-each>
+	</xsl:template>
 	<xsl:template name="ctxsl:footer">
 		<xsl:param name="ctxsl:structure"/>
 		<!-- Insert a footer. -->
@@ -83,6 +98,10 @@
 				and uses
 				<span class="valid">valid</span>
 				<xsl:text> </xsl:text><span class="style-structure"><a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a></span>.
+				<xsl:for-each
+					select="//xhtml:head/extendedlink/arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/def/license']">
+					<xsl:call-template name="ctxsl:emit-license-arc"/>
+				</xsl:for-each>
 			</p>
 		</xsl:element>
 	</xsl:template>
