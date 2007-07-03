@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xsl:stylesheet
 	version="1.0"
+	xmlns:db="http://docbook.org/ns/docbook"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
 	xmlns:ctxsl="http://crustytoothpaste.ath.cx/ns/xsl"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:xi="http://www.w3.org/2003/XInclude"
@@ -37,6 +39,7 @@
 	<xsl:template match="xhtml:div/@style" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="@xml:space" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="xhtml:hr" mode="ctxsl:all-xhtml2xhtml"/>
+	<xsl:template match="extendedlink" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="xhtml:div[@class = 'footnotes']/xhtml:hr" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="xhtml:div[@class = 'footnotes']/xhtml:br" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template name="ctxsl:add-class">
