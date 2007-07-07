@@ -9,7 +9,7 @@
 	<!-- Use standard PostScript fonts, just in case. -->
 	<xsl:param name="monospace.font.family" select="'Courier'" />
 	<xsl:param name="sans.font.family" select="'Helvetica'" />
-	<xsl:param name="title.font.family" select="'Helvetica'" />
-	<xsl:param name="body.font.family" select="'Palatino'" />
+	<xsl:param name="title.font.family" select="'Times'" />
+	<xsl:param name="body.font.family" select="'Times'" />
 </xsl:stylesheet>
 <!-- vim: set filetype=xslt tw=0 ts=2 sw=2 noet: -->
