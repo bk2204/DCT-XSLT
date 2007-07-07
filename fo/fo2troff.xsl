@@ -9,6 +9,22 @@
 	<xsl:template name="newline">
 		<xsl:text>&#x000a;</xsl:text>
 	</xsl:template>
+	<xsl:template name="insert-zwnj">
+		<xsl:text>\&amp;</xsl:text>
+	</xsl:template>
+	<xsl:template name="page-setup">
+		<xsl:text>'pl 11i
+'ll 6.5i
+'de HD
+'sp 1i
+..
+'de FO
+'bp
+..
+'wh 0 HD
+'wh -1i FO
+</xsl:text>
+	</xsl:template>
 	<xsl:template name="emit-attributes-begin">
 		<xsl:apply-templates select="ancestor-or-self::*/@font-family[1]"/>
 	</xsl:template>
@@ -22,6 +38,7 @@
 	</xsl:template>
 	<xsl:template match="fo:root">
 		<!-- Punt on layouts for now. -->
+		<xsl:call-template name="page-setup"/>
 		<xsl:apply-templates select="fo:page-sequence"/>
 	</xsl:template>
 	<xsl:template match="fo:page-sequence">
@@ -38,6 +55,9 @@
 		<xsl:call-template name="handle-group"/>
 	</xsl:template>
 	<xsl:template match="text()">
+		<xsl:if test="starts-with(normalize-space(.),'.')">
+			<xsl:call-template name="insert-zwnj"/>
+		</xsl:if>
 		<xsl:value-of select="normalize-space(.)"/>
 		<xsl:if test="local-name(..)!='ablock' and string-length(normalize-space(.))!=0">
 			<xsl:call-template name="newline"/>
@@ -45,6 +65,17 @@
 	</xsl:template>
 	<xsl:template match="@font-family">
 		<xsl:text>'fam </xsl:text><xsl:value-of select="substring(.,1,1)"/>
+		<xsl:call-template name="newline"/>
+	</xsl:template>
+	<xsl:template match="@font-weight">
+		<xsl:choose>
+			<xsl:when test="string(.)!='bold'">
+				<xsl:text>'ft R</xsl:text>
+			</xsl:when>
+			<xsl:when test="string(.)='bold'">
+				<xsl:text>'ft B</xsl:text>
+			</xsl:when>
+		</xsl:choose>
 		<xsl:call-template name="newline"/>
 	</xsl:template>
 	<xsl:template match="@*"/>
