@@ -14,22 +14,25 @@
 	</xsl:template>
 	<xsl:template name="page-setup">
 		<xsl:text>'pl 11i
-'ll 6.5i
+'po 0.5i
+'ll 7.5i
 'de HD
-'sp 1i
+'sp 0.5i
 ..
 'de FO
 'bp
 ..
 'wh 0 HD
-'wh -1i FO
+'wh -0.5i FO
 </xsl:text>
 	</xsl:template>
 	<xsl:template name="emit-attributes-begin">
 		<xsl:apply-templates select="ancestor-or-self::*/@font-family[1]"/>
+		<xsl:apply-templates select="ancestor-or-self::*/@hyphenate[1]"/>
 	</xsl:template>
 	<xsl:template name="emit-attributes-end">
 		<xsl:apply-templates select="ancestor::*/@font-family[1]"/>
+		<xsl:apply-templates select="ancestor::*/@hyphenate[1]"/>
 	</xsl:template>
 	<xsl:template name="handle-group">
 		<xsl:call-template name="emit-attributes-begin"/>
@@ -58,7 +61,14 @@
 		<xsl:if test="starts-with(normalize-space(.),'.')">
 			<xsl:call-template name="insert-zwnj"/>
 		</xsl:if>
-		<xsl:value-of select="normalize-space(.)"/>
+		<xsl:choose>
+			<xsl:when test="string(ancestor::*/@white-space-collapse[1])='false'">
+				<xsl:value-of select="."/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="normalize-space(.)"/>
+			</xsl:otherwise>
+		</xsl:choose>
 		<xsl:if test="local-name(..)!='ablock' and string-length(normalize-space(.))!=0">
 			<xsl:call-template name="newline"/>
 		</xsl:if>
@@ -67,14 +77,25 @@
 		<xsl:text>'fam </xsl:text><xsl:value-of select="substring(.,1,1)"/>
 		<xsl:call-template name="newline"/>
 	</xsl:template>
+	<xsl:template match="@hyphenate">
+		<xsl:choose>
+			<xsl:when test="string(.)!='true'">
+				<xsl:text>'hy 0</xsl:text>
+			</xsl:when>
+			<xsl:when test="string(.)='true'">
+				<xsl:text>'hy 1</xsl:text>
+			</xsl:when>
+		</xsl:choose>
+		<xsl:call-template name="newline"/>
+	</xsl:template>
 	<xsl:template match="@font-weight">
 		<xsl:choose>
 			<xsl:when test="string(.)!='bold'">
 				<xsl:text>'ft R</xsl:text>
 			</xsl:when>
-			<xsl:when test="string(.)='bold'">
+			<xsl:otherwise>
 				<xsl:text>'ft B</xsl:text>
-			</xsl:when>
+			</xsl:otherwise>
 		</xsl:choose>
 		<xsl:call-template name="newline"/>
 	</xsl:template>
