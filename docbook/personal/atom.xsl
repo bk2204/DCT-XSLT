@@ -103,7 +103,9 @@
 					<xsl:value-of select="date:date-time()"/>
 				</xsl:element>
 			</xsl:if>
-			<xsl:apply-templates select="db:title|db:subtitle|db:date|db:releaseinfo"/>
+			<xsl:apply-templates select="db:title|db:subtitle"/>
+			<xsl:apply-templates select="db:author"/>
+			<xsl:apply-templates select="db:date|db:releaseinfo"/>
 			<xsl:copy-of select="dc:*"/>
 	</xsl:template>
 	<xsl:template match="db:date">
