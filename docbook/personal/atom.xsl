@@ -44,6 +44,14 @@
 		<title>
 			<xsl:apply-templates select=".//text()"/>
 		</title>
+		<dc:title>
+			<xsl:apply-templates select=".//text()"/>
+		</dc:title>
+	</xsl:template>
+	<xsl:template match="db:subtitle">
+		<subtitle>
+			<xsl:apply-templates select=".//text()"/>
+		</subtitle>
 	</xsl:template>
 	<xsl:template match="db:person|db:org">
 		<xsl:apply-templates select="db:personname|db:orgname"/>
