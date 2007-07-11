@@ -39,6 +39,9 @@
 		<xsl:apply-templates select="node()"/>
 		<xsl:call-template name="emit-attributes-end"/>
 	</xsl:template>
+	<xsl:template name="block-attributes-end">
+		<xsl:apply-templates select="@break-after"/>
+	</xsl:template>
 	<xsl:template match="fo:root">
 		<!-- Punt on layouts for now. -->
 		<xsl:call-template name="page-setup"/>
@@ -53,6 +56,8 @@
 	<xsl:template match="fo:block">
 		<xsl:call-template name="break"/>
 		<xsl:call-template name="handle-group"/>
+		<xsl:call-template name="block-attributes-end"/>
+		<xsl:apply-templates select="@break-after"/>
 	</xsl:template>
 	<xsl:template match="fo:inline">
 		<xsl:call-template name="handle-group"/>
@@ -87,6 +92,14 @@
 			</xsl:when>
 		</xsl:choose>
 		<xsl:call-template name="newline"/>
+	</xsl:template>
+	<xsl:template match="@break-after">
+		<xsl:choose>
+			<xsl:when test="string(.)!='page'">
+				<xsl:text>.bp</xsl:text>
+				<xsl:call-template name="newline"/>
+			</xsl:when>
+		</xsl:choose>
 	</xsl:template>
 	<xsl:template match="@font-weight">
 		<xsl:choose>
