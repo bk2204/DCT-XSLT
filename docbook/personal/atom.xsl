@@ -75,19 +75,40 @@
 		</xsl:element>
 	</xsl:template>
 	<xsl:template name="atom-link">
-		<xsl:param name="node" />
-		<xsl:param name="rel">alternate</xsl:param>
+		<xsl:param name="rel"/>
 		<xsl:element name="link" namespace="http://www.w3.org/2005/Atom">
-			<xsl:attribute name="rel"><xsl:value-of select="$rel"/></xsl:attribute>
+			<xsl:choose>
+				<xsl:when test="starts-with($rel,
+					'http://www.iana.org/assignments/relation/')">
+					<xsl:attribute name="rel">
+						<xsl:value-of select="substring-after($rel,
+							'http://www.iana.org/assignments/relation/')"/>
+					</xsl:attribute>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:attribute name="rel">
+						<xsl:value-of select="$rel"/>
+					</xsl:attribute>
+				</xsl:otherwise>
+			</xsl:choose>
 			<xsl:attribute name="href">
-				<xsl:value-of select="@xlink:href[id(..)=id($node)]"/>
+				<xsl:value-of select="@xlink:href"/>
 			</xsl:attribute>
 		</xsl:element>
 	</xsl:template>
 	<xsl:template match="db:releaseinfo/db:link">
-		<xsl:element name="id" namespace="http://www.w3.org/2005/Atom">
-			<xsl:value-of select="@xlink:href"/>
-		</xsl:element>
+		<xsl:choose>
+			<xsl:when test="@xlink:arcrole">
+				<xsl:call-template name="atom-link">
+					<xsl:with-param name="rel" select="@xlink:arcrole"/>
+				</xsl:call-template>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:element name="id" namespace="http://www.w3.org/2005/Atom">
+					<xsl:value-of select="@xlink:href"/>
+				</xsl:element>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 	<xsl:template match="db:releaseinfo/db:link" mode="article">
 		<xsl:element name="link" namespace="http://www.w3.org/2005/Atom">
