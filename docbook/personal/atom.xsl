@@ -49,40 +49,40 @@
 		<xsl:apply-templates select="db:personname|db:orgname"/>
 	</xsl:template>
 	<xsl:template match="db:personname|db:orgname">
-		<xsl:element name="name" namespace="http://www.w3.org/2005/Atom">
+		<name>
 			<xsl:apply-templates mode="person"/>
-		</xsl:element>
+		</name>
 	</xsl:template>
 	<xsl:template match="db:email" mode="person">
-		<xsl:element name="email" namespace="http://www.w3.org/2005/Atom">
+		<email>
 			<xsl:apply-templates mode="strip"/>
-		</xsl:element>
+		</email>
 	</xsl:template>
 	<xsl:template match="db:address//db:link" mode="person">
-		<xsl:element name="uri" namespace="http://www.w3.org/2005/Atom">
+		<uri>
 			<xsl:apply-templates select="@xlink:href" mode="strip"/>
-		</xsl:element>
+		</uri>
 	</xsl:template>
 	<xsl:template match="db:author">
-		<xsl:element name="author" namespace="http://www.w3.org/2005/Atom">
+		<author>
 			<xsl:apply-templates select="db:personname|db:orgname"/>
-		</xsl:element>
+		</author>
 	</xsl:template>
 	<xsl:template match="db:collab">
 		<xsl:for-each select="db:personname|db:orgname|db:person|db:org">
-			<xsl:element name="contributor" namespace="http://www.w3.org/2005/Atom">
+			<contributor>
 				<xsl:apply-templates select="."/>
-			</xsl:element>
+			</contributor>
 		</xsl:for-each>
 	</xsl:template>
 	<xsl:template match="db:pubdate">
-		<xsl:element name="published" namespace="http://www.w3.org/2005/Atom">
+		<published>
 			<xsl:apply-templates select="."/>
-		</xsl:element>
+		</published>
 	</xsl:template>
 	<xsl:template name="atom-link">
 		<xsl:param name="rel"/>
-		<xsl:element name="link" namespace="http://www.w3.org/2005/Atom">
+		<link>
 			<xsl:choose>
 				<xsl:when test="starts-with($rel,
 					'http://www.iana.org/assignments/relation/')">
@@ -100,7 +100,7 @@
 			<xsl:attribute name="href">
 				<xsl:value-of select="@xlink:href"/>
 			</xsl:attribute>
-		</xsl:element>
+		</link>
 	</xsl:template>
 	<xsl:template match="db:releaseinfo/db:link">
 		<xsl:choose>
@@ -110,25 +110,24 @@
 				</xsl:call-template>
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:element name="id" namespace="http://www.w3.org/2005/Atom">
+				<id>
 					<xsl:value-of select="@xlink:href"/>
-				</xsl:element>
+				</id>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
 	<xsl:template match="db:releaseinfo/db:link" mode="article">
-		<xsl:element name="link" namespace="http://www.w3.org/2005/Atom">
-			<xsl:attribute name="rel">alternate</xsl:attribute>
+		<link rel="alternate">
 			<xsl:attribute name="href">
 				<xsl:value-of select="@xlink:href"/>
 			</xsl:attribute>
-		</xsl:element>
+		</link>
 	</xsl:template>
 	<xsl:template match="db:info">
 			<xsl:if test="not(./db:date)">
-				<xsl:element name="updated" namespace="http://www.w3.org/2005/Atom">
+				<updated>
 					<xsl:value-of select="date:date-time()"/>
-				</xsl:element>
+				</updated>
 			</xsl:if>
 			<xsl:apply-templates select="db:title|db:subtitle"/>
 			<xsl:apply-templates select="db:author"/>
@@ -136,18 +135,17 @@
 			<xsl:apply-templates select="dc:*" mode="copy-through"/>
 	</xsl:template>
 	<xsl:template match="db:date">
-			<xsl:element name="updated" namespace="http://www.w3.org/2005/Atom">
-				<xsl:apply-templates/>
-			</xsl:element>
+		<updated>
+			<xsl:apply-templates/>
+		</updated>
 	</xsl:template>
 	<xsl:template match="/">
-		<xsl:element name="feed" namespace="http://www.w3.org/2005/Atom">
-			<xsl:element name="generator" namespace="http://www.w3.org/2005/Atom">
-				<xsl:attribute name="version">unreleased (pre-v1)</xsl:attribute>
+		<feed>
+			<generator version="unreleased (pre-v1)">
 				<xsl:text>Crusty Toothpaste xsl-sheets atom.xsl</xsl:text>
-			</xsl:element>
+			</generator>
 			<xsl:apply-templates/>
-		</xsl:element>
+		</feed>
 	</xsl:template>
 	<xsl:template match="db:book">
 		<xsl:apply-templates/>
@@ -170,10 +168,10 @@
 	</xsl:template>
 	<xsl:template match="db:article">
 		<xsl:variable name="title"><xsl:value-of select="db:title|db:info/db:title"/></xsl:variable>
-		<xsl:element name="entry" namespace="http://www.w3.org/2005/Atom">
+		<entry>
 			<xsl:apply-templates select="db:title|db:info"/>
 			<xsl:apply-templates select="db:info/db:releaseinfo/db:link" mode="article"/>
-			<xsl:element name="content" namespace="http://www.w3.org/2005/Atom">
+			<content>
 				<xsl:choose>
 					<xsl:when test="@xml:id">
 						<xsl:attribute name="type">xhtml</xsl:attribute>
@@ -193,7 +191,7 @@
 						<xsl:attribute name="src"><xsl:apply-templates select="./db:info/db:releaseinfo/db:link"/></xsl:attribute>
 					</xsl:otherwise>
 				</xsl:choose>
-			</xsl:element>
-		</xsl:element>
+			</content>
+		</entry>
 	</xsl:template>
 </xsl:stylesheet>
