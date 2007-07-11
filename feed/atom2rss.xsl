@@ -10,6 +10,8 @@ Available under the GPLv2 (according to http://kiza.kcore.de/software/snownews/s
 	xmlns:atom="http://www.w3.org/2005/Atom"
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	xmlns="http://purl.org/rss/1.0/">
 
 	<xsl:output method="xml" indent="yes" cdata-section-elements="description" />
@@ -57,22 +59,52 @@ Available under the GPLv2 (according to http://kiza.kcore.de/software/snownews/s
 					<xsl:value-of select="normalize-space(atom:issued)" />
 				</dc:date>
 			</xsl:if>
-			<xsl:if test="atom:author">
-				<dc:creator>
-					<xsl:value-of select="normalize-space(atom:author)" />
-				</dc:creator>
-			</xsl:if>
-			<xsl:if test="atom:content">
-				<description>
-					<xsl:value-of select="normalize-space(atom:content)" />
-				</description>
-			</xsl:if>
-			<xsl:if test="not(atom:content) and atom:summary">
+			<xsl:apply-templates select="atom:author"/>
+			<xsl:if test="atom:summary">
 				<description>
 					<xsl:value-of select="normalize-space(atom:summary)" />
 				</description>
 			</xsl:if>
+			<xsl:if test="atom:content">
+				<content:items>
+					<rdf:Bag>
+						<rdf:li>
+							<xsl:apply-templates select="atom:content"/>
+						</rdf:li>
+					</rdf:Bag>
+				</content:items>
+			</xsl:if>
 		</item>
+	</xsl:template>
+
+	<xsl:template match="atom:author">
+		<dc:creator>
+			<xsl:value-of select="normalize-space(./atom:name)" />
+		</dc:creator>
+	</xsl:template>
+
+	<xsl:template match="atom:content[@type='xhtml']">
+		<content:item>
+			<content:format rdf:resource="http://www.w3.org/1999/xhtml">
+				<content:encoding
+					rdf:resource="http://www.w3.org/TR/REC-xml#dt-wellformed">
+					<rdf:value rdf:parseType="Literal">
+						<xsl:apply-templates select="xhtml:div"/>
+					</rdf:value>
+				</content:encoding>
+			</content:format>
+		</content:item>
+	</xsl:template>
+
+	<xsl:template match="atom:content[@type='html']">
+		<content:item>
+			<content:format
+				rdf:resource="http://www.isi.edu/in-notes/iana/assignments/media-types/text/html">
+				<rdf:value>
+					<xsl:apply-templates select="text()"/>
+				</rdf:value>
+			</content:format>
+		</content:item>
 	</xsl:template>
 
 </xsl:stylesheet>
