@@ -91,7 +91,7 @@ Available under the GPLv2 (according to http://kiza.kcore.de/software/snownews/s
 				<content:encoding
 					rdf:resource="http://www.w3.org/TR/REC-xml#dt-wellformed">
 					<rdf:value rdf:parseType="Literal">
-						<xsl:apply-templates select="xhtml:div"/>
+						<xsl:copy-of select="xhtml:div"/>
 					</rdf:value>
 				</content:encoding>
 			</content:format>
