@@ -60,11 +60,7 @@ Available under the GPLv2 (according to http://kiza.kcore.de/software/snownews/s
 				</dc:date>
 			</xsl:if>
 			<xsl:apply-templates select="atom:author"/>
-			<xsl:if test="atom:summary">
-				<description>
-					<xsl:value-of select="normalize-space(atom:summary)" />
-				</description>
-			</xsl:if>
+			<xsl:apply-templates select="atom:summary"/>
 			<xsl:if test="atom:content">
 				<content:items>
 					<rdf:Bag>
@@ -81,6 +77,12 @@ Available under the GPLv2 (according to http://kiza.kcore.de/software/snownews/s
 		<dc:creator>
 			<xsl:value-of select="normalize-space(./atom:name)" />
 		</dc:creator>
+	</xsl:template>
+
+	<xsl:template match="atom:summary">
+		<description>
+			<xsl:value-of select="normalize-space(.)" />
+		</description>
 	</xsl:template>
 
 	<xsl:template match="atom:content[@type='xhtml']">
