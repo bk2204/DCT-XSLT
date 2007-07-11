@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xsl:stylesheet version="1.0"
-	exclude-result-prefixes="xsl xlink date xi db"
+	exclude-result-prefixes="xsl xlink date xi db xhtml atom"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
 	xmlns:date="http://exslt.org/dates-and-times"
@@ -8,7 +8,8 @@
 	xmlns:xi="http://www.w3.org/2001/XInclude"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:atom="http://www.w3.org/2005/Atom">
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns="http://www.w3.org/2005/Atom">
 	<xsl:template match="node()|@*" mode="strip">
 		<xsl:apply-templates select="@*|node()" mode="strip"/>
 	</xsl:template>
@@ -35,9 +36,9 @@
 	book: main page; a collection of sections
 	-->
 	<xsl:template match="db:title">
-		<xsl:element name="title" namespace="http://www.w3.org/2005/Atom">
+		<title>
 			<xsl:apply-templates select=".//text()"/>
-		</xsl:element>
+		</title>
 	</xsl:template>
 	<xsl:template match="db:person|db:org">
 		<xsl:apply-templates select="db:personname|db:orgname"/>
@@ -171,15 +172,17 @@
 				<xsl:choose>
 					<xsl:when test="@xml:id">
 						<xsl:attribute name="type">xhtml</xsl:attribute>
-						<xsl:element name="include" namespace="http://www.w3.org/2001/XInclude">
-							<xsl:attribute name="parse">xml</xsl:attribute>
-							<xsl:attribute name="href">index.xhtml</xsl:attribute>
-							<xsl:attribute name="xpointer">
-								<xsl:text>element(</xsl:text>
-								<xsl:value-of select="@xml:id" />
-								<xsl:text>)</xsl:text>
-							</xsl:attribute>
-						</xsl:element>
+						<div xmlns="http://www.w3.org/1999/xhtml">
+							<xsl:element name="include" namespace="http://www.w3.org/2001/XInclude">
+								<xsl:attribute name="parse">xml</xsl:attribute>
+								<xsl:attribute name="href">index.xhtml</xsl:attribute>
+								<xsl:attribute name="xpointer">
+									<xsl:text>element(</xsl:text>
+									<xsl:value-of select="@xml:id" />
+									<xsl:text>)</xsl:text>
+								</xsl:attribute>
+							</xsl:element>
+						</div>
 					</xsl:when>
 					<xsl:otherwise>
 						<xsl:attribute name="src"><xsl:apply-templates select="./db:info/db:releaseinfo/db:link"/></xsl:attribute>
