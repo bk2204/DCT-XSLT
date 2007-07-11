@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xsl:stylesheet
+	exclude-result-prefixes="xlink db #default"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
 	xmlns:db="http://docbook.org/ns/docbook"
 	xmlns="http://www.w3.org/1999/xhtml"

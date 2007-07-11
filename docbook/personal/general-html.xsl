@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xsl:stylesheet
+	exclude-result-prefixes="db html ctxsl xlink"
 	xmlns:db="http://docbook.org/ns/docbook"
 	xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns:ctxsl="http://crustytoothpaste.ath.cx/ns/xsl"

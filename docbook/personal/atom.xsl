@@ -35,6 +35,11 @@
 	part: one section; a tag
 	book: main page; a collection of sections
 	-->
+	<xsl:template match="node()|@*" mode="copy-through">
+		<xsl:copy>
+			<xsl:apply-templates select="@*|node()" mode="copy-through"/>
+		</xsl:copy>
+	</xsl:template>
 	<xsl:template match="db:title">
 		<title>
 			<xsl:apply-templates select=".//text()"/>
@@ -128,7 +133,7 @@
 			<xsl:apply-templates select="db:title|db:subtitle"/>
 			<xsl:apply-templates select="db:author"/>
 			<xsl:apply-templates select="db:date|db:releaseinfo"/>
-			<xsl:copy-of select="dc:*"/>
+			<xsl:apply-templates select="dc:*" mode="copy-through"/>
 	</xsl:template>
 	<xsl:template match="db:date">
 			<xsl:element name="updated" namespace="http://www.w3.org/2005/Atom">
