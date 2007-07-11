@@ -109,5 +109,11 @@ Available under the GPLv2 (according to http://kiza.kcore.de/software/snownews/s
 		</content:item>
 	</xsl:template>
 
+	<xsl:template match="atom:*"/>
+
+	<xsl:template match="dc:*">
+		<xsl:copy-of select="."/>
+	</xsl:template>
+
 </xsl:stylesheet>
 
