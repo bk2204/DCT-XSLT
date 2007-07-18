@@ -27,8 +27,8 @@
 		<xsl:param name="type"/>
 		<xsl:variable name="arcfrom"><xsl:value-of select="@xlink:from"/></xsl:variable>
 		<xsl:variable name="arcto"><xsl:value-of select="@xlink:to"/></xsl:variable>
-		<xsl:for-each select="../locator[string-length(@xlink:href)=0 and @xlink:label=$arcfrom]">
-			<xsl:for-each select="../locator[@xlink:label=$arcto]">
+		<xsl:for-each select="../*[@xlink:type='locator' and string-length(@xlink:href)=0 and @xlink:label=$arcfrom]">
+			<xsl:for-each select="../*[@xlink:type='locator' and @xlink:label=$arcto]">
 				<xsl:call-template name="ctxsl:link-struct-callback">
 					<xsl:with-param name="role"><xsl:value-of select="$role"/></xsl:with-param>
 					<xsl:with-param name="rel"><xsl:value-of select="$rel"/></xsl:with-param>
