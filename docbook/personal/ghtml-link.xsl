@@ -17,12 +17,14 @@
 	<xsl:template match="extendedlink/arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/def/meta']">
 		<!-- Your metadata should be of application/rdf+xml anyway. -->
 		<xsl:call-template name="ctxsl:map-extendedlink-arc">
+			<xsl:with-param name="role">meta</xsl:with-param>
 			<xsl:with-param name="rel">meta</xsl:with-param>
 			<xsl:with-param name="type">application/rdf+xml</xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
 	<xsl:template match="extendedlink/arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/syndication/atom10']">
 		<xsl:call-template name="ctxsl:map-extendedlink-arc">
+			<xsl:with-param name="role">alternate</xsl:with-param>
 			<xsl:with-param name="rel">alternate</xsl:with-param>
 			<xsl:with-param name="type">application/atom+xml</xsl:with-param>
 		</xsl:call-template>
