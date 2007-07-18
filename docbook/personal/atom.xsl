@@ -42,6 +42,17 @@
 			<xsl:apply-templates select="@*|node()" mode="copy-through"/>
 		</xsl:copy>
 	</xsl:template>
+	<xsl:template match="dc:subject" mode="copy-through">
+		<xsl:copy-of select="."/>
+		<category>
+			<xsl:attribute name="term">
+				<xsl:value-of select="translate(normalize-space(text()),'ABCDEFGHIJKLMNOPQRSTUVWXYZ ','abcdefghijklmnopqrstuvwxyz-')"/>
+			</xsl:attribute>
+			<xsl:attribute name="label">
+				<xsl:value-of select="text()"/>
+			</xsl:attribute>
+		</category>
+	</xsl:template>
 	<xsl:template match="db:title">
 		<title>
 			<xsl:apply-templates select=".//text()"/>
