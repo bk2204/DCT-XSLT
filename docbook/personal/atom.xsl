@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xsl:stylesheet version="1.0"
-	exclude-result-prefixes="xsl xlink date xi db xhtml atom"
+	exclude-result-prefixes="xsl xlink date xi db xhtml atom ctxsl"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
 	xmlns:date="http://exslt.org/dates-and-times"
@@ -8,8 +8,10 @@
 	xmlns:xi="http://www.w3.org/2001/XInclude"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:ctxsl="http://crustytoothpaste.ath.cx/ns/xsl"
 	xmlns:atom="http://www.w3.org/2005/Atom"
 	xmlns="http://www.w3.org/2005/Atom">
+	<xsl:import href="../../misc/link-struct.xsl" />
 	<xsl:template match="node()|@*" mode="strip">
 		<xsl:apply-templates select="@*|node()" mode="strip"/>
 	</xsl:template>
@@ -88,8 +90,12 @@
 			<xsl:apply-templates select="."/>
 		</published>
 	</xsl:template>
-	<xsl:template name="atom-link">
+	<xsl:template name="ctxsl:link-struct-callback">
+		<xsl:param name="role"/>
 		<xsl:param name="rel"/>
+		<xsl:param name="type"/>
+		<xsl:param name="href"/>
+		<xsl:param name="title"/>
 		<link>
 			<xsl:choose>
 				<xsl:when test="starts-with($rel,
@@ -106,23 +112,29 @@
 				</xsl:otherwise>
 			</xsl:choose>
 			<xsl:attribute name="href">
-				<xsl:value-of select="@xlink:href"/>
+				<xsl:value-of select="$href"/>
+			</xsl:attribute>
+			<xsl:attribute name="title">
+				<xsl:value-of select="$title"/>
 			</xsl:attribute>
 		</link>
 	</xsl:template>
 	<xsl:template match="db:releaseinfo/db:link">
 		<xsl:choose>
-			<xsl:when test="@xlink:arcrole">
-				<xsl:call-template name="atom-link">
-					<xsl:with-param name="rel" select="@xlink:arcrole"/>
-				</xsl:call-template>
-			</xsl:when>
+			<xsl:when test="@xlink:arcrole"/>
 			<xsl:otherwise>
 				<id>
 					<xsl:value-of select="@xlink:href"/>
 				</id>
 			</xsl:otherwise>
 		</xsl:choose>
+	</xsl:template>
+	<xsl:template match="db:extendedlink/db:arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/syndication/atom10']">
+		<xsl:call-template name="ctxsl:map-extendedlink-arc">
+			<xsl:with-param name="role">self</xsl:with-param>
+			<xsl:with-param name="rel">self</xsl:with-param>
+			<xsl:with-param name="type">application/atom+xml</xsl:with-param>
+		</xsl:call-template>
 	</xsl:template>
 	<xsl:template match="db:releaseinfo/db:link" mode="article">
 		<link rel="alternate">
@@ -140,6 +152,7 @@
 			<xsl:apply-templates select="db:title|db:subtitle"/>
 			<xsl:apply-templates select="db:author"/>
 			<xsl:apply-templates select="db:date|db:releaseinfo"/>
+			<xsl:apply-templates select="db:extendedlink/db:arc"/>
 			<xsl:apply-templates select="dc:*" mode="copy-through"/>
 	</xsl:template>
 	<xsl:template match="db:date">
