@@ -9,7 +9,7 @@
 	<xsl:import href="../html-pstp.xsl" />
 	<xsl:import href="./pstp.xsl" />
 	<xsl:output method="html"
-		encoding="US-ASCII"
+		encoding="UTF-8"
 		indent="no"
 		doctype-public="-//W3C//DTD HTML 4.01//EN"
 		doctype-system="http://www.w3.org/TR/html4/strict.dtd"/>
