@@ -10,6 +10,7 @@ Available under the GPLv2 (according to http://kiza.kcore.de/software/snownews/s
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:atom="http://www.w3.org/2005/Atom"
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:cc="http://web.resource.org/cc/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
@@ -90,14 +91,12 @@ Available under the GPLv2 (according to http://kiza.kcore.de/software/snownews/s
 
 	<xsl:template match="atom:content[@type='xhtml']">
 		<content:item>
-			<content:format rdf:resource="http://www.w3.org/1999/xhtml">
-				<content:encoding
-					rdf:resource="http://www.w3.org/TR/REC-xml#dt-wellformed">
-					<rdf:value rdf:parseType="Literal">
-						<xsl:copy-of select="xhtml:div"/>
-					</rdf:value>
-				</content:encoding>
-			</content:format>
+			<content:format rdf:resource="http://www.w3.org/1999/xhtml" />
+			<content:encoding
+				rdf:resource="http://www.w3.org/TR/REC-xml#dt-wellformed" />
+			<rdf:value rdf:parseType="Literal">
+				<xsl:copy-of select="xhtml:div"/>
+			</rdf:value>
 		</content:item>
 	</xsl:template>
 
@@ -114,9 +113,14 @@ Available under the GPLv2 (according to http://kiza.kcore.de/software/snownews/s
 
 	<xsl:template match="atom:*"/>
 
-	<xsl:template match="dc:*">
+	<xsl:template match="dc:*|cc:*">
 		<xsl:copy-of select="."/>
 	</xsl:template>
+
+	<xsl:template match="rdf:RDF">
+		<xsl:apply-templates />
+	</xsl:template>
+
 
 </xsl:stylesheet>
 
