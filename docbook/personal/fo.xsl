@@ -11,5 +11,8 @@
 	<xsl:param name="sans.font.family" select="'Helvetica'" />
 	<xsl:param name="title.font.family" select="'Times'" />
 	<xsl:param name="body.font.family" select="'Times'" />
+	<xsl:param name="body.start.indent" select="'0pt'" />
+	<xsl:param name="header.rule" select="0" />
+	<xsl:param name="footer.rule" select="0" />
 </xsl:stylesheet>
 <!-- vim: set filetype=xslt tw=0 ts=2 sw=2 noet: -->
