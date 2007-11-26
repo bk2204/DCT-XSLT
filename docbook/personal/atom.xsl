@@ -7,6 +7,8 @@
 	xmlns:db="http://docbook.org/ns/docbook"
 	xmlns:xi="http://www.w3.org/2001/XInclude"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:cc="http://web.resource.org/cc/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:ctxsl="http://crustytoothpaste.ath.cx/ns/xsl"
 	xmlns:atom="http://www.w3.org/2005/Atom"
@@ -101,27 +103,14 @@
 			<xsl:apply-templates select="."/>
 		</published>
 	</xsl:template>
-	<xsl:template name="ctxsl:link-struct-callback">
-		<xsl:param name="role"/>
+	<xsl:template name="emit-link">
 		<xsl:param name="rel"/>
-		<xsl:param name="type"/>
 		<xsl:param name="href"/>
 		<xsl:param name="title"/>
 		<link>
-			<xsl:choose>
-				<xsl:when test="starts-with($rel,
-					'http://www.iana.org/assignments/relation/')">
-					<xsl:attribute name="rel">
-						<xsl:value-of select="substring-after($rel,
-							'http://www.iana.org/assignments/relation/')"/>
-					</xsl:attribute>
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:attribute name="rel">
-						<xsl:value-of select="$rel"/>
-					</xsl:attribute>
-				</xsl:otherwise>
-			</xsl:choose>
+			<xsl:attribute name="rel">
+				<xsl:value-of select="$rel"/>
+			</xsl:attribute>
 			<xsl:attribute name="href">
 				<xsl:value-of select="$href"/>
 			</xsl:attribute>
@@ -129,6 +118,57 @@
 				<xsl:value-of select="$title"/>
 			</xsl:attribute>
 		</link>
+	</xsl:template>
+	<xsl:template name="ctxsl:link-struct-callback">
+		<xsl:param name="role"/>
+		<xsl:param name="rel"/>
+		<xsl:param name="type"/>
+		<xsl:param name="href"/>
+		<xsl:param name="title"/>
+		<xsl:choose>
+			<xsl:when test="$rel=
+				'http://crustytoothpaste.ath.cx/rel/def/license'">
+				<rdf:RDF>
+					<cc:Work rdf:about="">
+						<cc:license>
+							<xsl:attribute
+								namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+								name="resource">
+								<xsl:value-of select="$href"/>
+							</xsl:attribute>
+						</cc:license>
+					</cc:Work>
+				</rdf:RDF>
+			</xsl:when>
+			<xsl:when test="starts-with($rel,
+				'http://www.iana.org/assignments/relation/')">
+				<xsl:call-template name="emit-link">
+					<xsl:with-param name="rel">
+						<xsl:value-of select="substring-after($rel,
+							'http://www.iana.org/assignments/relation/')"/>
+					</xsl:with-param>
+					<xsl:with-param name="href">
+						<xsl:value-of select="$href"/>
+					</xsl:with-param>
+					<xsl:with-param name="title">
+						<xsl:value-of select="$title"/>
+					</xsl:with-param>
+				</xsl:call-template>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:call-template name="emit-link">
+					<xsl:with-param name="rel">
+						<xsl:value-of select="$rel"/>
+					</xsl:with-param>
+					<xsl:with-param name="href">
+						<xsl:value-of select="$href"/>
+					</xsl:with-param>
+					<xsl:with-param name="title">
+						<xsl:value-of select="$title"/>
+					</xsl:with-param>
+				</xsl:call-template>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 	<xsl:template match="db:releaseinfo/db:link">
 		<xsl:choose>
@@ -145,6 +185,17 @@
 			<xsl:with-param name="role">self</xsl:with-param>
 			<xsl:with-param name="rel">self</xsl:with-param>
 			<xsl:with-param name="type">application/atom+xml</xsl:with-param>
+		</xsl:call-template>
+	</xsl:template>
+	<xsl:template match="db:extendedlink/db:arc[@xlink:arcrole!='http://crustytoothpaste.ath.cx/rel/syndication/atom10']">
+		<xsl:call-template name="ctxsl:map-extendedlink-arc">
+			<xsl:with-param name="role">
+				<xsl:value-of select="@xlink:arcrole"/>
+			</xsl:with-param>
+			<xsl:with-param name="rel">
+				<xsl:value-of select="@xlink:arcrole"/>
+			</xsl:with-param>
+			<xsl:with-param name="type">application/rdf+xml</xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
 	<xsl:template match="db:releaseinfo/db:link" mode="article">
