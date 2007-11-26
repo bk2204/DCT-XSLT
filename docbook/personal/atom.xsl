@@ -45,7 +45,9 @@
 		</xsl:copy>
 	</xsl:template>
 	<xsl:template match="dc:subject" mode="copy-through">
-		<xsl:copy-of select="."/>
+		<xsl:copy>
+			<xsl:apply-templates select="@*|node()" mode="copy-through"/>
+		</xsl:copy>
 		<category>
 			<xsl:attribute name="term">
 				<xsl:value-of select="translate(normalize-space(text()),'ABCDEFGHIJKLMNOPQRSTUVWXYZ ','abcdefghijklmnopqrstuvwxyz-')"/>
@@ -133,7 +135,7 @@
 						<cc:license>
 							<xsl:attribute
 								namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-								name="resource">
+								name="rdf:resource">
 								<xsl:value-of select="$href"/>
 							</xsl:attribute>
 						</cc:license>
