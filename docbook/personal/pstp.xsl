@@ -20,9 +20,9 @@
 				<link type="text/css" title="Default" rel="stylesheet" href="http://crustytoothpaste.ath.cx/css/docbook-xhtml/default.css"/>
 				<link type="text/css" title="Simple" rel="alternate stylesheet" href="http://crustytoothpaste.ath.cx/css/docbook-xhtml/simple.css"/>
 				<link type="text/css" title="Complexspiral" rel="alternate stylesheet" href="http://crustytoothpaste.ath.cx/css/docbook-xhtml/complexspiral.css"/>
+				<link type="text/css" title="Water" rel="alternate stylesheet" href="http://crustytoothpaste.ath.cx/css/docbook-xhtml/water.css"/>
 				<!--
 				<link type="text/css" title="Highest Good" rel="alternate stylesheet" href="http://crustytoothpaste.ath.cx/css/docbook-xhtml/highest-good.css"/>
-				<link type="text/css" title="Water" rel="alternate stylesheet" href="http://crustytoothpaste.ath.cx/css/docbook-xhtml/water.css"/>
 				<link type="text/css" title="Elegant Blue" rel="alternate stylesheet" href="http://crustytoothpaste.ath.cx/css/docbook-xhtml/elegant-blue.css"/>
 				<link type="text/css" title="Subtle" rel="alternate stylesheet" href="http://crustytoothpaste.ath.cx/css/docbook-xhtml/subtle.css"/>
 				-->
