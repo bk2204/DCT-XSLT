@@ -105,6 +105,11 @@
 			<xsl:apply-templates select="."/>
 		</published>
 	</xsl:template>
+	<xsl:template match="db:abstract">
+		<dc:description>
+			<xsl:apply-templates select="db:para[1]//text()"/>
+		</dc:description>
+	</xsl:template>
 	<xsl:template name="emit-link">
 		<xsl:param name="rel"/>
 		<xsl:param name="href"/>
@@ -217,6 +222,7 @@
 			<xsl:apply-templates select="db:author"/>
 			<xsl:apply-templates select="db:date|db:releaseinfo"/>
 			<xsl:apply-templates select="db:extendedlink/db:arc"/>
+			<xsl:apply-templates select="db:abstract"/>
 			<xsl:apply-templates select="dc:*" mode="copy-through"/>
 	</xsl:template>
 	<xsl:template match="db:date">
