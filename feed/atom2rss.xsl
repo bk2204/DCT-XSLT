@@ -69,7 +69,6 @@ Available under the GPLv2 (according to http://kiza.kcore.de/software/snownews/s
 			<xsl:apply-templates select="atom:author"/>
 			<xsl:apply-templates select="*" mode="metadata" />
 			<xsl:apply-templates select="atom:summary"/>
-			<!--
 			<xsl:if test="atom:content">
 				<content:items>
 					<rdf:Bag>
@@ -79,7 +78,6 @@ Available under the GPLv2 (according to http://kiza.kcore.de/software/snownews/s
 					</rdf:Bag>
 				</content:items>
 			</xsl:if>
-			-->
 		</item>
 	</xsl:template>
 
