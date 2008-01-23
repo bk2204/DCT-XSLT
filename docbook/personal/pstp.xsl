@@ -75,13 +75,21 @@
 		<xsl:variable name="arcto"><xsl:value-of select="@xlink:to"/></xsl:variable>
 		<xsl:for-each select="../locator[string-length(@xlink:href)=0 and @xlink:label=$arcfrom]">
 			<xsl:for-each select="../locator[@xlink:label=$arcto]">
-				<xsl:text>This page is licensed under </xsl:text>
+				<xsl:choose>
+					<xsl:when test="position()=1"/>
+					<xsl:when test="position()=last()">
+						<xsl:text>, or </xsl:text>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:text>, </xsl:text>
+					</xsl:otherwise>
+				</xsl:choose>
 				<xsl:element name="a" namespace="http://www.w3.org/1999/xhtml">
 					<xsl:attribute name="href">
 						<xsl:value-of select="@xlink:href"/>
 					</xsl:attribute>
 					<xsl:value-of select="@xlink:title"/>
-				</xsl:element>.
+				</xsl:element>
 			</xsl:for-each>
 		</xsl:for-each>
 	</xsl:template>
@@ -98,10 +106,13 @@
 				and uses
 				<span class="valid">valid</span>
 				<xsl:text> </xsl:text><span class="style-structure"><a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a></span>.
-				<xsl:for-each
-					select="//xhtml:head/extendedlink/arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/def/license']">
-					<xsl:call-template name="ctxsl:emit-license-arc"/>
-				</xsl:for-each>
+				<xsl:if test="//xhtml:head/extendedlink/arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/def/license']">
+					This page is licensed under
+					<xsl:for-each
+						select="//xhtml:head/extendedlink/arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/def/license']">
+						<xsl:call-template name="ctxsl:emit-license-arc"/>
+					</xsl:for-each>.
+				</xsl:if>
 			</p>
 		</xsl:element>
 	</xsl:template>
