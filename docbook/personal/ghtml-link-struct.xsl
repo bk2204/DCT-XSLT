@@ -15,7 +15,9 @@
 		<xsl:param name="title"/>
 		<xsl:element name="link" namespace="http://www.w3.org/1999/xhtml">
 			<xsl:attribute name="rel"><xsl:value-of select="$rel"/></xsl:attribute>
-			<xsl:attribute name="type"><xsl:value-of select="$type"/></xsl:attribute>
+			<xsl:if test="string-length($type)!=0">
+				<xsl:attribute name="type"><xsl:value-of select="$type"/></xsl:attribute>
+			</xsl:if>
 			<xsl:attribute name="href"><xsl:value-of select="$href"/></xsl:attribute>
 			<xsl:attribute name="title"><xsl:value-of select="$title"/></xsl:attribute>
 		</xsl:element>
