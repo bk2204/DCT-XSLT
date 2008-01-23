@@ -29,6 +29,20 @@
 			<xsl:with-param name="type">application/atom+xml</xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
+	<xsl:template match="extendedlink/arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/openid/server']">
+		<xsl:call-template name="ctxsl:map-extendedlink-arc">
+			<xsl:with-param name="role">openid.server</xsl:with-param>
+			<xsl:with-param name="rel">openid.server</xsl:with-param>
+			<xsl:with-param name="type"/>
+		</xsl:call-template>
+	</xsl:template>
+	<xsl:template match="extendedlink/arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/openid/delegate']">
+		<xsl:call-template name="ctxsl:map-extendedlink-arc">
+			<xsl:with-param name="role">openid.delegate</xsl:with-param>
+			<xsl:with-param name="rel">openid.delegate</xsl:with-param>
+			<xsl:with-param name="type"/>
+		</xsl:call-template>
+	</xsl:template>
 	<!-- punt until later -->
 	<xsl:template match="extendedlink/arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/def/license']">
 		<xsl:copy-of select=".."/>
