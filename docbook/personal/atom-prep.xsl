@@ -11,6 +11,7 @@
 	<xsl:template match="dbx:book|dbx:part">
 		<xsl:copy>
 			<xsl:apply-templates select="dbx:info" />
+			<xsl:apply-templates select="dbx:para" />
 			<xsl:for-each select=".//dbx:article">
 				<xsl:sort select="dbx:info/dbx:date" lang="en" order="descending" />
 				<xsl:sort select="dbx:info/dbx:title" lang="en" order="descending" />

@@ -57,6 +57,7 @@
 			</xsl:attribute>
 		</category>
 	</xsl:template>
+	<xsl:template match="db:para"/>
 	<xsl:template match="db:title">
 		<title>
 			<xsl:apply-templates select=".//text()"/>
