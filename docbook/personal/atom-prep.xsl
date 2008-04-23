@@ -3,15 +3,25 @@
 	xmlns:dbx="http://docbook.org/ns/docbook"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:param name="number" select="1000000"/>
+	<xsl:param name="index" select="0"/>
 	<xsl:template match="node()|@*">
 		<xsl:copy>
 			<xsl:apply-templates select="@*|node()"/>
 		</xsl:copy>
 	</xsl:template>
+	<xsl:template match="dbx:phrase">
+		<xsl:if test="(@condition='index' and $index) or
+			(@condition='entries' and not($index)) or not(@condition)">
+			<xsl:copy>
+				<xsl:apply-templates select="@*[local-name()!='condition']"/>
+				<xsl:apply-templates select="node()"/>
+			</xsl:copy>
+		</xsl:if>
+	</xsl:template>
 	<xsl:template match="dbx:book|dbx:part">
 		<xsl:copy>
 			<xsl:apply-templates select="dbx:info" />
-			<xsl:apply-templates select="dbx:para" />
+			<xsl:apply-templates select="dbx:preface" />
 			<xsl:for-each select=".//dbx:article">
 				<xsl:sort select="dbx:info/dbx:date" lang="en" order="descending" />
 				<xsl:sort select="dbx:info/dbx:title" lang="en" order="descending" />
