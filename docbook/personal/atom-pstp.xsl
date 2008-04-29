@@ -15,5 +15,6 @@
 		</xsl:copy>
 	</xsl:template>
 	<xsl:template match="xhtml:div[@class='article']/xhtml:div[@class='titlepage']"/>
+	<xsl:template match="atom:entry/atom:subtitle"/>
 </xsl:stylesheet>
 <!-- vim: set filetype=xslt tw=0 ts=2 sw=2 noet: -->
