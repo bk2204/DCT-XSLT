@@ -42,6 +42,9 @@
 	<xsl:template match="extendedlink" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="xhtml:div[@class = 'footnotes']/xhtml:hr" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="xhtml:div[@class = 'footnotes']/xhtml:br" mode="ctxsl:all-xhtml2xhtml"/>
+	<xsl:template match="xhtml:acronym" mode="ctxsl:all-xhtml2xhtml">
+		<xsl:apply-templates mode="ctxsl:all-xhtml2xhtml"/>
+	</xsl:template>
 	<xsl:template name="ctxsl:add-class">
 		<xsl:param name="ctxsl:class"/>
 		<xsl:copy>
