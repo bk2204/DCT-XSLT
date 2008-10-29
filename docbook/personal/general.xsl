@@ -10,6 +10,8 @@
 	<xsl:param name="admon.textlabel" select="1" />
 	<!-- Don't generate an index; we'll never use it. -->
 	<xsl:param name="generate.index" select="0" />
+	<!-- Use ul for the TOC so that it will validate as XHTML5. -->
+	<xsl:param name="toc.list.type" select="'ul'" />
 	<!--
 	Don't use the tablecolumns extension since we don't use saxon for processing,
 	and therefore it won't work anyway. 
