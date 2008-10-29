@@ -45,6 +45,20 @@
 	<xsl:template match="xhtml:acronym" mode="ctxsl:all-xhtml2xhtml">
 		<xsl:apply-templates mode="ctxsl:all-xhtml2xhtml"/>
 	</xsl:template>
+	<xsl:template match="xhtml:div[@class = 'attribution']/xhtml:span"
+			mode="ctxsl:all-xhtml2xhtml">
+		<span>
+			<xsl:choose>
+				<xsl:when test="contains(substring(text(), 1, 2), '--')">
+					<xsl:text>—</xsl:text>
+					<xsl:apply-templates mode="ctxsl:all-xhtml2xhtml" select="*"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:apply-templates mode="ctxsl:all-xhtml2xhtml"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</span>
+	</xsl:template>
 	<xsl:template name="ctxsl:add-class">
 		<xsl:param name="ctxsl:class"/>
 		<xsl:copy>
