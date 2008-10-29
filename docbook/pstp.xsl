@@ -25,24 +25,15 @@
 		<xsl:copy>
 			<xsl:choose>
 				<xsl:when test="xhtml:div[@class='titlepage']//xhtml:*[@class='title']/xhtml:a[@id]">
-					<xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
-						<xsl:attribute name="id">
-							<xsl:value-of select="xhtml:div[@class='titlepage']//xhtml:*[@class='title']/xhtml:a/@id" />
-						</xsl:attribute>
-						<xsl:apply-templates select="@*|node()" mode="ctxsl:all-xhtml2xhtml"/>
-					</xsl:element>
+					<xsl:attribute name="id">
+						<xsl:value-of select="xhtml:div[@class='titlepage']//xhtml:*[@class='title']/xhtml:a/@id" />
+					</xsl:attribute>
+					<xsl:apply-templates select="@*|node()" mode="ctxsl:all-xhtml2xhtml" />
 				</xsl:when>
 				<xsl:otherwise>
 					<xsl:apply-templates select="@*|node()" mode="ctxsl:all-xhtml2xhtml"/>
 				</xsl:otherwise>
 			</xsl:choose>
-			<!--
-				<xsl:if test="xhtml:div[@class='titlepage']//xhtml:*[@class='title']/xhtml:a[@id]">
-					<xsl:attribute name="id">
-						<xsl:value-of select="xhtml:div[@class='titlepage']//xhtml:*[@class='title']/xhtml:a/@id" />
-					</xsl:attribute>
-				</xsl:if>
-				-->
 		</xsl:copy>
 	</xsl:template>
 	<xsl:template match="xhtml:meta" mode="ctxsl:all-xhtml2xhtml"/>
