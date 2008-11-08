@@ -11,6 +11,7 @@
 	exclude-result-prefixes="db xlink xsl xhtml ctxsl xi">
 	<xsl:template match="fo:block/fo:inline">
 		<fo:inline>
+			<xsl:apply-templates select="@*" />
 			<xsl:choose>
 				<xsl:when test="contains(substring(text(), 1, 2), '--')">
 					<xsl:text>—</xsl:text>
