@@ -92,9 +92,7 @@
 		<xsl:for-each select="$element/*">
 			<xsl:if test="contains(name(.), 'info')">
 				<xsl:if test="./rdf:RDF">
-					<x:xmpmeta>
-						<xsl:copy-of select="./rdf:RDF" />
-					</x:xmpmeta>
+					<xsl:copy-of select="./rdf:RDF" />
 				</xsl:if>
 			</xsl:if>
 		</xsl:for-each>
