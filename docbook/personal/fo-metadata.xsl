@@ -15,6 +15,7 @@
 	-->
 	<!--<xsl:output method="xml" indent="no"/>-->
 	<xsl:import href="/usr/share/xml/docbook/stylesheet/nwalsh/fo/docbook.xsl" />
+	<xsl:import href="metadata.xsl" />
 
 	<!--
 	These stylesheets were derived in part from the DocBook XSL stylesheets,
@@ -89,13 +90,9 @@
 
 	<xsl:template name="ctxsl:fo-metadata">
 		<xsl:param name="element"/>
-		<xsl:for-each select="$element/*">
-			<xsl:if test="contains(name(.), 'info')">
-				<xsl:if test="./rdf:RDF">
-					<xsl:copy-of select="./rdf:RDF" />
-				</xsl:if>
-			</xsl:if>
-		</xsl:for-each>
+		<xsl:call-template name="ctxsl:metadata">
+			<xsl:with-param name="element" select="$element"/>
+		</xsl:call-template>
 	</xsl:template>
 
 	<xsl:template match="*" mode="process.root">
