@@ -4,7 +4,7 @@
 	Items that are imported first have the lowest priority, followed by
 	later imports, followed by this sheet.
 	-->
-	<xsl:import href="/usr/share/xml/docbook/stylesheet/nwalsh/fo/docbook.xsl" />
+	<xsl:import href="fo-metadata.xsl" />
 	<xsl:import href="general.xsl" />
 	<!-- Use standard PostScript fonts, just in case. -->
 	<xsl:param name="monospace.font.family" select="'Courier'" />
