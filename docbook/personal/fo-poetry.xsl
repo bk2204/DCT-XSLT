@@ -130,6 +130,25 @@
 		</xsl:choose>
 	</xsl:template>
 
+	<xsl:template match="node()|@*" mode="ctxsl:indent">
+		<xsl:copy>
+			<xsl:copy-of select="@*" />
+			<xsl:apply-templates mode="ctxsl:indent" />
+		</xsl:copy>
+	</xsl:template>
+
+	<xsl:template match="fo:footnote" mode="ctxsl:indent">
+		<xsl:copy>
+			<xsl:copy-of select="@*|node()" />
+		</xsl:copy>
+	</xsl:template>
+
+	<xsl:template match="text()" mode="ctxsl:indent">
+		<xsl:call-template name="ctxsl:indent-lines">
+			<xsl:with-param name="content" select="." />
+		</xsl:call-template>
+	</xsl:template>
+
 	<xsl:template match="literallayout">
 	  <xsl:param name="suppress-numbers" select="'0'"/>
 	
@@ -176,17 +195,15 @@
 	        <xsl:when test="$shade.verbatim != 0">
 	          <fo:block id="{$id}"
 							xsl:use-attribute-sets="verbatim.properties shade.verbatim.style">
-							<xsl:call-template name="ctxsl:indent-lines">
-								<xsl:with-param name="content" select="$content" />
-							</xsl:call-template>
+							<xsl:apply-templates select="exsl:node-set($content)"
+								mode="ctxsl:indent" />
 	          </fo:block>
 	        </xsl:when>
 	        <xsl:otherwise>
 	          <fo:block id="{$id}"
-	                    xsl:use-attribute-sets="verbatim.properties">
-							<xsl:call-template name="ctxsl:indent-lines">
-								<xsl:with-param name="content" select="$content" />
-							</xsl:call-template>
+							xsl:use-attribute-sets="verbatim.properties">
+							<xsl:apply-templates select="exsl:node-set($content)"
+								mode="ctxsl:indent" />
 	          </fo:block>
 	        </xsl:otherwise>
 	      </xsl:choose>
