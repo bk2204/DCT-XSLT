@@ -5,6 +5,7 @@
 	later imports, followed by this sheet.
 	-->
 	<xsl:import href="fo-metadata.xsl" />
+	<xsl:import href="fo-poetry.xsl" />
 	<xsl:import href="general.xsl" />
 	<!-- Use standard PostScript fonts, just in case. -->
 	<xsl:param name="monospace.font.family" select="'Courier'" />
