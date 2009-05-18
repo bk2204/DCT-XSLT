@@ -10,8 +10,8 @@
 	<!-- Use standard PostScript fonts, just in case. -->
 	<xsl:param name="monospace.font.family" select="'Courier'" />
 	<xsl:param name="sans.font.family" select="'Helvetica'" />
-	<xsl:param name="title.font.family" select="'Times'" />
-	<xsl:param name="body.font.family" select="'Times'" />
+	<xsl:param name="title.font.family" select="'Palatino'" />
+	<xsl:param name="body.font.family" select="'Palatino'" />
 	<xsl:param name="body.start.indent" select="'0pt'" />
 	<xsl:param name="header.rule" select="0" />
 	<xsl:param name="footer.rule" select="0" />
