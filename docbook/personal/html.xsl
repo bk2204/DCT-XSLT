@@ -4,7 +4,7 @@
 	Items that are imported first have the lowest priority, followed by
 	later imports, followed by this sheet.
 	-->
-	<xsl:import href="/usr/share/xml/docbook/stylesheet/nwalsh/html/docbook.xsl" />
+	<xsl:import href="http://docbook.sourceforge.net/release/xsl/current/html/docbook.xsl" />
 	<xsl:import href="general.xsl" />
 	<xsl:import href="general-html.xsl" />
 </xsl:stylesheet>

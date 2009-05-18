@@ -14,7 +14,7 @@
 	later imports, followed by this sheet.
 	-->
 	<!--<xsl:output method="xml" indent="no"/>-->
-	<xsl:import href="/usr/share/xml/docbook/stylesheet/nwalsh/fo/docbook.xsl" />
+	<xsl:import href="http://docbook.sourceforge.net/release/xsl/current/fo/docbook.xsl" />
 	<xsl:import href="metadata.xsl" />
 
 	<!--
