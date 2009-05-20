@@ -74,98 +74,67 @@
 	IN THE SOFTWARE.
 
 	-->
+	<xsl:param name="ctxsl:tab-indent-class" select="'indent'" />
+
+	<xsl:template name="ctxsl:indent-tab-lines">
+		<xsl:param name="content" select="''" />
+		<xsl:param name="count" select="1" />
+
+		<xsl:choose>
+			<xsl:when test="contains($content, '&#x9;')">
+				<xsl:variable name="line" select="substring-before($content, '&#x9;')"/>
+				<xsl:variable name="rest" select="substring-after($content, '&#x9;')"/>
+
+				<xsl:copy-of select="$line" />
+				<span>
+					<xsl:attribute name="class">
+						<xsl:value-of select="$ctxsl:tab-indent-class" />
+					</xsl:attribute>
+					<xsl:call-template name="ctxsl:indent-tab-lines">
+						<xsl:with-param name="content" select="$rest" />
+						<xsl:with-param name="count" select="$count + 1" />
+					</xsl:call-template>
+				</span>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:copy-of select="$content" />
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<xsl:template name="ctxsl:indent-lines">
+		<xsl:param name="content" select="''" />
+		<xsl:param name="count" select="1" />
+
+		<xsl:choose>
+			<xsl:when test="contains($content, '&#xA;')">
+				<xsl:variable name="line" select="substring-before($content, '&#xA;')"/>
+				<xsl:variable name="rest" select="substring-after($content, '&#xA;')"/>
+
+				<xsl:call-template name="ctxsl:indent-tab-lines">
+					<xsl:with-param name="content" select="$line" />
+				</xsl:call-template>
+				<xsl:element name="br" namespace="http://www.w3.org/1999/xhtml"/>
+				<xsl:text>&#xA;</xsl:text>
+				<xsl:call-template name="ctxsl:indent-lines">
+					<xsl:with-param name="content" select="$rest" />
+					<xsl:with-param name="count" select="$count + 1" />
+				</xsl:call-template>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:call-template name="ctxsl:indent-tab-lines">
+					<xsl:with-param name="content" select="$content" />
+				</xsl:call-template>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
 	<xsl:template match="text()" mode="make.verbatim.mode">
 	  <xsl:variable name="text" select="translate(., ' ', '&#160;')"/>
-	
-	  <xsl:choose>
-	    <xsl:when test="not(contains($text, '&#10;') or contains($text, '&#9;'))">
-	      <xsl:value-of select="$text"/>
-	    </xsl:when>
-	
-	    <xsl:otherwise>
-	      <xsl:variable name="len" select="string-length($text)"/>
-	
-	      <xsl:choose>
-	        <xsl:when test="$len = 1">
-	          <br/><xsl:text>
-</xsl:text>
-	        </xsl:when>
-	
-	        <xsl:otherwise>
-	          <xsl:variable name="half" select="$len div 2"/>
-	          <xsl:call-template name="make-verbatim-recursive">
-	            <xsl:with-param name="text" select="substring($text, 1, $half)"/>
-	          </xsl:call-template>
-	          <xsl:call-template name="make-verbatim-recursive">
-	            <xsl:with-param name="text" select="substring($text, ($half + 1), $len)"/>
-	          </xsl:call-template>
-	    	</xsl:otherwise>
-	      </xsl:choose>
-	    </xsl:otherwise>
-	  </xsl:choose>
-	</xsl:template>
 
-	<xsl:template name="ctxsl:make-verbatim-recursive">
-  	<xsl:param name="text" select="''"/>
-
-  	<xsl:choose>
-			<xsl:when test="not(contains($text, '&#9;'))">
-  	    <xsl:value-of select="$text"/>
-			</xsl:when>
-
-  	  <xsl:otherwise>
-  	    <xsl:variable name="len" select="string-length($text)"/>
-
-  	    <xsl:choose>
-					<xsl:when test="$len = 1">
-						<xsl:text>&#160;&#160;&#160;&#160;</xsl:text>
-  	      </xsl:when>
-
-  	      <xsl:otherwise>
-  	  	  <xsl:variable name="half" select="$len div 2"/>
-  	        <xsl:call-template name="ctxsl:make-verbatim-recursive">
-  	  	    <xsl:with-param name="text" select="substring($text, 1, $half)"/>
-  	  	  </xsl:call-template>
-  	  	  <xsl:call-template name="ctxsl:make-verbatim-recursive">
-  	  	    <xsl:with-param name="text" select="substring($text, ($half + 1), $len)"/>
-  	  	  </xsl:call-template>
-  	  	</xsl:otherwise>
-  	    </xsl:choose>
-  	  </xsl:otherwise>
-  	</xsl:choose>
-	</xsl:template>
-
-	<xsl:template name="make-verbatim-recursive">
-	  <xsl:param name="text" select="''"/>
-	
-	  <xsl:choose>
-			<xsl:when test="not(contains($text, '&#10;'))">
-				<xsl:call-template name="ctxsl:make-verbatim-recursive">
-					<xsl:with-param name="text"><xsl:value-of select="$text"/></xsl:with-param>
-				</xsl:call-template>
-	    </xsl:when>
-	
-	    <xsl:otherwise>
-	      <xsl:variable name="len" select="string-length($text)"/>
-	
-	      <xsl:choose>
-	        <xsl:when test="$len = 1">
-	          <br/><xsl:text>
-</xsl:text>
-	        </xsl:when>
-	
-	        <xsl:otherwise>
-	    	  <xsl:variable name="half" select="$len div 2"/>
-	          <xsl:call-template name="make-verbatim-recursive">
-	    	    <xsl:with-param name="text" select="substring($text, 1, $half)"/>
-	    	  </xsl:call-template>
-	    	  <xsl:call-template name="make-verbatim-recursive">
-	    	    <xsl:with-param name="text" select="substring($text, ($half + 1), $len)"/>
-	    	  </xsl:call-template>
-	    	</xsl:otherwise>
-	      </xsl:choose>
-	    </xsl:otherwise>
-	  </xsl:choose>
+		<xsl:call-template name="ctxsl:indent-lines">
+			<xsl:with-param name="content" select="$text" />
+		</xsl:call-template>
 	</xsl:template>
 </xsl:stylesheet>
 <!-- vim: set filetype=xslt tw=0 ts=2 sw=2 noet: -->
