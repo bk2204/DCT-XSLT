@@ -27,7 +27,7 @@
 		</xsl:if>
 	</xsl:template>
 	<xsl:template match="/db:*">
-		<xsl:apply-templates select="db:title|db:info"/>
+		<xsl:apply-templates select="db:title|db:info/db:title"/>
 	</xsl:template>
 	<xsl:template match="/">
 		<rdf:RDF>
