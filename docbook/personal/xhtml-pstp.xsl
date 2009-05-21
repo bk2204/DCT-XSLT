@@ -8,7 +8,7 @@
 	exclude-result-prefixes="xsl">
 	<xsl:import href="../xhtml-pstp.xsl" />
 	<xsl:import href="./pstp.xsl" />
-	<xsl:output method="xml" encoding="UTF-8" indent="no" doctype-public="-//W3C//DTD XHTML 1.1//EN" doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"/>
+	<xsl:output method="xml" encoding="UTF-8" indent="no" doctype-public="-//W3C//DTD XHTML+RDFa 1.0//EN" doctype-system="http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd"/>
 	<xsl:namespace-alias stylesheet-prefix="xhtml" result-prefix="#default" />
 	<xsl:template match="/">
 		<xsl:apply-templates select="." mode="ctxsl:all-xhtml2xhtml"/>
@@ -16,7 +16,7 @@
 	<xsl:template name="ctxsl:footer-cb">
 		<xsl:call-template name="ctxsl:footer">
 			<xsl:with-param name="ctxsl:structure">
-				XHTML 1.0 Transitional, XHTML 1.0 Strict, <em>and</em><xsl:text>&#x0020;</xsl:text> <a href="http://validator.w3.org/check/referer">XHTML 1.1</a>,
+				<a href="http://validator.w3.org/check/referer">XHTML+RDFa 1.0</a>
 			</xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
