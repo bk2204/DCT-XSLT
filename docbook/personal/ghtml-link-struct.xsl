@@ -25,12 +25,6 @@
 	<xsl:template match="extendedlink/arc" priority="-1">
 		<xsl:message>Ignoring arc with xlink:arcrole <xsl:value-of select="@xlink:arcrole" />.</xsl:message>
 	</xsl:template>
-	<xsl:template name="user.head.content">
-		<xsl:param name="node" select="." />
-		<xsl:apply-templates select="/*/articleinfo/extendedlink" />
-		<xsl:apply-templates select="/*/partinfo/extendedlink" />
-		<xsl:apply-templates select="/*/bookinfo/extendedlink" />
-	</xsl:template>
 	<xsl:template match="/*/articleinfo/extendedlink">
 		<xsl:apply-templates select="arc" />
 	</xsl:template>

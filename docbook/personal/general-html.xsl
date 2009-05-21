@@ -12,6 +12,7 @@
 	-->
 	<xsl:import href="toc-fixup.xsl" />
 	<xsl:import href="ghtml-link.xsl" />
+	<xsl:import href="ghtml-metadata.xsl" />
 	<xsl:import href="ghtml-poetry.xsl" />
 	<!-- Don't use CSS attributes on items; we'll do it ourselves. -->
 	<xsl:param name="css.decoration" select="0" />
