@@ -7,8 +7,11 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:xi="http://www.w3.org/2003/XInclude"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:cc="http://creativecommons.org/ns#"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns="http://www.w3.org/1999/xhtml"
-	exclude-result-prefixes="xsl xhtml ctxsl xi">
+	exclude-result-prefixes="xsl xhtml ctxsl xi rdf cc dc">
 	<xsl:param name="dry-run" select="0" />
 	<xsl:param name="no-replace-stylesheet" select="0" />
 	<xsl:template match="xhtml:link[@rel = 'stylesheet']" mode="ctxsl:all-xhtml2xhtml">
@@ -40,6 +43,7 @@
 	<xsl:template match="@xml:space" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="xhtml:hr" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="extendedlink" mode="ctxsl:all-xhtml2xhtml"/>
+	<xsl:template match="rdf:RDF" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="xhtml:div[@class = 'footnotes']/xhtml:hr" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="xhtml:div[@class = 'footnotes']/xhtml:br" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="xhtml:acronym" mode="ctxsl:all-xhtml2xhtml">
@@ -92,23 +96,46 @@
 		<xsl:variable name="arcto"><xsl:value-of select="@xlink:to"/></xsl:variable>
 		<xsl:for-each select="../locator[string-length(@xlink:href)=0 and @xlink:label=$arcfrom]">
 			<xsl:for-each select="../locator[@xlink:label=$arcto]">
-				<xsl:choose>
-					<xsl:when test="position()=1"/>
-					<xsl:when test="position()=last()">
-						<xsl:text>, or </xsl:text>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:text>, </xsl:text>
-					</xsl:otherwise>
-				</xsl:choose>
-				<xsl:element name="a" namespace="http://www.w3.org/1999/xhtml">
-					<xsl:attribute name="href">
+				<xsl:call-template name="ctxsl:emit-license">
+					<xsl:with-param name="href">
 						<xsl:value-of select="@xlink:href"/>
-					</xsl:attribute>
-					<xsl:value-of select="@xlink:title"/>
-				</xsl:element>
+					</xsl:with-param>
+					<xsl:with-param name="title">
+						<xsl:value-of select="@xlink:title"/>
+					</xsl:with-param>
+					<xsl:with-param name="position">
+						<xsl:value-of select="position()"/>
+					</xsl:with-param>
+					<xsl:with-param name="last">
+						<xsl:value-of select="last()"/>
+					</xsl:with-param>
+				</xsl:call-template>
 			</xsl:for-each>
 		</xsl:for-each>
+	</xsl:template>
+	<xsl:template name="ctxsl:emit-license">
+		<xsl:param name="href" />
+		<xsl:param name="title" />
+		<xsl:param name="position" />
+		<xsl:param name="last" />
+		<xsl:choose>
+			<xsl:when test="$position=1"/>
+			<xsl:when test="$position=$last">
+				<xsl:text>, or </xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>, </xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+		<xsl:element name="a" namespace="http://www.w3.org/1999/xhtml">
+			<xsl:attribute name="rel">
+				<xsl:text>license</xsl:text>
+			</xsl:attribute>
+			<xsl:attribute name="href">
+				<xsl:value-of select="$href"/>
+			</xsl:attribute>
+			<xsl:value-of select="$title"/>
+		</xsl:element>
 	</xsl:template>
 	<xsl:template name="ctxsl:footer">
 		<xsl:param name="ctxsl:structure"/>
@@ -129,6 +156,32 @@
 						select="//xhtml:head/extendedlink/arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/def/license']">
 						<xsl:call-template name="ctxsl:emit-license-arc"/>
 					</xsl:for-each>.
+				</xsl:if>
+				<xsl:if test="//xhtml:head/rdf:RDF/cc:Work[@rdf:about = '']/cc:license">
+					This page is licensed under
+					<xsl:for-each
+						select="//xhtml:head/rdf:RDF/cc:Work[@rdf:about = '']/cc:license">
+						<xsl:variable name="uri" select="@rdf:resource" />
+						<xsl:variable name="position" select="position()" />
+						<xsl:variable name="last" select="last()" />
+						<xsl:for-each
+							select="//xhtml:head/rdf:RDF/cc:License[@rdf:about = $uri]">
+							<xsl:call-template name="ctxsl:emit-license">
+								<xsl:with-param name="href">
+									<xsl:value-of select="$uri"/>
+								</xsl:with-param>
+								<xsl:with-param name="title">
+									<xsl:value-of select="./dc:title//text()"/>
+								</xsl:with-param>
+								<xsl:with-param name="position">
+									<xsl:value-of select="$position"/>
+								</xsl:with-param>
+								<xsl:with-param name="last">
+									<xsl:value-of select="$last"/>
+								</xsl:with-param>
+							</xsl:call-template>
+						</xsl:for-each>
+					</xsl:for-each>
 				</xsl:if>
 			</p>
 		</xsl:element>
