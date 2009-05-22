@@ -6,6 +6,7 @@
 	xmlns:ng="http://docbook.org/docbook-ng"
 	xmlns:db="http://docbook.org/ns/docbook"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:cc="http://creativecommons.org/ns#"
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns:ctxsl="http://crustytoothpaste.ath.cx/ns/xsl"
 	exclude-result-prefixes="db ng exsl ctxsl">
@@ -30,6 +31,31 @@
 			</xsl:when>
 		</xsl:choose>
 	</xsl:template>
+	<xsl:template match="dc:*[local-name()!='title']" mode="ctxsl:metadata">
+		<xsl:copy-of select="." />
+	</xsl:template>
+	<xsl:template
+		match="rdf:RDF|rdf:Description[@rdf:about='']|cc:Work[@rdf:about='']"
+		mode="ctxsl:metadata">
+		<xsl:if test="cc:license">
+			<cc:license>
+				<rdf:Alt>
+					<xsl:for-each select="cc:license">
+						<rdf:li>
+							<xsl:value-of select="@rdf:resource" />
+						</rdf:li>
+					</xsl:for-each>
+				</rdf:Alt>
+			</cc:license>
+		</xsl:if>
+		<xsl:apply-templates mode="ctxsl:metadata"/>
+	</xsl:template>
+	<xsl:template match="cc:license" mode="ctxsl:metadata" />
+	<xsl:template match="cc:Work" mode="ctxsl:metadata"/>
+	<xsl:template match="*" mode="ctxsl:metadata"/>
+	<xsl:template match="@*" mode="ctxsl:metadata">
+		<xsl:copy-of select="."/>
+	</xsl:template>
 	<xsl:template name="ctxsl:metadata">
 		<xsl:param name="element"/>
 		<rdf:RDF>
@@ -40,7 +66,7 @@
 						<xsl:call-template name="ctxsl:metadata-title">
 							<xsl:with-param name="element" select="$element"/>
 						</xsl:call-template>
-						<xsl:copy-of select=".//dc:*[local-name()!='title']"/>
+						<xsl:apply-templates mode="ctxsl:metadata" />
 					</xsl:if>
 				</xsl:for-each>
 			</rdf:Description>
