@@ -181,7 +181,7 @@
 								</xsl:with-param>
 							</xsl:call-template>
 						</xsl:for-each>
-					</xsl:for-each>
+					</xsl:for-each>.
 				</xsl:if>
 			</p>
 		</xsl:element>
