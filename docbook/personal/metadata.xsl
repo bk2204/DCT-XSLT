@@ -42,7 +42,7 @@
 				<rdf:Alt>
 					<xsl:for-each select="cc:license">
 						<rdf:li>
-							<xsl:value-of select="@rdf:resource" />
+							<xsl:copy-of select="@rdf:resource" />
 						</rdf:li>
 					</xsl:for-each>
 				</rdf:Alt>
