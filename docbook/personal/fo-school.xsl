@@ -81,6 +81,7 @@
 	<!-- Use standard PostScript fonts, just in case. -->
 	<xsl:param name="body.font.family" select="'Times'" />
 	<xsl:param name="title.font.family" select="'Times'" />
+	<xsl:param name="dingbat.font.family" select="'Times'" />
 	<!-- Indent the first line of each paragraph. -->
 	<xsl:attribute-set name="normal.para.spacing">
 		<xsl:attribute name="text-indent">2.5em</xsl:attribute>
