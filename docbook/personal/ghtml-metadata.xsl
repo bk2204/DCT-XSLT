@@ -16,9 +16,11 @@
 		<xsl:apply-templates select="/*/articleinfo/extendedlink" />
 		<xsl:apply-templates select="/*/partinfo/extendedlink" />
 		<xsl:apply-templates select="/*/bookinfo/extendedlink" />
+		<xsl:apply-templates select="/db:*/db:info/db:extendedlink" />
 		<xsl:apply-templates select="/*/articleinfo/rdf:RDF" />
 		<xsl:apply-templates select="/*/partinfo/rdf:RDF" />
 		<xsl:apply-templates select="/*/bookinfo/rdf:RDF" />
+		<xsl:apply-templates select="/db:*/db:info/rdf:RDF" />
 	</xsl:template>
 </xsl:stylesheet>
 <!-- vim: set filetype=xslt tw=0 ts=2 sw=2 noet: -->

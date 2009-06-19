@@ -2,6 +2,7 @@
 <xsl:stylesheet
 	version="1.0"
 	xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions"
+	xmlns:db="http://docbook.org/ns/docbook"
 	xmlns:fo="http://www.w3.org/1999/XSL/Format"
 	xmlns:ctxsl="http://crustytoothpaste.ath.cx/ns/xsl"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
@@ -90,13 +91,13 @@
 		<xsl:attribute name="space-before.maximum">1.2em</xsl:attribute>
 	</xsl:attribute-set>
 
-	<xsl:template match="bibliography">
+	<xsl:template match="db:bibliography">
 		<xsl:variable name="id">
 			<xsl:call-template name="object.id"/>
 		</xsl:variable>
 	
 		<xsl:choose>
-			<xsl:when test="not(parent::*) or parent::part or parent::book">
+			<xsl:when test="not(parent::*) or parent::db:part or parent::db:book">
 				<xsl:variable name="master-reference">
 					<xsl:call-template name="select.pagemaster"/>
 				</xsl:variable>
@@ -169,7 +170,7 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
-	<xsl:template match="article/appendix">
+	<xsl:template match="db:article/db:appendix">
 	  <xsl:variable name="id">
 	    <xsl:call-template name="object.id"/>
 	  </xsl:variable>

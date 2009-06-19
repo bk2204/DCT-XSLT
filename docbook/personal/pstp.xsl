@@ -42,7 +42,7 @@
 	<xsl:template match="xhtml:div/@style" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="@xml:space" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="xhtml:hr" mode="ctxsl:all-xhtml2xhtml"/>
-	<xsl:template match="extendedlink" mode="ctxsl:all-xhtml2xhtml"/>
+	<xsl:template match="db:extendedlink" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="rdf:RDF" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="xhtml:div[@class = 'footnotes']/xhtml:hr" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="xhtml:div[@class = 'footnotes']/xhtml:br" mode="ctxsl:all-xhtml2xhtml"/>
@@ -94,8 +94,8 @@
 	<xsl:template name="ctxsl:emit-license-arc">
 		<xsl:variable name="arcfrom"><xsl:value-of select="@xlink:from"/></xsl:variable>
 		<xsl:variable name="arcto"><xsl:value-of select="@xlink:to"/></xsl:variable>
-		<xsl:for-each select="../locator[string-length(@xlink:href)=0 and @xlink:label=$arcfrom]">
-			<xsl:for-each select="../locator[@xlink:label=$arcto]">
+		<xsl:for-each select="../db:locator[string-length(@xlink:href)=0 and @xlink:label=$arcfrom]">
+			<xsl:for-each select="../db:locator[@xlink:label=$arcto]">
 				<xsl:call-template name="ctxsl:emit-license">
 					<xsl:with-param name="href">
 						<xsl:value-of select="@xlink:href"/>
@@ -150,10 +150,10 @@
 				and uses
 				<span class="valid">valid</span>
 				<xsl:text> </xsl:text><span class="style-structure"><a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a></span>.
-				<xsl:if test="//xhtml:head/extendedlink/arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/def/license']">
+				<xsl:if test="//xhtml:head/db:extendedlink/db:arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/def/license']">
 					This page is licensed under
 					<xsl:for-each
-						select="//xhtml:head/extendedlink/arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/def/license']">
+						select="//xhtml:head/db:extendedlink/db:arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/def/license']">
 						<xsl:call-template name="ctxsl:emit-license-arc"/>
 					</xsl:for-each>.
 				</xsl:if>

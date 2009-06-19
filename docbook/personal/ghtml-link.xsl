@@ -14,7 +14,7 @@
 	<!--
 	http://crustytoothpaste.ath.cx/rel/def/meta maps a document to its metadata.
 	-->
-	<xsl:template match="extendedlink/arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/def/meta']">
+	<xsl:template match="db:extendedlink/db:arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/def/meta']">
 		<!-- Your metadata should be of application/rdf+xml anyway. -->
 		<xsl:call-template name="ctxsl:map-extendedlink-arc">
 			<xsl:with-param name="role">meta</xsl:with-param>
@@ -22,21 +22,21 @@
 			<xsl:with-param name="type">application/rdf+xml</xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
-	<xsl:template match="extendedlink/arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/syndication/atom10']">
+	<xsl:template match="db:extendedlink/db:arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/syndication/atom10']">
 		<xsl:call-template name="ctxsl:map-extendedlink-arc">
 			<xsl:with-param name="role">alternate</xsl:with-param>
 			<xsl:with-param name="rel">alternate</xsl:with-param>
 			<xsl:with-param name="type">application/atom+xml</xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
-	<xsl:template match="extendedlink/arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/openid/server']">
+	<xsl:template match="db:extendedlink/db:arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/openid/server']">
 		<xsl:call-template name="ctxsl:map-extendedlink-arc">
 			<xsl:with-param name="role">openid.server</xsl:with-param>
 			<xsl:with-param name="rel">openid.server</xsl:with-param>
 			<xsl:with-param name="type"/>
 		</xsl:call-template>
 	</xsl:template>
-	<xsl:template match="extendedlink/arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/openid/delegate']">
+	<xsl:template match="db:extendedlink/db:arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/openid/delegate']">
 		<xsl:call-template name="ctxsl:map-extendedlink-arc">
 			<xsl:with-param name="role">openid.delegate</xsl:with-param>
 			<xsl:with-param name="rel">openid.delegate</xsl:with-param>
@@ -44,7 +44,7 @@
 		</xsl:call-template>
 	</xsl:template>
 	<!-- punt until later -->
-	<xsl:template match="extendedlink/arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/def/license']">
+	<xsl:template match="db:extendedlink/db:arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/def/license']">
 		<xsl:copy-of select=".."/>
 	</xsl:template>
 </xsl:stylesheet>

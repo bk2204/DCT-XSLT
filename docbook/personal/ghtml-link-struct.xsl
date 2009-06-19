@@ -22,17 +22,20 @@
 			<xsl:attribute name="title"><xsl:value-of select="$title"/></xsl:attribute>
 		</xsl:element>
 	</xsl:template>
-	<xsl:template match="extendedlink/arc" priority="-1">
+	<xsl:template match="db:extendedlink/db:arc" priority="-1">
 		<xsl:message>Ignoring arc with xlink:arcrole <xsl:value-of select="@xlink:arcrole" />.</xsl:message>
 	</xsl:template>
-	<xsl:template match="/*/articleinfo/extendedlink">
-		<xsl:apply-templates select="arc" />
+	<xsl:template match="/db:*/db:articleinfo/db:extendedlink">
+		<xsl:apply-templates select="db:arc" />
 	</xsl:template>
-	<xsl:template match="/*/partinfo/extendedlink">
-		<xsl:apply-templates select="arc" />
+	<xsl:template match="/db:*/db:partinfo/db:extendedlink">
+		<xsl:apply-templates select="db:arc" />
 	</xsl:template>
-	<xsl:template match="/*/bookinfo/extendedlink">
-		<xsl:apply-templates select="arc" />
+	<xsl:template match="/db:*/db:bookinfo/db:extendedlink">
+		<xsl:apply-templates select="db:arc" />
+	</xsl:template>
+	<xsl:template match="/db:*/db:info/db:extendedlink">
+		<xsl:apply-templates select="db:arc" />
 	</xsl:template>
 </xsl:stylesheet>
 <!-- vim: set filetype=xslt tw=0 ts=2 sw=2 noet: -->
