@@ -65,24 +65,55 @@
 	</xsl:template>
 	<xsl:template name="ctxsl:add-class">
 		<xsl:param name="ctxsl:class"/>
-		<xsl:copy>
 			<xsl:attribute name="class"><xsl:value-of select="@class"/><xsl:text>&#x0020;</xsl:text><xsl:value-of select="$ctxsl:class"/></xsl:attribute>
-			<xsl:apply-templates select="@*[not(name(.) = 'class')]|node()" mode="ctxsl:all-xhtml2xhtml"/>
-		</xsl:copy>
+			<xsl:apply-templates select="@*[not(name(.) = 'class')]" mode="ctxsl:all-xhtml2xhtml"/>
 	</xsl:template>
 	<xsl:template match="xhtml:body/xhtml:div[not(@class = 'footer')]" mode="ctxsl:all-xhtml2xhtml">
-		<xsl:call-template name="ctxsl:add-class">
-			<xsl:with-param name="ctxsl:class"><xsl:text>toplevel</xsl:text></xsl:with-param>
-		</xsl:call-template>
+		<xsl:copy>
+			<xsl:call-template name="ctxsl:add-class">
+				<xsl:with-param name="ctxsl:class"><xsl:text>toplevel</xsl:text></xsl:with-param>
+			</xsl:call-template>
+			<xsl:apply-templates select="xhtml:div[@class = 'titlepage']"
+				mode="ctxsl:all-xhtml2xhtml"/>
+			<xsl:apply-templates select="xhtml:div[@class = 'toc']"
+				mode="ctxsl:all-xhtml2xhtml"/>
+			<div id="main" class="flow">
+				<xsl:apply-templates select="xhtml:*[not((@class = 'titlepage') or (@class = 'toc'))]"
+					mode="ctxsl:all-xhtml2xhtml"/>
+			</div>
+		</xsl:copy>
 	</xsl:template>
 	<xsl:template match="xhtml:*" mode="ctxsl:copy-parent-class">
-		<xsl:call-template name="ctxsl:add-class">
-			<xsl:with-param name="ctxsl:class"><xsl:value-of select="../@class"/></xsl:with-param>
-		</xsl:call-template>
+		<xsl:copy>
+			<xsl:call-template name="ctxsl:add-class">
+				<xsl:with-param name="ctxsl:class"><xsl:value-of select="../@class"/></xsl:with-param>
+			</xsl:call-template>
+			<xsl:apply-templates select="node()" mode="ctxsl:all-xhtml2xhtml"/>
+		</xsl:copy>
 	</xsl:template>
 	<xsl:template match="xhtml:div[@class='literallayout' or @class='address']"
 		mode="ctxsl:all-xhtml2xhtml">
 		<xsl:apply-templates mode="ctxsl:copy-parent-class"/>
+	</xsl:template>
+	<xsl:template match="xhtml:body/xhtml:div[not(@class = 'footer')]/xhtml:div[@class = 'titlepage']" mode="ctxsl:all-xhtml2xhtml">
+		<xsl:copy>
+			<xsl:attribute name="id">header</xsl:attribute>
+			<xsl:apply-templates select="@*|node()" mode="ctxsl:all-xhtml2xhtml" />
+		</xsl:copy>
+	</xsl:template>
+	<xsl:template match="xhtml:div[@class and ./xhtml:div[@class = 'titlepage'] and not(local-name(..)='body')]" mode="ctxsl:all-xhtml2xhtml">
+		<xsl:copy>
+			<xsl:if test="xhtml:div[@class='titlepage']//xhtml:*[@class='title']/xhtml:a[@id]">
+				<xsl:attribute name="id">
+					<xsl:value-of select="xhtml:div[@class='titlepage']//xhtml:*[@class='title']/xhtml:a/@id" />
+				</xsl:attribute>
+			</xsl:if>
+			<xsl:apply-templates select="@*" mode="ctxsl:all-xhtml2xhtml"/>
+			<xsl:apply-templates select="xhtml:div[@class = 'titlepage']" mode="ctxsl:all-xhtml2xhtml"/>
+			<div class="flow">
+				<xsl:apply-templates select="xhtml:*[not(@class = 'titlepage')]" mode="ctxsl:all-xhtml2xhtml"/>
+			</div>
+		</xsl:copy>
 	</xsl:template>
 	<!--
 	<xsl:template match="xhtml:body/xhtml:div/xhtml:div[not(@class = 'titlepage')]" mode="ctxsl:all-xhtml2xhtml">
@@ -144,56 +175,93 @@
 			<xsl:attribute name="id"><xsl:text>footer</xsl:text></xsl:attribute>
 			<xsl:attribute name="class"><xsl:text>footer</xsl:text></xsl:attribute>
 			<hr />
-			<p>
-				This page is <span class="valid">valid</span><xsl:text> </xsl:text>
-					<span class="structure"><xsl:copy-of select="$ctxsl:structure"/></span>
-				and uses
-				<span class="valid">valid</span>
-				<xsl:text> </xsl:text><span class="style-structure"><a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a></span>.
-				<xsl:if test="//xhtml:head/db:extendedlink/db:arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/def/license']">
-					This page is licensed under
-					<xsl:for-each
-						select="//xhtml:head/db:extendedlink/db:arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/def/license']">
-						<xsl:call-template name="ctxsl:emit-license-arc"/>
-					</xsl:for-each>.
-				</xsl:if>
-				<xsl:if test="//xhtml:head/rdf:RDF/cc:Work[@rdf:about = '']/cc:license">
-					This page is licensed under
-					<xsl:for-each
-						select="//xhtml:head/rdf:RDF/cc:Work[@rdf:about = '']/cc:license">
-						<xsl:variable name="uri" select="@rdf:resource" />
-						<xsl:variable name="position" select="position()" />
-						<xsl:variable name="last" select="last()" />
+			<div class="flow">
+				<p>
+					This page is <span class="valid">valid</span><xsl:text> </xsl:text>
+						<span class="structure"><xsl:copy-of select="$ctxsl:structure"/></span>
+					and uses
+					<span class="valid">valid</span>
+					<xsl:text> </xsl:text><span class="style-structure"><a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a></span>.
+					<xsl:if test="//xhtml:head/db:extendedlink/db:arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/def/license']">
+						This page is licensed under
 						<xsl:for-each
-							select="//xhtml:head/rdf:RDF/cc:License[@rdf:about = $uri]">
-							<xsl:call-template name="ctxsl:emit-license">
-								<xsl:with-param name="href">
-									<xsl:value-of select="$uri"/>
-								</xsl:with-param>
-								<xsl:with-param name="title">
-									<xsl:value-of select="./dc:title//text()"/>
-								</xsl:with-param>
-								<xsl:with-param name="position">
-									<xsl:value-of select="$position"/>
-								</xsl:with-param>
-								<xsl:with-param name="last">
-									<xsl:value-of select="$last"/>
-								</xsl:with-param>
-							</xsl:call-template>
-						</xsl:for-each>
-					</xsl:for-each>.
-				</xsl:if>
-			</p>
+							select="//xhtml:head/db:extendedlink/db:arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/def/license']">
+							<xsl:call-template name="ctxsl:emit-license-arc"/>
+						</xsl:for-each>.
+					</xsl:if>
+					<xsl:if test="//xhtml:head/rdf:RDF/cc:Work[@rdf:about = '']/cc:license">
+						This page is licensed under
+						<xsl:for-each
+							select="//xhtml:head/rdf:RDF/cc:Work[@rdf:about = '']/cc:license">
+							<xsl:variable name="uri" select="@rdf:resource" />
+							<xsl:variable name="position" select="position()" />
+							<xsl:variable name="last" select="last()" />
+							<xsl:for-each
+								select="//xhtml:head/rdf:RDF/cc:License[@rdf:about = $uri]">
+								<xsl:call-template name="ctxsl:emit-license">
+									<xsl:with-param name="href">
+										<xsl:value-of select="$uri"/>
+									</xsl:with-param>
+									<xsl:with-param name="title">
+										<xsl:value-of select="./dc:title//text()"/>
+									</xsl:with-param>
+									<xsl:with-param name="position">
+										<xsl:value-of select="$position"/>
+									</xsl:with-param>
+									<xsl:with-param name="last">
+										<xsl:value-of select="$last"/>
+									</xsl:with-param>
+								</xsl:call-template>
+							</xsl:for-each>
+						</xsl:for-each>.
+					</xsl:if>
+				</p>
+			</div>
 		</xsl:element>
 	</xsl:template>
+	<xsl:template match="xhtml:div[@class and ./xhtml:div[@class = 'titlepage']//xhtml:a[@id = 'sidebar']]" mode="ctxsl:move-sidebar">
+		<xsl:copy>
+			<xsl:if test="xhtml:div[@class='titlepage']//xhtml:*[@class='title']/xhtml:a[@id]">
+				<xsl:attribute name="id">
+					<xsl:value-of select="xhtml:div[@class='titlepage']//xhtml:*[@class='title']/xhtml:a/@id" />
+				</xsl:attribute>
+			</xsl:if>
+			<xsl:apply-templates select="@*" mode="ctxsl:all-xhtml2xhtml"/>
+			<xsl:apply-templates select="xhtml:div[@class = 'titlepage']" mode="ctxsl:all-xhtml2xhtml"/>
+			<xsl:apply-templates select="xhtml:div[@class = 'toc']" mode="ctxsl:all-xhtml2xhtml"/>
+			<div class="flow">
+				<xsl:apply-templates select="xhtml:*[not((@class = 'titlepage') or (@class = 'toc'))]" mode="ctxsl:all-xhtml2xhtml"/>
+			</div>
+		</xsl:copy>
+	</xsl:template>
+	<xsl:template match="xhtml:div[@class and ./xhtml:div[@class = 'titlepage']//xhtml:a[@id = 'sidebar']]" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="xhtml:body" mode="ctxsl:all-xhtml2xhtml">
 		<xsl:copy>
 			<xsl:copy-of select="@*"/>
-			<xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
-				<xsl:attribute name="class">content</xsl:attribute>
-				<xsl:apply-templates mode="ctxsl:all-xhtml2xhtml"/>
-			</xsl:element>
+			<div class="content">
+				<xsl:apply-templates select="node()" mode="ctxsl:all-xhtml2xhtml"/>
+			</div>
+			<xsl:apply-templates select="//xhtml:div[@class and ./xhtml:div[@class = 'titlepage']//xhtml:a[@id = 'sidebar']]"
+				mode="ctxsl:move-sidebar"/>
 			<xsl:call-template name="ctxsl:footer-cb"/>
+		</xsl:copy>
+	</xsl:template>
+	<xsl:template match="xhtml:div[@class = 'colophon']" mode="ctxsl:all-xhtml2xhtml">
+		<xsl:copy>
+			<xsl:copy-of select="@*"/>
+			<xsl:if test="not(@id)">
+				<xsl:attribute name="id">
+					<xsl:text>colophon</xsl:text>
+				</xsl:attribute>
+			</xsl:if>
+			<div class="titlepage">
+				<xsl:apply-templates select="xhtml:*[@class = 'title']"
+					mode="ctxsl:all-xhtml2xhtml"/>
+			</div>
+			<div class="flow">
+				<xsl:apply-templates select="xhtml:*[not(@class = 'title')]"
+					mode="ctxsl:all-xhtml2xhtml"/>
+			</div>
 		</xsl:copy>
 	</xsl:template>
 	<!--
