@@ -16,5 +16,9 @@
 	</xsl:template>
 	<xsl:template match="xhtml:div[@class='article']/xhtml:div[@class='titlepage']"/>
 	<xsl:template match="atom:entry/atom:subtitle"/>
+	<xsl:template match="xhtml:span[@class = 'indent']">
+		<xsl:text>&#x09;</xsl:text>
+		<xsl:apply-templates select="node()"/>
+	</xsl:template>
 </xsl:stylesheet>
 <!-- vim: set filetype=xslt tw=0 ts=2 sw=2 noet: -->
