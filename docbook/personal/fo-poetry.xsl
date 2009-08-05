@@ -8,6 +8,7 @@
   xmlns:lxslt="http://xml.apache.org/xslt"
   xmlns:exsl="http://exslt.org/common"
 	xmlns:ctxsl="http://crustytoothpaste.ath.cx/ns/xsl"
+	xmlns:db="http://docbook.org/ns/docbook"
 	exclude-result-prefixes="sverb xverb lxslt exsl ctxsl">
 	<!--
 	These stylesheets were derived in part from the DocBook XSL stylesheets,
@@ -149,7 +150,7 @@
 		</xsl:call-template>
 	</xsl:template>
 
-	<xsl:template match="literallayout">
+	<xsl:template match="db:literallayout">
 	  <xsl:param name="suppress-numbers" select="'0'"/>
 	
 	  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
