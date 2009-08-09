@@ -93,10 +93,17 @@
 					<xsl:attribute name="padding-start">
 						<xsl:value-of select="$ctxsl:tab-indent" />
 					</xsl:attribute>
-					<xsl:call-template name="ctxsl:indent-tab-lines">
-						<xsl:with-param name="content" select="$rest" />
-						<xsl:with-param name="count" select="$count + 1" />
-					</xsl:call-template>
+					<xsl:choose>
+						<xsl:when test="string-length($rest) = 0">
+							<xsl:text>&#x200b;</xsl:text>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:call-template name="ctxsl:indent-tab-lines">
+								<xsl:with-param name="content" select="$rest" />
+								<xsl:with-param name="count" select="$count + 1" />
+							</xsl:call-template>
+						</xsl:otherwise>
+					</xsl:choose>
 				</fo:inline>
 			</xsl:when>
 			<xsl:otherwise>
