@@ -138,7 +138,7 @@
 		</xsl:choose>
 	</xsl:template>
 
-	<xsl:template match="node()|@*" mode="ctxsl:indent">
+	<xsl:template match="*|@*" mode="ctxsl:indent">
 		<xsl:copy>
 			<xsl:copy-of select="@*" />
 			<xsl:apply-templates mode="ctxsl:indent" />
