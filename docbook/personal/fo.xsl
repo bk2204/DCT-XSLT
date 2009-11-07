@@ -4,9 +4,9 @@
 	Items that are imported first have the lowest priority, followed by
 	later imports, followed by this sheet.
 	-->
-	<xsl:import href="fo-metadata.xsl" />
-	<xsl:import href="fo-poetry.xsl" />
-	<xsl:import href="general.xsl" />
+	<xsl:import href="lib/fo-metadata.xsl" />
+	<xsl:import href="lib/fo-poetry.xsl" />
+	<xsl:import href="lib/general.xsl" />
 	<!-- Use standard PostScript fonts, just in case. -->
 	<xsl:param name="monospace.font.family" select="'Courier'" />
 	<xsl:param name="sans.font.family" select="'Helvetica'" />

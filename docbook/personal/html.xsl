@@ -5,7 +5,7 @@
 	later imports, followed by this sheet.
 	-->
 	<xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/html/docbook.xsl" />
-	<xsl:import href="general.xsl" />
-	<xsl:import href="general-html.xsl" />
+	<xsl:import href="lib/general.xsl" />
+	<xsl:import href="lib/general-html.xsl" />
 </xsl:stylesheet>
 <!-- vim: set filetype=xslt tw=0 ts=2 sw=2 noet: -->
