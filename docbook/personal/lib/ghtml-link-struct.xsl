@@ -6,7 +6,7 @@
 	xmlns:ctxsl="http://crustytoothpaste.ath.cx/ns/xsl"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
 	version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<xsl:import href="../../misc/link-struct.xsl" />
+	<xsl:import href="../../../misc/link-struct.xsl" />
 	<xsl:template name="ctxsl:link-struct-callback">
 		<xsl:param name="role"/>
 		<xsl:param name="rel"/>
