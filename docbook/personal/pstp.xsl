@@ -68,6 +68,11 @@
 			<xsl:attribute name="class"><xsl:value-of select="@class"/><xsl:text>&#x0020;</xsl:text><xsl:value-of select="$ctxsl:class"/></xsl:attribute>
 			<xsl:apply-templates select="@*[not(name(.) = 'class')]" mode="ctxsl:all-xhtml2xhtml"/>
 	</xsl:template>
+	<xsl:template match="xhtml:p[@class='acknowledgements']" mode="ctxsl:all-xhtml2xhtml">
+		<div class="acknowledgements">
+			<xsl:apply-templates mode="ctxsl:all-xhtml2xhtml"/>
+		</div>
+	</xsl:template>
 	<xsl:template match="xhtml:body/xhtml:div[not(@class = 'footer')]" mode="ctxsl:all-xhtml2xhtml">
 		<xsl:copy>
 			<xsl:call-template name="ctxsl:add-class">
