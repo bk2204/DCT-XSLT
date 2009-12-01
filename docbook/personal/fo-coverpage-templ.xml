@@ -18,12 +18,12 @@
              xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <!-- ********************************************************************
-     $Id: titlepage.templates.xml 5947 2006-05-07 07:20:39Z bobstayton $
-		 ********************************************************************
+     $Id: titlepage.templates.xml 8341 2009-03-16 03:00:56Z bobstayton $
+     ********************************************************************
 
-		 This file is derived from the DocBook XSL Stylesheet distribution.
+     This file is part of the DocBook XSL Stylesheet distribution.
      See ../README or http://docbook.sf.net/ for copyright
-     and other information.
+     copyright and other information.
 
      ******************************************************************** -->
 
@@ -39,7 +39,7 @@
     <title t:named-template="component.title"
 	   param:node="ancestor-or-self::article[1]"
 	   keep-with-next.within-column="always"
-	   font-size="&hsize5;"
+	   font-size="&hsize0;"
 	   font-weight="bold"/>
 
     <subtitle/>
@@ -51,6 +51,10 @@
     <author space-before="0.5em"
             font-size="&hsize2;"/>
 
+    <!-- If you add editor, include this t:predicate attribute
+         because only the first editor generates the list of editors.
+    <editor t:predicate="[position() = 1]"/>
+    -->
     <othercredit space-before="0.5em"/>
     <releaseinfo space-before="0.5em"/>
     <copyright space-before="0.5em"/>
@@ -78,7 +82,6 @@
   </t:titlepage-before>
 
   <t:titlepage-before t:side="verso">
-      <fo:block break-after="page"/>
   </t:titlepage-before>
 </t:titlepage>
 
@@ -131,8 +134,8 @@
 	     t:named-template="division.title"
 	     param:node="ancestor-or-self::book[1]"
 	     text-align="center"
-	     font-size="&hsize5;"
-	     space-before="&hsize5space;"
+	     font-size="&hsize0;"
+	     space-before="4in"
 	     font-weight="bold"
 	     font-family="{$title.fontset}"/>
       <subtitle
@@ -144,12 +147,19 @@
 		  keep-with-next.within-column="always"
 		  space-before="2in"/>
       <authorgroup space-before="2in"/>
-      <author font-size="&hsize3;"
-	      space-before="&hsize2space;"
+      <author font-size="&hsize0;"
+		  space-before="&hsize0space;"
+		  font-style="italic"
+		  font-weight="normal"
 	      keep-with-next.within-column="always"/>
+      <!-- If you add editor, include this t:predicate attribute
+           because only the first editor generates the list of editors.
+      <editor t:predicate="[position() = 1]"/>
+      -->
     </t:titlepage-content>
 
-  <t:titlepage-content t:side="verso">
+	<t:titlepage-content t:side="verso">
+		<!--
       <title
 	     t:named-template="book.verso.title"
 	     font-size="&hsize2;"
@@ -157,13 +167,20 @@
 	     font-family="{$title.fontset}"/>
       <corpauthor/>
       <authorgroup t:named-template="verso.authorgroup"/>
-      <author/>
+	  <author/>
+	  -->
+      <!-- If you add editor, include this t:predicate attribute
+           because only the first editor generates the list of editors.
+      <editor t:predicate="[position() = 1]"/>
+	  -->
+	  <!--
       <othercredit/>
       <releaseinfo space-before="0.5em"/>
       <pubdate space-before="1em"/>
       <copyright/>
       <abstract/>
-      <legalnotice font-size="8pt"/>
+	  <legalnotice font-size="8pt"/>
+	  -->
   </t:titlepage-content>
 
   <t:titlepage-separator>
@@ -171,6 +188,7 @@
   </t:titlepage-separator>
 
   <t:titlepage-before t:side="recto">
+	  <fo:block>&#xfeff;</fo:block>
   </t:titlepage-before>
 
   <t:titlepage-before t:side="verso">
@@ -426,6 +444,37 @@
   <t:titlepage-before t:side="verso">
   </t:titlepage-before>
 </t:titlepage>
+
+<!-- ==================================================================== -->
+
+<!-- Same formatting as dedication -->
+ <t:titlepage t:element="acknowledgements" t:wrapper="fo:block">
+    <t:titlepage-content t:side="recto">
+      <title
+	     t:force="1"
+	     t:named-template="component.title"
+	     param:node="ancestor-or-self::acknowledgements[1]"
+	     margin-left="{$title.margin.left}"
+	     font-size="&hsize5;"
+	     font-family="{$title.fontset}"
+	     font-weight="bold"/>
+      <subtitle
+		font-family="{$title.fontset}"/>
+    </t:titlepage-content>
+
+  <t:titlepage-content t:side="verso">
+  </t:titlepage-content>
+
+  <t:titlepage-separator>
+  </t:titlepage-separator>
+
+  <t:titlepage-before t:side="recto">
+  </t:titlepage-before>
+
+  <t:titlepage-before t:side="verso">
+  </t:titlepage-before>
+</t:titlepage>
+
 
 <!-- ==================================================================== -->
 
@@ -1109,7 +1158,7 @@
 	     space-after="0.5em"
 	     margin-left="{$title.margin.left}"
 	     start-indent="0pt"
-	     font-size="&hsize3;"
+	     font-size="&hsize0;"
 	     font-weight="bold"
 	     font-family="{$title.fontset}"/>
     </t:titlepage-content>
