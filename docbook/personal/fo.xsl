@@ -8,9 +8,6 @@
 	<xsl:import href="lib/fo-poetry.xsl" />
 	<xsl:import href="lib/general.xsl" />
 	<xsl:import href="lib/fo-font-default.xsl" />
-	<!-- Use standard PostScript fonts, just in case. -->
-	<xsl:param name="body.start.indent" select="'0pt'" />
-	<xsl:param name="header.rule" select="0" />
-	<xsl:param name="footer.rule" select="0" />
+	<xsl:import href="lib/fo-base.xsl" />
 </xsl:stylesheet>
 <!-- vim: set filetype=xslt tw=0 ts=2 sw=2 noet: -->
