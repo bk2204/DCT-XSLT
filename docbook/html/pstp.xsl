@@ -6,7 +6,7 @@
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	xmlns:exsl="http://exslt.org/common"
 	exclude-result-prefixes="xsl exsl">
-	<xsl:import href="./pstp.xsl" />
+	<xsl:import href="../htmllib/pstp.xsl" />
 	<xsl:output method="html"
 		encoding="US-ASCII"
 		indent="no"
