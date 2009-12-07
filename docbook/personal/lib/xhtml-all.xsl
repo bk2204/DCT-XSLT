@@ -24,4 +24,3 @@
 		<xsl:apply-imports select="exsl:node-set($ctxsl:process-all)" mode="ctxsl:all-xhtml2xhtml" />
 	</xsl:template>
 </xsl:stylesheet>
-<!-- vim: set filetype=xslt tw=0 ts=2 sw=2 noet: -->

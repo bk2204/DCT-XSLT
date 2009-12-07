@@ -8,4 +8,3 @@
 	<xsl:import href="lib/general.xsl" />
 	<xsl:import href="lib/general-html.xsl" />
 </xsl:stylesheet>
-<!-- vim: set filetype=xslt tw=0 ts=2 sw=2 noet: -->

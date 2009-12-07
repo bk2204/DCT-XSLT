@@ -65,4 +65,3 @@
 		<xsl:apply-templates select="exsl:node-set($ctxsl:nons)" mode="ctxsl:maybensnuke" />
 	</xsl:template>
 </xsl:stylesheet>
-<!-- vim: set filetype=xslt tw=0 ts=2 sw=2 noet: -->

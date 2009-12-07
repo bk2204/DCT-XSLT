@@ -285,4 +285,3 @@
 		<xsl:attribute name="space-before.maximum">1.2em</xsl:attribute>
 	</xsl:attribute-set>
 </xsl:stylesheet>
-<!-- vim: set filetype=xslt tw=0 ts=2 sw=2 noet: -->

@@ -49,6 +49,7 @@
     <authorgroup space-before="0.5em"
                  font-size="&hsize0;"/>
     <author space-before="0.5em"
+			font-style="italic"
             font-size="&hsize0;"/>
 
     <!-- If you add editor, include this t:predicate attribute

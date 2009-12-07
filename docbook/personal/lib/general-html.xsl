@@ -27,4 +27,3 @@
 	<xsl:param name="phrase.propagates.style" select="1" />
 	<xsl:param name="entry.propagates.style" select="1" />
 </xsl:stylesheet>
-<!-- vim: set filetype=xslt tw=0 ts=2 sw=2 noet: -->
