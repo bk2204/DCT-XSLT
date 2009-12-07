@@ -7,12 +7,8 @@
 	<xsl:import href="lib/fo-metadata.xsl" />
 	<xsl:import href="lib/fo-poetry.xsl" />
 	<xsl:import href="lib/general.xsl" />
+	<xsl:import href="lib/fo-font-default.xsl" />
 	<!-- Use standard PostScript fonts, just in case. -->
-	<xsl:param name="monospace.font.family" select="'Courier'" />
-	<xsl:param name="sans.font.family" select="'Helvetica'" />
-	<xsl:param name="title.font.family" select="'Palatino'" />
-	<xsl:param name="body.font.family" select="'Palatino'" />
-	<xsl:param name="dingbat.font.family" select="'Palatino'" />
 	<xsl:param name="body.start.indent" select="'0pt'" />
 	<xsl:param name="header.rule" select="0" />
 	<xsl:param name="footer.rule" select="0" />
