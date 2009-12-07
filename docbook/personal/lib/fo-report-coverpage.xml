@@ -45,11 +45,11 @@
     <subtitle/>
 
     <corpauthor space-before="0.5em"
-                font-size="&hsize2;"/>
+                font-size="&hsize0;"/>
     <authorgroup space-before="0.5em"
-                 font-size="&hsize2;"/>
+                 font-size="&hsize0;"/>
     <author space-before="0.5em"
-            font-size="&hsize2;"/>
+            font-size="&hsize0;"/>
 
     <!-- If you add editor, include this t:predicate attribute
          because only the first editor generates the list of editors.
