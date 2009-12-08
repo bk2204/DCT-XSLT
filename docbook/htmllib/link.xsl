@@ -10,7 +10,7 @@
 	Items that are imported first have the lowest priority, followed by
 	later imports, followed by this sheet.
 	-->
-	<xsl:import href="ghtml-link-struct.xsl" />
+	<xsl:import href="link-structure.xsl" />
 	<!--
 	http://crustytoothpaste.ath.cx/rel/def/meta maps a document to its metadata.
 	-->

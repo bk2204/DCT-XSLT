@@ -11,9 +11,9 @@
 	later imports, followed by this sheet.
 	-->
 	<!--<xsl:import href="toc-fixup.xsl" />-->
-	<xsl:import href="ghtml-link.xsl" />
-	<xsl:import href="ghtml-metadata.xsl" />
-	<xsl:import href="ghtml-poetry.xsl" />
+	<xsl:import href="link.xsl" />
+	<xsl:import href="metadata.xsl" />
+	<xsl:import href="poetry.xsl" />
 	<!-- Don't use CSS attributes on items; we'll do it ourselves. -->
 	<xsl:param name="css.decoration" select="0" />
 	<!-- If we have an abstract, use it as the META description. -->
