@@ -1,1 +1,1 @@
-fo-font-palatino.xsl
+font-palatino.xsl
