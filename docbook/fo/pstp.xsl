@@ -9,20 +9,6 @@
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	xmlns:fo="http://www.w3.org/1999/XSL/Format"
 	exclude-result-prefixes="db xlink xsl xhtml ctxsl xi">
-	<xsl:template match="fo:block/fo:inline">
-		<fo:inline>
-			<xsl:apply-templates select="@*" />
-			<xsl:choose>
-				<xsl:when test="contains(substring(text(), 1, 2), '--')">
-					<xsl:text>—</xsl:text>
-					<xsl:apply-templates select="*" />
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:apply-templates />
-				</xsl:otherwise>
-			</xsl:choose>
-		</fo:inline>
-	</xsl:template>
 	<xsl:template match="node()|@*">
 		<xsl:copy>
 			<xsl:apply-templates select="@*|node()"/>
