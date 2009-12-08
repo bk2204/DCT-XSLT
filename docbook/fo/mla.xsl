@@ -72,8 +72,7 @@
 	later imports, followed by this sheet.
 	-->
 	<xsl:import href="school.xsl" />
-	<!-- Use standard PostScript fonts, just in case. -->
-	<xsl:param name="title.font.family" select="'Times'" />
+	<xsl:import href="lib/font-times.xsl" />
 	<!-- Put the author in the right place. -->
 	<xsl:template match="db:bookinfo/db:author|db:info/db:author" mode="titlepage.mode" priority="2">
 		<fo:block xsl:use-attribute-sets="ctxsl:titlepage-info-default">
