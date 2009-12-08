@@ -6,7 +6,7 @@
 	-->
 	<xsl:import href="lib/fo-metadata.xsl" />
 	<xsl:import href="lib/fo-poetry.xsl" />
-	<xsl:import href="lib/general.xsl" />
+	<xsl:import href="../lib/base.xsl" />
 	<xsl:import href="lib/fo-font-default.xsl" />
 	<xsl:import href="lib/fo-base.xsl" />
 </xsl:stylesheet>

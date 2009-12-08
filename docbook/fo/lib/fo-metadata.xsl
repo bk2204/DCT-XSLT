@@ -15,7 +15,7 @@
 	-->
 	<!--<xsl:output method="xml" indent="no"/>-->
 	<xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/fo/docbook.xsl" />
-	<xsl:import href="metadata.xsl" />
+	<xsl:import href="../../lib/metadata.xsl" />
 
 	<!--
 	These stylesheets were derived in part from the DocBook XSL stylesheets,

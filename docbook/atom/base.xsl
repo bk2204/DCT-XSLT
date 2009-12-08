@@ -13,7 +13,7 @@
 	xmlns:ctxsl="http://crustytoothpaste.ath.cx/ns/xsl"
 	xmlns:atom="http://www.w3.org/2005/Atom"
 	xmlns="http://www.w3.org/2005/Atom">
-	<xsl:import href="../../misc/link-struct.xsl" />
+	<xsl:import href="../../misc/link-structure.xsl" />
 	<xsl:template match="node()|@*" mode="strip">
 		<xsl:apply-templates select="@*|node()" mode="strip"/>
 	</xsl:template>
