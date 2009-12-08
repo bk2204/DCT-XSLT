@@ -8,8 +8,8 @@
 	Items that are imported first have the lowest priority, followed by
 	later imports, followed by this sheet.
 	-->
-	<xsl:import href="fo.xsl" />
-	<xsl:import href="lib/fo-report-coverpage.xsl" />
+	<xsl:import href="base.xsl" />
+	<xsl:import href="lib/report-coverpage.xsl" />
 	<!-- Put the author in the right place. -->
 	<xsl:template match="db:bookinfo/db:author|db:info/db:author" mode="titlepage.mode" priority="2">
 		<fo:block xsl:use-attribute-sets="ctxsl:titlepage-info-default">

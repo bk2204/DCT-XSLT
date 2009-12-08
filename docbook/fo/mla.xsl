@@ -71,7 +71,7 @@
 	Items that are imported first have the lowest priority, followed by
 	later imports, followed by this sheet.
 	-->
-	<xsl:import href="fo-school.xsl" />
+	<xsl:import href="school.xsl" />
 	<!-- Use standard PostScript fonts, just in case. -->
 	<xsl:param name="title.font.family" select="'Times'" />
 	<!-- Put the author in the right place. -->

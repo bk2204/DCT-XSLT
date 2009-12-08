@@ -73,7 +73,7 @@
 	Items that are imported first have the lowest priority, followed by
 	later imports, followed by this sheet.
 	-->
-	<xsl:import href="fo.xsl" />
+	<xsl:import href="base.xsl" />
 	<xsl:param name="header.rule" select="0" />
 	<xsl:param name="footer.rule" select="0" />
 	<xsl:param name="line-height" select="2.0" />

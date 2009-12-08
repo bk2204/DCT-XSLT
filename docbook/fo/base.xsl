@@ -4,9 +4,9 @@
 	Items that are imported first have the lowest priority, followed by
 	later imports, followed by this sheet.
 	-->
-	<xsl:import href="lib/fo-metadata.xsl" />
-	<xsl:import href="lib/fo-poetry.xsl" />
+	<xsl:import href="lib/metadata.xsl" />
+	<xsl:import href="lib/poetry.xsl" />
 	<xsl:import href="../lib/base.xsl" />
-	<xsl:import href="lib/fo-font-default.xsl" />
-	<xsl:import href="lib/fo-base.xsl" />
+	<xsl:import href="lib/font-default.xsl" />
+	<xsl:import href="lib/base.xsl" />
 </xsl:stylesheet>
