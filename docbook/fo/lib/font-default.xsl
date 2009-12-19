@@ -1,1 +1,1 @@
-font-palatino.xsl
+font-minion.xsl
