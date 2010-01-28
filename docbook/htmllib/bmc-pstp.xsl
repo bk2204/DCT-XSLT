@@ -141,7 +141,13 @@
 		<xsl:param name="position" />
 		<xsl:param name="last" />
 		<xsl:choose>
+			<xsl:when test="($position=1) and ($last &gt; 1)">
+				<xsl:text> your choice of </xsl:text>
+			</xsl:when>
 			<xsl:when test="$position=1"/>
+			<xsl:when test="($position=$last) and ($last=2)">
+				<xsl:text> or </xsl:text>
+			</xsl:when>
 			<xsl:when test="$position=$last">
 				<xsl:text>, or </xsl:text>
 			</xsl:when>
