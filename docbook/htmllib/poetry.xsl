@@ -3,14 +3,13 @@
 	version="1.0"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:fo="http://www.w3.org/1999/XSL/Format"
   xmlns:sverb="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.Verbatim"
   xmlns:xverb="com.nwalsh.xalan.Verbatim"
 	xmlns:lxslt="http://xml.apache.org/xslt"
 	xmlns:set="http://exslt.org/sets" 
   xmlns:exsl="http://exslt.org/common"
 	xmlns:ctxsl="http://crustytoothpaste.ath.cx/ns/xsl"
-	exclude-result-prefixes="sverb xverb lxslt set exsl ctxsl">
+	exclude-result-prefixes="xsl sverb xverb lxslt set exsl ctxsl">
 	<!--
 	These stylesheets were derived in part from the DocBook XSL stylesheets,
 	version 1.75.0+dfsg-4 (as distributed by Debian).  They were subsequently
