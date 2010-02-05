@@ -12,7 +12,6 @@
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns="http://www.w3.org/1999/xhtml"
 	exclude-result-prefixes="db xlink ctxsl xsl xi xhtml dc cc rdf">
-	<xsl:namespace-alias stylesheet-prefix="xhtml" result-prefix="#default" />
 	<xsl:param name="dry-run" select="0" />
 	<xsl:param name="no-replace-stylesheet" select="0" />
 	<xsl:template match="xhtml:link[@rel = 'stylesheet']" mode="ctxsl:all-xhtml2xhtml">

@@ -5,7 +5,7 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	xmlns:exsl="http://exslt.org/common"
-	exclude-result-prefixes="xsl exsl">
+	exclude-result-prefixes="xsl exsl xhtml">
 	<xsl:template match="node()|@*" mode="ctxsl:all-xhtml2xhtml">
 		<xsl:copy>
 			<xsl:apply-templates select="@*|node()" mode="ctxsl:all-xhtml2xhtml"/>
