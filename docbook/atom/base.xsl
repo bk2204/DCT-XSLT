@@ -13,6 +13,7 @@
 	xmlns:ctxsl="http://crustytoothpaste.ath.cx/ns/xsl"
 	xmlns:atom="http://www.w3.org/2005/Atom"
 	xmlns="http://www.w3.org/2005/Atom">
+	<xsl:import href="../../project.xsl" />
 	<xsl:import href="../../misc/link-structure.xsl" />
 	<xsl:template match="node()|@*" mode="strip">
 		<xsl:apply-templates select="@*|node()" mode="strip"/>
@@ -234,8 +235,11 @@
 	</xsl:template>
 	<xsl:template match="/">
 		<feed>
-			<generator version="unreleased (pre-v1)">
-				<xsl:text>Crusty Toothpaste xsl-sheets atom.xsl</xsl:text>
+			<generator>
+				<xsl:attribute name="version">
+					<xsl:value-of select="$ctxsl:project-version"/>
+				</xsl:attribute>
+				<xsl:value-of select="$ctxsl:project-name"/>
 			</generator>
 			<xsl:apply-templates/>
 		</feed>
