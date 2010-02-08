@@ -4,5 +4,6 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	exclude-result-prefixes="xsl ctxsl">
 	<xsl:param name="ctxsl:project-name">Crusty Toothpaste XSLT 1.0</xsl:param>
+	<xsl:param name="ctxsl:project-uri">http://crustytoothpaste.ath.cx/cgi-bin/cgit/xsl-sheets/</xsl:param>
 	<xsl:param name="ctxsl:project-version">unreleased (pre-v2)</xsl:param>
 </xsl:stylesheet>
