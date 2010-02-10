@@ -5,7 +5,9 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	xmlns:exsl="http://exslt.org/common"
-	exclude-result-prefixes="xsl exsl xhtml">
+	xmlns="http://www.w3.org/1999/xhtml"
+	exclude-result-prefixes="ctxsl xsl exsl xhtml">
+	<xsl:import href="../../project.xsl"/>
 	<xsl:template match="node()|@*" mode="ctxsl:all-xhtml2xhtml">
 		<xsl:copy>
 			<xsl:apply-templates select="@*|node()" mode="ctxsl:all-xhtml2xhtml"/>
@@ -36,7 +38,21 @@
 			</xsl:choose>
 		</xsl:copy>
 	</xsl:template>
-	<xsl:template match="xhtml:meta" mode="ctxsl:all-xhtml2xhtml"/>
+	<xsl:template match="xhtml:meta" mode="ctxsl:all-xhtml2xhtml">
+		<xsl:choose>
+			<xsl:when test="@name = 'description'">
+				<xsl:copy-of select="." />
+			</xsl:when>
+			<xsl:when test="@name = 'generator'">
+				<meta name="generator">
+					<xsl:attribute name="content">
+						<xsl:value-of select="$ctxsl:project-id" />
+					</xsl:attribute>
+				</meta>
+			</xsl:when>
+			<xsl:otherwise/>
+		</xsl:choose>
+	</xsl:template>
 	<xsl:template match="xhtml:h1/xhtml:a" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="xhtml:h2/xhtml:a" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="xhtml:h3/xhtml:a" mode="ctxsl:all-xhtml2xhtml"/>
