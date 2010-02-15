@@ -11,6 +11,9 @@
 	<xsl:template match="@xml:lang" mode="ctxsl:all-xhtml2xhtml">
 		<xsl:copy-of select="." />
 	</xsl:template>
+	<xsl:template name="ctxsl:xhtml-version">
+		<xsl:attribute name="version">XHTML+RDFa 1.0</xsl:attribute>
+	</xsl:template>
 	<xsl:template match="*" mode="ctxsl:maybensnuke">
 		<xsl:copy>
 			<xsl:copy-of select="@*" />

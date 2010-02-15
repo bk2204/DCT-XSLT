@@ -5,7 +5,7 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	xmlns:exsl="http://exslt.org/common"
-	exclude-result-prefixes="xsl exsl">
+	exclude-result-prefixes="ctxsl xsl xhtml exsl">
 	<xsl:import href="../htmllib/pstp.xsl" />
 	<xsl:output method="html"
 		encoding="US-ASCII"
@@ -15,6 +15,7 @@
 	<xsl:template match="@*[name(.)='lang']" mode="ctxsl:all-xhtml2xhtml">
 		<xsl:copy-of select="." />
 	</xsl:template>
+	<xsl:template name="ctxsl:xhtml-version"/>
 	<xsl:template match="*" mode="ctxsl:maybensnuke">
 		<xsl:choose>
 			<xsl:when test="self::xhtml:*">

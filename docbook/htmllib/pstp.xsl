@@ -13,6 +13,12 @@
 			<xsl:apply-templates select="@*|node()" mode="ctxsl:all-xhtml2xhtml"/>
 		</xsl:copy>
 	</xsl:template>
+	<xsl:template match="xhtml:html" mode="ctxsl:all-xhtml2xhtml">
+		<xsl:copy>
+			<xsl:call-template name="ctxsl:xhtml-version" />
+			<xsl:apply-templates select="@*[name()!='version']|node()" mode="ctxsl:all-xhtml2xhtml"/>
+		</xsl:copy>
+	</xsl:template>
 	<xsl:template match="@lang" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="@xml:lang" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="@target" mode="ctxsl:all-xhtml2xhtml"/>
