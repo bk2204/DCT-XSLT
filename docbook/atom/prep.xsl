@@ -3,7 +3,9 @@
 	xmlns:dbx="http://docbook.org/ns/docbook"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
 	xmlns:exsl="http://exslt.org/common"
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	exclude-result-prefixes="dbx xlink exsl xsl">
+	<xsl:output method="xml" encoding="UTF-8" indent="no" />
 	<xsl:param name="number" select="1000000"/>
 	<xsl:param name="index" select="0"/>
 	<xsl:template match="node()|@*">

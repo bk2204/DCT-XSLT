@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xsl:stylesheet version="1.0"
-	exclude-result-prefixes="xsl xlink date xi db"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
 	xmlns:date="http://exslt.org/dates-and-times"
@@ -8,7 +7,10 @@
 	xmlns:xi="http://www.w3.org/2001/XInclude"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:atom="http://www.w3.org/2005/Atom">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	exclude-result-prefixes="xsl xlink date db xi xhtml atom xsi">
+	<xsl:output method="xml" encoding="UTF-8" indent="no" />
 	<xsl:template match="node()|@*">
 		<xsl:copy>
 			<xsl:apply-templates select="@*|node()"/>

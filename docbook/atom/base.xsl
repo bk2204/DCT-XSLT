@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xsl:stylesheet version="1.0"
-	exclude-result-prefixes="xsl xlink date xi db xhtml atom ctxsl"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
 	xmlns:date="http://exslt.org/dates-and-times"
@@ -12,9 +11,11 @@
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:ctxsl="http://crustytoothpaste.ath.cx/ns/xsl"
 	xmlns:atom="http://www.w3.org/2005/Atom"
-	xmlns="http://www.w3.org/2005/Atom">
+	xmlns="http://www.w3.org/2005/Atom"
+	exclude-result-prefixes="xsl xlink date db xi xhtml ctxsl atom">
 	<xsl:import href="../../project.xsl" />
 	<xsl:import href="../../misc/link-structure.xsl" />
+	<xsl:output method="xml" encoding="UTF-8" indent="no" />
 	<xsl:template match="node()|@*" mode="strip">
 		<xsl:apply-templates select="@*|node()" mode="strip"/>
 	</xsl:template>
