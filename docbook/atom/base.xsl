@@ -10,9 +10,8 @@
 	xmlns:cc="http://web.resource.org/cc/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:ctxsl="http://crustytoothpaste.ath.cx/ns/xsl"
-	xmlns:atom="http://www.w3.org/2005/Atom"
 	xmlns="http://www.w3.org/2005/Atom"
-	exclude-result-prefixes="xsl xlink date db xi xhtml ctxsl atom">
+	exclude-result-prefixes="xsl xlink date db xi xhtml ctxsl">
 	<xsl:import href="../../project.xsl" />
 	<xsl:import href="../../misc/link-structure.xsl" />
 	<xsl:output method="xml" encoding="UTF-8" indent="no" />
