@@ -9,7 +9,8 @@
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:atom="http://www.w3.org/2005/Atom"
-	exclude-result-prefixes="xsl xlink date db xi xhtml atom xsi">
+	xmlns="http://www.w3.org/2005/Atom"
+	exclude-result-prefixes="xsl xlink date db xi xhtml xsi atom">
 	<xsl:output method="xml" encoding="UTF-8" indent="no" />
 	<xsl:template match="node()|@*">
 		<xsl:copy>
