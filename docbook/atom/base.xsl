@@ -46,9 +46,9 @@
 		</xsl:copy>
 	</xsl:template>
 	<xsl:template match="dc:subject" mode="copy-through">
-		<xsl:copy>
+		<dc:subject>
 			<xsl:apply-templates select="@*|node()" mode="copy-through"/>
-		</xsl:copy>
+		</dc:subject>
 		<category>
 			<xsl:attribute name="term">
 				<xsl:value-of select="translate(normalize-space(text()),'ABCDEFGHIJKLMNOPQRSTUVWXYZ ','abcdefghijklmnopqrstuvwxyz-')"/>
