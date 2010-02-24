@@ -141,7 +141,9 @@
 
   	    <xsl:when test="$position='right'">
   	      <!-- Same for odd, even, empty, and blank sequences -->
-					<xsl:value-of select="(/descendant::db:surname)[1]" /><xsl:text> </xsl:text><fo:page-number />
+  	      <xsl:if test="$sequence != 'first'">
+						<xsl:value-of select="(/descendant::db:surname)[1]" /><xsl:text> </xsl:text><fo:page-number />
+  	      </xsl:if>
   	    </xsl:when>
 
   	    <xsl:when test="$sequence = 'first'">
