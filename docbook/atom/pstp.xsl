@@ -16,7 +16,15 @@
 		<xsl:copy>
 			<xsl:apply-templates select="@*|node()"/>
 		</xsl:copy>
-	</xsl:template>
+  </xsl:template>
+  <!--
+  This removes the xmlns:xsi namespace node that is imported by the XHTML DTD.
+  -->
+  <xsl:template match="xhtml:*">
+    <xsl:element name="{local-name()}" namespace="{namespace-uri()}">
+			<xsl:apply-templates select="@*|node()"/>
+    </xsl:element>
+  </xsl:template>
 	<xsl:template match="xhtml:div[@class='article']/xhtml:div[@class='titlepage']"/>
 	<xsl:template match="atom:entry/atom:subtitle"/>
 	<xsl:template match="xhtml:span[@class = 'indent']">
