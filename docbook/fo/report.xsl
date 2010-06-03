@@ -13,4 +13,10 @@
 	<xsl:import href="lib/report-coverpage.xsl" />
 
 	<xsl:template name="footer.content" />
+
+	<!-- This will inherit other attributes from the default definition. -->
+	<xsl:attribute-set name="component.title.properties">
+		<xsl:attribute name="text-align">inherit</xsl:attribute>
+	</xsl:attribute-set>
+
 </xsl:stylesheet>
