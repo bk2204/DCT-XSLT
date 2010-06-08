@@ -4,7 +4,9 @@
 	xmlns:db="http://docbook.org/ns/docbook"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:strip-space elements="*"/>
-	<xsl:preserve-space elements="db:address db:classsynopsisinfo db:funcsynopsisinfo db:literallayout db:programlisting db:programlistingco db:screen db:screenco db:synopsis" />
+	<xsl:preserve-space elements="db:address db:classsynopsisinfo
+		db:funcsynopsisinfo db:literallayout db:programlisting db:programlistingco
+		db:screen db:screenco db:synopsis" />
 	<xsl:template match="node()|@*">
 		<xsl:copy>
 			<xsl:apply-templates select="@*|node()"/>
@@ -12,7 +14,12 @@
 	</xsl:template>
 	<xsl:template match="text()">
 		<xsl:choose>
-			<xsl:when test="ancestor::node()[db:address|db:classsynopsisinfo|db:funcsynopsisinfo|db:literallayout|db:programlisting|db:programlistingco|db:screen|db:screenco|db:synopsis]">
+			<xsl:when test="ancestor::node()[db:address|db:classsynopsisinfo|
+				db:funcsynopsisinfo|db:literallayout|db:programlisting|
+				db:programlistingco|db:screen|db:screenco|db:synopsis]">
+				<xsl:value-of select="."/>
+			</xsl:when>
+			<xsl:when test="ancestor::node()[@xml:space][1][@xml:space = 'preserve']">
 				<xsl:value-of select="."/>
 			</xsl:when>
 			<xsl:otherwise>
