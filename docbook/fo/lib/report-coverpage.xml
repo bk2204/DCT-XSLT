@@ -193,8 +193,8 @@ IN THE SOFTWARE.
 	     font-family="{$title.fontset}"/>
       <subtitle
 		text-align="center"
-		font-size="&hsize4;"
-		space-before="&hsize4space;"
+		font-size="&hsize0;"
+		space-before="&hsize0space;"
 		font-family="{$title.fontset}"/>
       <corpauthor font-size="&hsize3;"
 		  keep-with-next.within-column="always"
@@ -215,7 +215,7 @@ IN THE SOFTWARE.
 		<!--
       <title
 	     t:named-template="book.verso.title"
-	     font-size="&hsize2;"
+	     font-size="&hsize0;"
 	     font-weight="bold"
 	     font-family="{$title.fontset}"/>
       <corpauthor/>
