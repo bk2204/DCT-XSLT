@@ -3,7 +3,8 @@
 	xmlns:db="http://docbook.org/ns/docbook"
 	xmlns:fo="http://www.w3.org/1999/XSL/Format"
 	xmlns:ctxsl="http://crustytoothpaste.ath.cx/ns/xsl"
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	exclude-result-prefixes="db ctxsl xsl">
 	<!--
 	These stylesheets were derived in part from the DocBook XSL stylesheets,
 	version 1.71.0.dfsg.1-2 (as distributed by Debian).  They were subsequently
@@ -46,7 +47,7 @@
 	The remainder of the stylesheet and any copyrightable modifications to the
 	above are licensed as follows:
 
-	Copyright © 2007 Brian M. Carlson
+	Copyright © 2007, 2010 Brian M. Carlson
 	
 	Permission is hereby granted, free of charge, to any person obtaining a
 	copy of this software and associated documentation files (the "Software"),
@@ -73,14 +74,15 @@
 	-->
 	<xsl:import href="school.xsl" />
 	<xsl:import href="lib/font-times.xsl" />
+	<xsl:import href="lib/mla-coverpage.xsl" />
 	<!-- Put the author in the right place. -->
 	<xsl:template match="db:bookinfo/db:author|db:info/db:author" mode="titlepage.mode" priority="2">
-		<fo:block xsl:use-attribute-sets="ctxsl:titlepage-info-default">
+		<fo:block xsl:use-attribute-sets="article.titlepage.recto.style">
 			<xsl:call-template name="person.name"/>
 		</fo:block>
 	</xsl:template>
 	<xsl:template match="db:author" mode="titlepage.mode">
-		<fo:block xsl:use-attribute-sets="ctxsl:titlepage-info-default">
+		<fo:block xsl:use-attribute-sets="article.titlepage.recto.style">
 			<xsl:call-template name="anchor"/>
 			<xsl:call-template name="person.name"/>
 			<xsl:if test="db:affiliation/db:orgname">
@@ -91,6 +93,12 @@
 				<xsl:text> </xsl:text>
 				<xsl:apply-templates select="(db:email|db:affiliation/db:address/db:email)[1]"/>
 			</xsl:if>
+		</fo:block>
+	</xsl:template>
+	<xsl:template match="db:conftitle|db:confsponsor" mode="titlepage.mode">
+		<xsl:message>Handling <xsl:value-of select="name(.)"/> on titlepage.</xsl:message>
+		<fo:block xsl:use-attribute-sets="article.titlepage.recto.style">
+			<xsl:apply-templates/>
 		</fo:block>
 	</xsl:template>
 
@@ -158,131 +166,21 @@
 	</xsl:template>
 	<!-- Specify title properties. -->
 	<xsl:attribute-set name="component.title.properties">
-		<xsl:attribute name="keep-with-next.within-column">always</xsl:attribute>
-		<xsl:attribute name="space-before.optimum"><xsl:value-of select="concat($body.font.master, 'pt')"/></xsl:attribute>
-		<xsl:attribute name="space-before.minimum"><xsl:value-of select="concat($body.font.master, 'pt * 0.8')"/></xsl:attribute>
-		<xsl:attribute name="space-before.maximum"><xsl:value-of select="concat($body.font.master, 'pt * 1.2')"/></xsl:attribute>
-		<xsl:attribute name="hyphenate">false</xsl:attribute>
 		<xsl:attribute name="text-align">center</xsl:attribute>
 		<xsl:attribute name="font-weight">normal</xsl:attribute>
 		<xsl:attribute name="font-size">
 			<xsl:value-of select="$body.font.master"/>
 			<xsl:text>pt</xsl:text>
 		</xsl:attribute>
-		<xsl:attribute name="start-indent"><xsl:value-of select="$title.margin.left"/></xsl:attribute>
 	</xsl:attribute-set>
 	<!-- Default attributes for titlepage info/* elements. -->
-	<xsl:attribute-set name="ctxsl:titlepage-info-default">
-		<xsl:attribute name="keep-with-next.within-column">always</xsl:attribute>
-		<xsl:attribute name="space-before.optimum"><xsl:value-of select="concat($body.font.master, 'pt')"/></xsl:attribute>
-		<xsl:attribute name="space-before.minimum"><xsl:value-of select="concat($body.font.master, 'pt * 0.8')"/></xsl:attribute>
-		<xsl:attribute name="space-before.maximum"><xsl:value-of select="concat($body.font.master, 'pt * 1.2')"/></xsl:attribute>
-		<xsl:attribute name="hyphenate">false</xsl:attribute>
+	<xsl:attribute-set name="article.titlepage.recto.style"
+		use-attribute-sets="component.title.properties">
 		<xsl:attribute name="text-align">left</xsl:attribute>
 		<xsl:attribute name="font-weight">normal</xsl:attribute>
-		<!-- because otherwise it puts out almost an extra 1.0 of space.  dunno why; don't really care to find out, either. -->
-		<xsl:attribute name="line-height">1.0</xsl:attribute>
-		<xsl:attribute name="font-size">
-			<xsl:value-of select="$body.font.master"/>
-			<xsl:text>pt</xsl:text>
-		</xsl:attribute>
-		<xsl:attribute name="start-indent"><xsl:value-of select="$title.margin.left"/></xsl:attribute>
 	</xsl:attribute-set>
-	<!-- default template for titlepage in an article -->
-	<xsl:template match="*" mode="ctxsl:article-titlepage-recto">
-		<xsl:message>Handling <xsl:value-of select="name(.)"/> on titlepage.</xsl:message>
-		<fo:block xsl:use-attribute-sets="ctxsl:titlepage-info-default">
-			<xsl:apply-templates select="."/>
-		</fo:block>
-	</xsl:template>
-	<xsl:template match="db:confgroup/*" mode="ctxsl:article-titlepage-recto">
-		<xsl:message>Handling <xsl:value-of select="name(.)"/> on titlepage.</xsl:message>
-		<fo:block xsl:use-attribute-sets="ctxsl:titlepage-info-default">
-			<xsl:apply-templates select="./text()"/>
-		</fo:block>
-	</xsl:template>
-	<!-- Use proper order for MLA style. -->
-	<xsl:template name="article.titlepage.recto">
-		<fo:block xsl:use-attribute-sets="ctxsl:titlepage-info-default">
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:articleinfo/db:corpauthor"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:artheader/db:corpauthor"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:info/db:corpauthor"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:articleinfo/db:authorgroup"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:artheader/db:authorgroup"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:info/db:authorgroup"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:articleinfo/db:author"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:artheader/db:author"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:info/db:author"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:articleinfo/db:othercredit"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:artheader/db:othercredit"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:info/db:othercredit"/>
-
-		<!-- Okay, okay, a class isn't a conference.  So sue me. -->
-		<xsl:apply-templates mode="ctxsl:article-titlepage-recto" select="db:articleinfo/db:confgroup/db:conftitle"/>
-		<xsl:apply-templates mode="ctxsl:article-titlepage-recto" select="db:info/db:confgroup/db:conftitle"/>
-		<xsl:apply-templates mode="ctxsl:article-titlepage-recto" select="db:articleinfo/db:confgroup/db:confsponsor"/>
-		<xsl:apply-templates mode="ctxsl:article-titlepage-recto" select="db:info/db:confgroup/db:confsponsor"/>
-		<xsl:apply-templates mode="ctxsl:article-titlepage-recto" select="db:articleinfo/db:date"/>
-		<xsl:apply-templates mode="ctxsl:article-titlepage-recto" select="db:info/db:date"/>
-		</fo:block>
-
-		<xsl:choose>
-			<xsl:when test="db:articleinfo/db:title">
-				<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:articleinfo/db:title"/>
-			</xsl:when>
-			<xsl:when test="db:artheader/db:title">
-				<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:artheader/db:title"/>
-			</xsl:when>
-			<xsl:when test="db:info/db:title">
-				<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:info/db:title"/>
-			</xsl:when>
-			<xsl:when test="db:title">
-				<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:title"/>
-			</xsl:when>
-		</xsl:choose>
-		
-		<xsl:choose>
-			<xsl:when test="db:articleinfo/db:subtitle">
-				<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:articleinfo/db:subtitle"/>
-			</xsl:when>
-			<xsl:when test="db:artheader/db:subtitle">
-				<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:artheader/subtitle"/>
-			</xsl:when>
-			<xsl:when test="db:info/db:subtitle">
-				<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:info/subtitle"/>
-			</xsl:when>
-			<xsl:when test="db:subtitle">
-				<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:subtitle"/>
-			</xsl:when>
-		</xsl:choose>
-		
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:articleinfo/db:releaseinfo"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:artheader/db:releaseinfo"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:info/db:releaseinfo"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:articleinfo/db:copyright"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:artheader/db:copyright"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:info/db:copyright"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:articleinfo/db:legalnotice"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:artheader/db:legalnotice"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:info/db:legalnotice"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:articleinfo/db:pubdate"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:artheader/db:pubdate"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:info/db:pubdate"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:articleinfo/db:revision"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:artheader/db:revision"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:info/db:revision"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:articleinfo/db:revhistory"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:artheader/db:revhistory"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:info/db:revhistory"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:articleinfo/db:abstract"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:artheader/db:abstract"/>
-		<xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="db:info/db:abstract"/>
-	</xsl:template>
 	<!-- indent the first line of each paragraph. -->
 	<xsl:attribute-set name="normal.para.spacing">
 		<xsl:attribute name="text-indent">2.5em</xsl:attribute>
-		<xsl:attribute name="space-before.optimum">1em</xsl:attribute>
-		<xsl:attribute name="space-before.minimum">0.8em</xsl:attribute>
-		<xsl:attribute name="space-before.maximum">1.2em</xsl:attribute>
 	</xsl:attribute-set>
 </xsl:stylesheet>
