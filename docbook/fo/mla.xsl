@@ -95,8 +95,18 @@
 			</xsl:if>
 		</fo:block>
 	</xsl:template>
-	<xsl:template match="db:conftitle|db:confsponsor" mode="titlepage.mode">
-		<xsl:message>Handling <xsl:value-of select="name(.)"/> on titlepage.</xsl:message>
+	<xsl:template match="db:confsponsor" mode="titlepage.mode">
+		<xsl:if test="not(@role = 'instructor')">
+			<xsl:message>Warning: legacy use of confsponsor on titlepage.</xsl:message>
+		</xsl:if>
+		<fo:block xsl:use-attribute-sets="article.titlepage.recto.style">
+			<xsl:apply-templates/>
+		</fo:block>
+	</xsl:template>
+	<xsl:template match="db:conftitle" mode="titlepage.mode">
+		<xsl:if test="not(@role = 'class')">
+			<xsl:message>Warning: legacy use of conftitle on titlepage.</xsl:message>
+		</xsl:if>
 		<fo:block xsl:use-attribute-sets="article.titlepage.recto.style">
 			<xsl:apply-templates/>
 		</fo:block>
