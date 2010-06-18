@@ -104,66 +104,8 @@
 		</xsl:choose>
 	</xsl:template>
 	<xsl:template match="db:article/db:appendix">
-	  <xsl:variable name="id">
-	    <xsl:call-template name="object.id"/>
-	  </xsl:variable>
-	
-	  <xsl:variable name="title">
-	    <xsl:apply-templates select="." mode="object.title.markup"/>
-	  </xsl:variable>
-	
-	  <xsl:variable name="titleabbrev">
-	    <xsl:apply-templates select="." mode="titleabbrev.markup"/>
-	  </xsl:variable>
-	
-	  <fo:block break-before="page" id='{$id}'>
-	    <xsl:if test="$axf.extensions != 0">
-	      <xsl:attribute name="axf:outline-level">
-	        <xsl:value-of select="count(ancestor::*)+2"/>
-	      </xsl:attribute>
-	      <xsl:attribute name="axf:outline-expand">false</xsl:attribute>
-	      <xsl:attribute name="axf:outline-title">
-	        <xsl:value-of select="normalize-space($titleabbrev)"/>
-	      </xsl:attribute>
-	    </xsl:if>
-	
-	    <xsl:if test="$passivetex.extensions != 0">
-	      <fotex:bookmark xmlns:fotex="http://www.tug.org/fotex" 
-	                      fotex-bookmark-level="{count(ancestor::*)+2}" 
-	                      fotex-bookmark-label="{$id}">
-	        <xsl:value-of select="$titleabbrev"/>
-	      </fotex:bookmark>
-	    </xsl:if>
-	
-			<fo:block xsl:use-attribute-sets="article.appendix.title.properties">
-	      <fo:marker marker-class-name="section.head.marker">
-	        <xsl:choose>
-	          <xsl:when test="$titleabbrev = ''">
-	            <xsl:value-of select="$title"/>
-	          </xsl:when>
-	          <xsl:otherwise>
-	            <xsl:value-of select="$titleabbrev"/>
-	          </xsl:otherwise>
-	        </xsl:choose>
-	      </fo:marker>
-	      <xsl:copy-of select="$title"/>
-	    </fo:block>
-	
-	    <xsl:variable name="toc.params">
-	        <xsl:call-template name="find.path.params">
-	          <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
-	        </xsl:call-template>
-	      </xsl:variable>
-	
-	      <xsl:if test="contains($toc.params, 'toc')">
-	        <xsl:call-template name="component.toc">
-	          <xsl:with-param name="toc.title.p" 
-	                          select="contains($toc.params, 'title')"/>
-	        </xsl:call-template>
-	        <xsl:call-template name="component.toc.separator"/>
-	      </xsl:if>
-	
-	    <xsl:apply-templates/>
-	  </fo:block>
+		<fo:block break-before="page">
+			<xsl:apply-imports/>
+		</fo:block>
 	</xsl:template>
 </xsl:stylesheet>
