@@ -189,6 +189,9 @@
 		<xsl:attribute name="text-align">left</xsl:attribute>
 		<xsl:attribute name="font-weight">normal</xsl:attribute>
 	</xsl:attribute-set>
+	<xsl:attribute-set name="article.appendix.title.properties"
+		use-attribute-sets="component.title.properties">
+	</xsl:attribute-set>
 	<!-- indent the first line of each paragraph. -->
 	<xsl:attribute-set name="normal.para.spacing">
 		<xsl:attribute name="text-indent">2.5em</xsl:attribute>
