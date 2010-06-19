@@ -33,15 +33,11 @@
 	later imports, followed by this sheet.
 	-->
 	<xsl:import href="base.xsl" />
-	<xsl:param name="header.rule" select="0" />
-	<xsl:param name="footer.rule" select="0" />
+	<xsl:import href="lib/font-times.xsl" />
+
 	<xsl:param name="line-height" select="2.0" />
-	<xsl:param name="body.start.indent">0pt</xsl:param>
 	<xsl:param name="body.font.master">12</xsl:param>
-	<!-- Use standard PostScript fonts, just in case. -->
-	<xsl:param name="body.font.family" select="'Times'" />
-	<xsl:param name="title.font.family" select="'Times'" />
-	<xsl:param name="dingbat.font.family" select="'Times'" />
+
 	<!-- Indent the first line of each paragraph. -->
 	<xsl:attribute-set name="normal.para.spacing">
 		<xsl:attribute name="text-indent">2.5em</xsl:attribute>
