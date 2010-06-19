@@ -7,6 +7,7 @@
 	<xsl:import href="lib/metadata.xsl" />
 	<xsl:import href="lib/poetry.xsl" />
 	<xsl:import href="../lib/base.xsl" />
+	<xsl:import href="../lib/fixup.xsl" />
 	<xsl:import href="lib/font-default.xsl" />
 	<xsl:import href="lib/base.xsl" />
 </xsl:stylesheet>
