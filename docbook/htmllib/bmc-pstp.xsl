@@ -12,6 +12,8 @@
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns="http://www.w3.org/1999/xhtml"
 	exclude-result-prefixes="db xlink ctxsl xsl xi xhtml dc cc rdf">
+	<xsl:import href="restructure.xsl"/>
+
 	<xsl:param name="dry-run" select="0" />
 	<xsl:param name="no-replace-stylesheet" select="0" />
 	<xsl:template match="xhtml:link[@rel = 'stylesheet']" mode="ctxsl:all-xhtml2xhtml">
@@ -48,63 +50,6 @@
 	<xsl:template match="xhtml:div[@class = 'footnotes']/xhtml:br" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="xhtml:acronym" mode="ctxsl:all-xhtml2xhtml">
 		<xsl:apply-templates mode="ctxsl:all-xhtml2xhtml"/>
-	</xsl:template>
-	<xsl:template name="ctxsl:add-class">
-		<xsl:param name="ctxsl:class"/>
-			<xsl:attribute name="class"><xsl:value-of select="@class"/><xsl:text>&#x0020;</xsl:text><xsl:value-of select="$ctxsl:class"/></xsl:attribute>
-			<xsl:apply-templates select="@*[not(name(.) = 'class')]" mode="ctxsl:all-xhtml2xhtml"/>
-	</xsl:template>
-	<xsl:template match="xhtml:p[@class='acknowledgements']" mode="ctxsl:all-xhtml2xhtml">
-		<div class="acknowledgements">
-			<xsl:apply-templates mode="ctxsl:all-xhtml2xhtml"/>
-		</div>
-	</xsl:template>
-	<xsl:template match="xhtml:body/xhtml:div[not(@class = 'footer')]" mode="ctxsl:all-xhtml2xhtml">
-		<xsl:copy>
-			<xsl:call-template name="ctxsl:add-class">
-				<xsl:with-param name="ctxsl:class"><xsl:text>toplevel</xsl:text></xsl:with-param>
-			</xsl:call-template>
-			<xsl:apply-templates select="xhtml:div[@class = 'titlepage']"
-				mode="ctxsl:all-xhtml2xhtml"/>
-			<xsl:apply-templates select="xhtml:div[@class = 'toc']"
-				mode="ctxsl:all-xhtml2xhtml"/>
-			<div id="main" class="flow">
-				<xsl:apply-templates select="xhtml:*[not((@class = 'titlepage') or (@class = 'toc'))]"
-					mode="ctxsl:all-xhtml2xhtml"/>
-			</div>
-		</xsl:copy>
-	</xsl:template>
-	<xsl:template match="xhtml:*" mode="ctxsl:copy-parent-class">
-		<xsl:copy>
-			<xsl:call-template name="ctxsl:add-class">
-				<xsl:with-param name="ctxsl:class"><xsl:value-of select="../@class"/></xsl:with-param>
-			</xsl:call-template>
-			<xsl:apply-templates select="node()" mode="ctxsl:all-xhtml2xhtml"/>
-		</xsl:copy>
-	</xsl:template>
-	<xsl:template match="xhtml:div[@class='literallayout' or @class='address']"
-		mode="ctxsl:all-xhtml2xhtml">
-		<xsl:apply-templates mode="ctxsl:copy-parent-class"/>
-	</xsl:template>
-	<xsl:template match="xhtml:body/xhtml:div[not(@class = 'footer')]/xhtml:div[@class = 'titlepage']" mode="ctxsl:all-xhtml2xhtml">
-		<xsl:copy>
-			<xsl:attribute name="id">header</xsl:attribute>
-			<xsl:apply-templates select="@*|node()" mode="ctxsl:all-xhtml2xhtml" />
-		</xsl:copy>
-	</xsl:template>
-	<xsl:template match="xhtml:div[@class and ./xhtml:div[@class = 'titlepage'] and not(local-name(..)='body')]" mode="ctxsl:all-xhtml2xhtml">
-		<xsl:copy>
-			<xsl:if test="xhtml:div[@class='titlepage']//xhtml:*[@class='title']/xhtml:a[@id]">
-				<xsl:attribute name="id">
-					<xsl:value-of select="xhtml:div[@class='titlepage']//xhtml:*[@class='title']/xhtml:a/@id" />
-				</xsl:attribute>
-			</xsl:if>
-			<xsl:apply-templates select="@*" mode="ctxsl:all-xhtml2xhtml"/>
-			<xsl:apply-templates select="xhtml:div[@class = 'titlepage']" mode="ctxsl:all-xhtml2xhtml"/>
-			<div class="flow">
-				<xsl:apply-templates select="xhtml:*[not(@class = 'titlepage')]" mode="ctxsl:all-xhtml2xhtml"/>
-			</div>
-		</xsl:copy>
 	</xsl:template>
 	<!--
 	<xsl:template match="xhtml:body/xhtml:div/xhtml:div[not(@class = 'titlepage')]" mode="ctxsl:all-xhtml2xhtml">
@@ -243,26 +188,4 @@
 			<xsl:call-template name="ctxsl:footer-cb"/>
 		</xsl:copy>
 	</xsl:template>
-	<xsl:template match="xhtml:div[@class = 'colophon']" mode="ctxsl:all-xhtml2xhtml">
-		<xsl:copy>
-			<xsl:copy-of select="@*"/>
-			<xsl:if test="not(@id)">
-				<xsl:attribute name="id">
-					<xsl:text>colophon</xsl:text>
-				</xsl:attribute>
-			</xsl:if>
-			<div class="titlepage">
-				<xsl:apply-templates select="xhtml:*[@class = 'title']"
-					mode="ctxsl:all-xhtml2xhtml"/>
-			</div>
-			<div class="flow">
-				<xsl:apply-templates select="xhtml:*[not(@class = 'title')]"
-					mode="ctxsl:all-xhtml2xhtml"/>
-			</div>
-		</xsl:copy>
-	</xsl:template>
-	<!--
-	Dummy implementation of the footer callback.
-	-->
-	<xsl:template name="ctxsl:footer-cb"/>
 </xsl:stylesheet>
