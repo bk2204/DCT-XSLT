@@ -6,6 +6,8 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	exclude-result-prefixes="ctxsl xsl">
 
+	<xsl:template name="ctxsl:xhtml-version"/>
+
 	<xsl:template name="ctxsl:footer-cb">
 		<xsl:call-template name="ctxsl:footer">
 			<xsl:with-param name="ctxsl:structure">
