@@ -7,15 +7,15 @@
 	xmlns:exsl="http://exslt.org/common"
 	exclude-result-prefixes="ctxsl xsl xhtml exsl">
 	<xsl:import href="../htmllib/pstp.xsl" />
-	<xsl:output method="html"
-		encoding="US-ASCII"
-		indent="no"
+	<xsl:import href="../htmllib/format-html4.xsl" />
+	<xsl:output method="html" encoding="US-ASCII" indent="no"
 		doctype-public="-//W3C//DTD HTML 4.01//EN"
 		doctype-system="http://www.w3.org/TR/html4/strict.dtd"/>
+
 	<xsl:template match="@*[name(.)='lang']" mode="ctxsl:all-xhtml2xhtml">
 		<xsl:copy-of select="." />
 	</xsl:template>
-	<xsl:template name="ctxsl:xhtml-version"/>
+
 	<xsl:template match="*" mode="ctxsl:maybensnuke">
 		<xsl:choose>
 			<xsl:when test="self::xhtml:*">
