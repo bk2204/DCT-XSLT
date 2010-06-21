@@ -12,7 +12,14 @@
 		<xsl:copy-of select="." />
 	</xsl:template>
 	<xsl:template name="ctxsl:xhtml-version">
-		<xsl:attribute name="version">XHTML+RDFa 1.0</xsl:attribute>
+		<xsl:attribute name="version">-//W3C//DTD XHTML 1.1//EN</xsl:attribute>
+	</xsl:template>
+	<xsl:template name="ctxsl:footer-cb">
+		<xsl:call-template name="ctxsl:footer">
+			<xsl:with-param name="ctxsl:structure">
+				<a href="http://validator.w3.org/check/referer">XHTML 1.1</a>
+			</xsl:with-param>
+		</xsl:call-template>
 	</xsl:template>
 	<xsl:template match="*" mode="ctxsl:maybensnuke">
 		<xsl:copy>

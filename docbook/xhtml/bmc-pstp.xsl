@@ -18,6 +18,9 @@
 	<xsl:template match="/">
 		<xsl:apply-templates select="." mode="ctxsl:all-xhtml2xhtml"/>
 	</xsl:template>
+	<xsl:template name="ctxsl:xhtml-version">
+		<xsl:attribute name="version">XHTML+RDFa 1.0</xsl:attribute>
+	</xsl:template>
 	<xsl:template name="ctxsl:footer-cb">
 		<xsl:call-template name="ctxsl:footer">
 			<xsl:with-param name="ctxsl:structure">
