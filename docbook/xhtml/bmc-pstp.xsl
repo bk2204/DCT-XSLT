@@ -15,9 +15,6 @@
 	<xsl:import href="pstp.xsl" />
 	<xsl:import href="../htmllib/bmc-pstp.xsl" />
 	<xsl:output method="xml" encoding="UTF-8" indent="no" doctype-public="-//W3C//DTD XHTML+RDFa 1.0//EN" doctype-system="http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd"/>
-	<xsl:template match="/">
-		<xsl:apply-templates select="." mode="ctxsl:all-xhtml2xhtml"/>
-	</xsl:template>
 	<xsl:template name="ctxsl:xhtml-version">
 		<xsl:attribute name="version">XHTML+RDFa 1.0</xsl:attribute>
 	</xsl:template>
