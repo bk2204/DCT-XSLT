@@ -14,15 +14,8 @@
 	exclude-result-prefixes="db xlink ctxsl xsl xi dc cc rdf saxon">
 	<xsl:import href="pstp.xsl" />
 	<xsl:import href="../htmllib/bmc-pstp.xsl" />
-	<xsl:output method="xml" encoding="UTF-8" indent="no" doctype-public="-//W3C//DTD XHTML+RDFa 1.0//EN" doctype-system="http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd"/>
-	<xsl:template name="ctxsl:xhtml-version">
-		<xsl:attribute name="version">XHTML+RDFa 1.0</xsl:attribute>
-	</xsl:template>
-	<xsl:template name="ctxsl:footer-cb">
-		<xsl:call-template name="ctxsl:footer">
-			<xsl:with-param name="ctxsl:structure">
-				<a href="http://validator.w3.org/check/referer">XHTML+RDFa 1.0</a>
-			</xsl:with-param>
-		</xsl:call-template>
-	</xsl:template>
+	<xsl:import href="../htmllib/format-xhtml-rdfa.xsl" />
+	<xsl:output method="xml" encoding="UTF-8" indent="no"
+		doctype-public="-//W3C//DTD XHTML+RDFa 1.0//EN"
+		doctype-system="http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd"/>
 </xsl:stylesheet>

@@ -7,23 +7,19 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	exclude-result-prefixes="xsl xhtml">
 	<xsl:import href="../htmllib/pstp.xsl" />
-	<xsl:output method="xml" encoding="UTF-8" indent="no" doctype-public="-//W3C//DTD XHTML 1.1//EN" doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"/>
+	<xsl:import href="../htmllib/format-xhtml11.xsl" />
+	<xsl:output method="xml" encoding="UTF-8" indent="no"
+		doctype-public="-//W3C//DTD XHTML 1.1//EN"
+		doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"/>
+
 	<xsl:template match="/">
 		<xsl:apply-templates select="." mode="ctxsl:all-xhtml2xhtml"/>
 	</xsl:template>
+
 	<xsl:template match="@xml:lang" mode="ctxsl:all-xhtml2xhtml">
 		<xsl:copy-of select="." />
 	</xsl:template>
-	<xsl:template name="ctxsl:xhtml-version">
-		<xsl:attribute name="version">-//W3C//DTD XHTML 1.1//EN</xsl:attribute>
-	</xsl:template>
-	<xsl:template name="ctxsl:footer-cb">
-		<xsl:call-template name="ctxsl:footer">
-			<xsl:with-param name="ctxsl:structure">
-				<a href="http://validator.w3.org/check/referer">XHTML 1.1</a>
-			</xsl:with-param>
-		</xsl:call-template>
-	</xsl:template>
+
 	<xsl:template match="*" mode="ctxsl:maybensnuke">
 		<xsl:copy>
 			<xsl:copy-of select="@*" />
