@@ -3,6 +3,7 @@
 	version="1.0"
 	xmlns:ctxsl="http://crustytoothpaste.ath.cx/ns/xsl"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns="http://www.w3.org/1999/xhtml"
 	exclude-result-prefixes="ctxsl xsl">
 
 	<xsl:template name="ctxsl:footer-cb">
