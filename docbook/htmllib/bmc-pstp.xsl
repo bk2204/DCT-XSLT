@@ -13,6 +13,7 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	exclude-result-prefixes="db xlink ctxsl xsl xi xhtml dc cc rdf">
 	<xsl:import href="restructure.xsl"/>
+	<xsl:import href="pstp.xsl"/>
 
 	<xsl:param name="dry-run" select="0" />
 	<xsl:param name="no-replace-stylesheet" select="0" />
