@@ -6,6 +6,8 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	exclude-result-prefixes="ctxsl xsl">
 
+	<xsl:import href="format-xhtml.xsl"/>
+
 	<xsl:template name="ctxsl:xhtml-version">
 		<xsl:attribute name="version">-//W3C//DTD XHTML 1.1//EN</xsl:attribute>
 	</xsl:template>
