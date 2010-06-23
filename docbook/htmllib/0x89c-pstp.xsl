@@ -12,8 +12,8 @@
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns="http://www.w3.org/1999/xhtml"
 	exclude-result-prefixes="db xl ct xsl xi xh dc cc rdf">
-	<xsl:import href="restructure.xsl"/>
 	<xsl:import href="pstp.xsl"/>
+	<xsl:import href="restructure.xsl"/>
 
 	<xsl:template match="xh:link[@rel = 'stylesheet']" mode="ct:all-xhtml2xhtml">
 		<xsl:copy>
