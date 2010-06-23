@@ -45,12 +45,6 @@
 		</xsl:copy>
 	</xsl:template>
 
-	<xsl:template match="xh:*" mode="ctxsl:all-xhtml2xhtml">
-		<xsl:copy>
-			<xsl:apply-templates select="@*|node()" mode="ctxsl:all-xhtml2xhtml"/>
-		</xsl:copy>
-	</xsl:template>
-
 	<xsl:template match="xh:body/xh:div[not(@class = 'footer')]"
 		mode="ctxsl:all-xhtml2xhtml">
 		<xsl:copy>
