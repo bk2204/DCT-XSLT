@@ -15,9 +15,12 @@
 	<xsl:import href="pstp.xsl"/>
 	<xsl:import href="restructure.xsl"/>
 
+	<!-- Valid values are "left", "right", and "". -->
+	<xsl:param name="ct:logo-position">left</xsl:param>
+	<xsl:param name="ct:logo-url">/branding/logo</xsl:param>
+
 	<xsl:template match="xh:link[@rel = 'stylesheet']" mode="ct:all-xhtml2xhtml">
 		<xsl:copy>
-			<xsl:apply-templates select="@type|@rel|@href"/>
 			<xsl:choose>
 				<xsl:when test="@title">
 					<xsl:copy-of select="@title"/>
@@ -26,6 +29,7 @@
 					<xsl:attribute name="title">Default</xsl:attribute>
 				</xsl:otherwise>
 			</xsl:choose>
+			<xsl:apply-templates select="@type|@rel|@href" mode="ct:all-xhtml2xhtml"/>
 		</xsl:copy>
 	</xsl:template>
 
@@ -33,6 +37,20 @@
 	<xsl:template match="xh:hr" mode="ct:all-xhtml2xhtml"/>
 	<xsl:template match="xh:acronym" mode="ct:all-xhtml2xhtml">
 		<xsl:apply-templates mode="ct:all-xhtml2xhtml"/>
+	</xsl:template>
+
+	<xsl:template match="xh:body/xh:div[not(@class = 'footer')]/xh:div[@class = 'titlepage']//xh:*[@class = 'title']"
+		mode="ct:all-xhtml2xhtml">
+		<xsl:copy>
+			<xsl:copy-of select="@*"/>
+			<xsl:if test="$ct:logo-position = 'left'">
+				<img src="{$ct:logo-url}" alt=""/>
+			</xsl:if>
+			<xsl:apply-templates select="node()" mode="ct:all-xhtml2xhtml"/>
+			<xsl:if test="$ct:logo-position = 'right'">
+				<img src="{$ct:logo-url}" alt=""/>
+			</xsl:if>
+		</xsl:copy>
 	</xsl:template>
 
 	<xsl:template name="ct:footer">
