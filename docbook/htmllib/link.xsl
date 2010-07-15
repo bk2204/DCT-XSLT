@@ -43,6 +43,20 @@
 			<xsl:with-param name="type"/>
 		</xsl:call-template>
 	</xsl:template>
+	<xsl:template match="db:extendedlink/db:arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/openid2/provider']">
+		<xsl:call-template name="ctxsl:map-extendedlink-arc">
+			<xsl:with-param name="role">openid2.provider</xsl:with-param>
+			<xsl:with-param name="rel">openid2.provider</xsl:with-param>
+			<xsl:with-param name="type"/>
+		</xsl:call-template>
+	</xsl:template>
+	<xsl:template match="db:extendedlink/db:arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/openid2/local-id']">
+		<xsl:call-template name="ctxsl:map-extendedlink-arc">
+			<xsl:with-param name="role">openid2.local_id</xsl:with-param>
+			<xsl:with-param name="rel">openid2.local_id</xsl:with-param>
+			<xsl:with-param name="type"/>
+		</xsl:call-template>
+	</xsl:template>
 	<!-- punt until later -->
 	<xsl:template match="db:extendedlink/db:arc[@xlink:arcrole='http://crustytoothpaste.ath.cx/rel/def/license']">
 		<xsl:copy-of select=".."/>
