@@ -62,11 +62,12 @@
 			<hr />
 			<div class="flow">
 				<p>
-					This page is <span class="valid">valid</span><xsl:text> </xsl:text>
-						<span class="structure"><xsl:copy-of select="$ct:structure"/></span>
-					and uses
-					<span class="valid">valid</span>
-					<xsl:text> </xsl:text><span class="style-structure"><a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a></span>.
+					<a href="/contact">1341 Castle Court #412, Houston, TX 77006</a> |
+					<a href="/contact">+1 832 623 2791</a> |
+					<span class="valid">Valid</span><xsl:text> </xsl:text>
+					<span class="structure"><xsl:copy-of select="$ct:structure"/></span>
+					and
+					<span class="style-structure"><a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a></span>.
 				</p>
 			</div>
 		</xsl:element>
