@@ -14,9 +14,5 @@
 	later imports, followed by this sheet.
 	-->
 	<!--<xsl:output method="xml" indent="no"/>-->
-	<xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/fo/docbook.xsl" />
 	<xsl:import href="../../lib/metadata.xsl" />
-
-	<!-- Silence the normal Debian messages. -->
-	<xsl:template name="root.messages" />
 </xsl:stylesheet>
