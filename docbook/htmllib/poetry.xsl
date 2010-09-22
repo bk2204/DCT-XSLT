@@ -89,6 +89,7 @@
 					<xsl:attribute name="class">
 						<xsl:value-of select="$ctxsl:tab-indent-class" />
 					</xsl:attribute>
+					<xsl:text>&#x09;</xsl:text>
 					<xsl:call-template name="ctxsl:indent-tab-lines">
 						<xsl:with-param name="content" select="$rest" />
 						<xsl:with-param name="count" select="$count + 1" />
