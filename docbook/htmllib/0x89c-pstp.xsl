@@ -62,6 +62,10 @@
 			<hr />
 			<div class="flow">
 				<p>
+					<a href="/">Home</a> |
+					<a href="/residential">Residential</a> |
+					<a href="/commercial">Commercial</a> |
+					<a href="/rates">Rates</a> ||
 					<a href="/contact">1341 Castle Court #412, Houston, TX 77006</a> |
 					<a href="/contact">+1 832 623 2791</a> |
 					<span class="valid">Valid</span><xsl:text> </xsl:text>
