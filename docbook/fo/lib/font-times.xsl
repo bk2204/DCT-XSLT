@@ -3,9 +3,9 @@
 	<xsl:import href="font-base.xsl" />
 
 	<xsl:param name="title.font.family"
-		select="'Times New Roman,Nimbus Roman No9 L,Times'" />
+		select="$font.family.Times" />
 	<xsl:param name="body.font.family"
-		select="'Times New Roman,Nimbus Roman No9 L,Times'" />
+		select="$font.family.Times" />
 	<xsl:param name="dingbat.font.family"
-		select="'Times New Roman,Nimbus Roman No9 L,Times'" />
+		select="$font.family.Times" />
 </xsl:stylesheet>

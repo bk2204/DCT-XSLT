@@ -3,9 +3,9 @@
 	<xsl:import href="font-base.xsl" />
 
 	<xsl:param name="title.font.family"
-		select="'Palatino Linotype,URW Palladio L,Palatino'" />
+		select="$font.family.Palatino" />
 	<xsl:param name="body.font.family"
-		select="'Palatino Linotype,URW Palladio L,Palatino'" />
+		select="$font.family.Palatino" />
 	<xsl:param name="dingbat.font.family"
-		select="'Palatino Linotype,URW Palladio L,Palatino'" />
+		select="$font.family.Palatino" />
 </xsl:stylesheet>

@@ -3,9 +3,9 @@
 	<xsl:import href="font-base.xsl" />
 
 	<xsl:param name="title.font.family"
-		select="'Garamond,URW Garamond,GaramondNo8'" />
+		select="$font.family.Garamond" />
 	<xsl:param name="body.font.family"
-		select="'Garamond,URW Garamond,GaramondNo8'" />
+		select="$font.family.Garamond" />
 	<xsl:param name="dingbat.font.family"
-		select="'Garamond,URW Garamond,GaramondNo8'" />
+		select="$font.family.Garamond" />
 </xsl:stylesheet>

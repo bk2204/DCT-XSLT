@@ -2,7 +2,10 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:import href="font-base.xsl" />
 
-	<xsl:param name="title.font.family" select="'Minion Pro'" />
-	<xsl:param name="body.font.family" select="'Minion Pro'" />
-	<xsl:param name="dingbat.font.family" select="'Minion Pro'" />
+	<xsl:param name="title.font.family"
+		select="$font.family.Minion" />
+	<xsl:param name="body.font.family"
+		select="$font.family.Minion" />
+	<xsl:param name="dingbat.font.family"
+		select="$font.family.Minion" />
 </xsl:stylesheet>
