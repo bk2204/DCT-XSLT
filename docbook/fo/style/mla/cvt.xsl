@@ -72,9 +72,9 @@
 	Items that are imported first have the lowest priority, followed by
 	later imports, followed by this sheet.
 	-->
-	<xsl:import href="school.xsl" />
-	<xsl:import href="lib/font-times.xsl" />
-	<xsl:import href="lib/mla-coverpage.xsl" />
+	<xsl:import href="../school/cvt.xsl" />
+	<xsl:import href="../../lib/font-times.xsl" />
+	<xsl:import href="../../lib/mla-coverpage.xsl" />
 	<!-- Put the author in the right place. -->
 	<xsl:template match="db:bookinfo/db:author|db:info/db:author" mode="titlepage.mode" priority="2">
 		<fo:block xsl:use-attribute-sets="article.titlepage.recto.style">

@@ -32,8 +32,8 @@
 	Items that are imported first have the lowest priority, followed by
 	later imports, followed by this sheet.
 	-->
-	<xsl:import href="base.xsl" />
-	<xsl:import href="lib/font-times.xsl" />
+	<xsl:import href="../base/cvt.xsl" />
+	<xsl:import href="../../lib/font-times.xsl" />
 
 	<xsl:param name="line-height" select="2.0" />
 	<xsl:param name="body.font.master">12</xsl:param>

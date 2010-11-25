@@ -5,12 +5,12 @@
 	later imports, followed by this sheet.
 	-->
 	<xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/fo/docbook.xsl" />
-	<xsl:import href="lib/metadata.xsl" />
-	<xsl:import href="lib/poetry.xsl" />
-	<xsl:import href="../lib/base.xsl" />
-	<xsl:import href="lib/fixup.xsl" />
-	<xsl:import href="lib/font-default.xsl" />
-	<xsl:import href="lib/base.xsl" />
+	<xsl:import href="../../lib/metadata.xsl" />
+	<xsl:import href="../../lib/poetry.xsl" />
+	<xsl:import href="../../../lib/base.xsl" />
+	<xsl:import href="../../lib/fixup.xsl" />
+	<xsl:import href="../../lib/font-default.xsl" />
+	<xsl:import href="../../lib/base.xsl" />
 
 	<!-- Silence the normal Debian messages. -->
 	<xsl:template name="root.messages" />

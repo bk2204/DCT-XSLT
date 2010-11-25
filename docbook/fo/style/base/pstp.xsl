@@ -10,7 +10,7 @@
 	xmlns:fo="http://www.w3.org/1999/XSL/Format"
 	xmlns:xmp="http://ns.adobe.com/xap/1.0/"
 	exclude-result-prefixes="db xlink xsl xhtml ctxsl xi">
-	<xsl:import href="../../project.xsl"/>
+	<xsl:import href="../../../../project.xsl"/>
 	<xsl:template match="node()|@*">
 		<xsl:copy>
 			<xsl:apply-templates select="@*|node()"/>
