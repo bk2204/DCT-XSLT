@@ -12,8 +12,8 @@
 	xmlns:saxon="http://icl.com/saxon"
 	xmlns="http://www.w3.org/1999/xhtml"
 	exclude-result-prefixes="db xlink ctxsl xsl xi dc cc rdf saxon">
-	<xsl:import href="../htmllib/bmc-pstp.xsl" />
-	<xsl:import href="../htmllib/format-xhtml-rdfa.xsl" />
+	<xsl:import href="../../../htmllib/bmc-pstp.xsl" />
+	<xsl:import href="../../../htmllib/format-xhtml-rdfa.xsl" />
 	<xsl:output method="xml" encoding="UTF-8" indent="no"
 		doctype-public="-//W3C//DTD XHTML+RDFa 1.0//EN"
 		doctype-system="http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd"/>

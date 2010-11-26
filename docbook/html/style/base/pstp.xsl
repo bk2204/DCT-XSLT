@@ -6,8 +6,8 @@
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	xmlns:exsl="http://exslt.org/common"
 	exclude-result-prefixes="ctxsl xsl xhtml exsl">
-	<xsl:import href="../htmllib/pstp.xsl" />
-	<xsl:import href="../htmllib/format-html4.xsl" />
+	<xsl:import href="../../../htmllib/pstp.xsl" />
+	<xsl:import href="../../../htmllib/format-html4.xsl" />
 	<xsl:output method="html" encoding="US-ASCII" indent="no"
 		doctype-public="-//W3C//DTD HTML 4.01//EN"
 		doctype-system="http://www.w3.org/TR/html4/strict.dtd"/>

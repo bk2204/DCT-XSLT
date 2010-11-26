@@ -5,8 +5,8 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	exclude-result-prefixes="xsl">
-	<xsl:import href="../htmllib/bmc-pstp.xsl" />
-	<xsl:import href="../htmllib/format-html4.xsl" />
+	<xsl:import href="../../../htmllib/bmc-pstp.xsl" />
+	<xsl:import href="../../../htmllib/format-html4.xsl" />
 	<xsl:output method="html"
 		encoding="UTF-8"
 		indent="no"

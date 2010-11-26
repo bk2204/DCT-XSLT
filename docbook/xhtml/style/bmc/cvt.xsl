@@ -16,5 +16,5 @@
 	Items that are imported first have the lowest priority, followed by
 	later imports, followed by this sheet.
 	-->
-	<xsl:import href="base.xsl" />
+	<xsl:import href="../base/cvt.xsl" />
 </xsl:stylesheet>

@@ -5,6 +5,6 @@
 	later imports, followed by this sheet.
 	-->
 	<xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/html/docbook.xsl" />
-	<xsl:import href="../lib/base.xsl" />
-	<xsl:import href="../htmllib/base.xsl" />
+	<xsl:import href="../../../lib/base.xsl" />
+	<xsl:import href="../../../htmllib/base.xsl" />
 </xsl:stylesheet>
