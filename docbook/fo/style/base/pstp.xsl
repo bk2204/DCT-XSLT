@@ -18,8 +18,7 @@
 	</xsl:template>
 	<xsl:template match="xmp:CreatorTool">
 		<xsl:copy>
-			<xsl:value-of select="$ctxsl:project-id"/>
-			<xsl:text> with Apache FOP</xsl:text>
+			<xsl:value-of select="$ctxsl:project-id-short"/>
 		</xsl:copy>
 	</xsl:template>
 </xsl:stylesheet>
