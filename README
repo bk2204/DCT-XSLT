@@ -5,6 +5,59 @@ This is a collection of XSLT 1.0 stylesheets that is designed to pick up where
 other stylesheets leave off.  Most of the stylesheets extend the DocBook XSL-NS
 Stylesheets.
 
+Use
+---
+
+A few different transformations exist.  By directory, they are:
+
+docbook/atom::
+	A DocBook 5 to Atom transformation.  It is still in the preliminary stages,
+	but can be used in many circumstances.
+docbook/fo::
+	A DocBook 5 to XSL-FO transformation.  It is designed for PDF output, but can
+	be used with any XSL-FO processor.
+docbook/html::
+	A DocBook 5 to HTML 4.01 Strict transformation.  Note that in some styles, the
+	conversion transformation will actually output XHTML of some sort that will
+	only be converted to HTML by the post-processing transformation.
+docbook/xhtml::
+	A DocBook 5 to XHTML+RDFa 1.0 transformation.
+
+In general, you'll want to use a path such as 'docbook/fo/style/base/cvt.xsl'.
+The 'cvt.xsl' stylesheet will convert from DocBook into the desired output
+format; in this case, that would be XSL-FO.  Using 'pstp.xsl' will post-process
+the file to perform fix-ups that would be difficult or impossible to perform in
+the transformation process.
+
+There are a couple different styles available for XSL-FO output:
+
+none::
+	This does nothing except call the DocBook stylesheets.
+base::
+	This performs some basic modifications that are common to all other styles.
+	In general, this will not result in a particularly different output from
+	+none+.
+school::
+	This modifies a variety of layout factors suitable for college papers.
+mla::
+	This modifies articles to produce output in the MLA format, which is widely
+	used at high schools and colleges in the United States.
+report::
+	This style produces output much like the +-me+ macros for troff.
+
+There are also a few different styles for HTML and XHTML:
+
+none::
+	This does nothing except call the DocBook stylesheets.
+base::
+	This performs some basic modifications that are common to all other styles.
+	In general, this will not result in a particularly different output from
+	+none+.
+bmc::
+	This generates output designed for use on http://www.crustytoothpaste.net/.
+0x89c::
+	This generates output designed for use on http://0x89c.crustytoothpaste.net/.
+
 License
 -------
 
