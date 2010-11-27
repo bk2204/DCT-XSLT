@@ -11,7 +11,7 @@
 	<xsl:param name="font.family.Times"
 		select="'Times New Roman,Nimbus Roman No9 L,Times'" />
 	<xsl:param name="font.family.Palatino"
-		select="'Palatino Linotype,URW Palladio L,Palatino'" />
+		select="'Palatino Linotype,URW Palladio L,Palatino,Zapf Calligraphic,Book Antiqua'" />
 	<xsl:param name="font.family.Minion"
 		select="'Minion Pro'" />
 </xsl:stylesheet>
