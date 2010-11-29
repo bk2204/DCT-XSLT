@@ -6,6 +6,9 @@
 	xmlns:xh="http://www.w3.org/1999/xhtml"
 	exclude-result-prefixes="ctxsl xsl xh">
 
+	<xsl:variable name="ctxsl:id-name">id</xsl:variable>
+	<xsl:variable name="ctxsl:id-ns"></xsl:variable>
+
 	<xsl:template name="ctxsl:xhtml-version"/>
 
 	<xsl:template name="ctxsl:footer-cb">

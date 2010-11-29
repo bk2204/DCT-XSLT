@@ -58,7 +58,7 @@
 	</xsl:template>
 
 	<!-- Get rid of empty divs. -->
-	<xsl:template match="xhtml:div[not(@class) and not(@id)]"
+	<xsl:template match="xhtml:div[not(@class) and not(@id) and not(@xml:id)]"
 		mode="ctxsl:all-xhtml2xhtml">
 		<xsl:apply-templates mode="ctxsl:all-xhtml2xhtml" />
 	</xsl:template>
@@ -68,7 +68,8 @@
 		<xsl:copy>
 			<xsl:choose>
 				<xsl:when test="xhtml:div[@class='titlepage']//xhtml:*[@class='title']/xhtml:a[@id]">
-					<xsl:attribute name="id">
+					<xsl:attribute name="{$ctxsl:id-name}"
+						namespace="{$ctxsl:id-ns}">
 						<xsl:value-of select="xhtml:div[@class='titlepage']//xhtml:*[@class='title']/xhtml:a/@id" />
 					</xsl:attribute>
 					<xsl:apply-templates select="@*|node()" mode="ctxsl:all-xhtml2xhtml" />

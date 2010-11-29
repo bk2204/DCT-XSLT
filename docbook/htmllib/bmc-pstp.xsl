@@ -107,7 +107,7 @@
 		<xsl:param name="ctxsl:structure"/>
 		<!-- Insert a footer. -->
 		<xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
-			<xsl:attribute name="id"><xsl:text>footer</xsl:text></xsl:attribute>
+			<xsl:attribute name="{$ctxsl:id-name}" namespace="{$ctxsl:id-ns}"><xsl:text>footer</xsl:text></xsl:attribute>
 			<xsl:attribute name="class"><xsl:text>footer</xsl:text></xsl:attribute>
 			<hr />
 			<div class="flow">
@@ -157,7 +157,7 @@
 	<xsl:template match="xhtml:div[@class and ./xhtml:div[@class = 'titlepage']//xhtml:a[@id = 'sidebar']]" mode="ctxsl:move-sidebar">
 		<xsl:copy>
 			<xsl:if test="xhtml:div[@class='titlepage']//xhtml:*[@class='title']/xhtml:a[@id]">
-				<xsl:attribute name="id">
+				<xsl:attribute name="{$ctxsl:id-name}" namespace="{$ctxsl:id-ns}">
 					<xsl:value-of select="xhtml:div[@class='titlepage']//xhtml:*[@class='title']/xhtml:a/@id" />
 				</xsl:attribute>
 			</xsl:if>

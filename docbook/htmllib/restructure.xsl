@@ -55,7 +55,9 @@
 				mode="ctxsl:all-xhtml2xhtml"/>
 			<xsl:apply-templates select="xh:div[@class = 'toc']"
 				mode="ctxsl:all-xhtml2xhtml"/>
-			<div id="main" class="flow">
+			<div class="flow">
+				<xsl:attribute name="{$ctxsl:id-name}"
+					namespace="{$ctxsl:id-ns}">main</xsl:attribute>
 				<xsl:apply-templates
 					select="xh:*[not((@class = 'titlepage') or (@class = 'toc'))]"
 					mode="ctxsl:all-xhtml2xhtml"/>
@@ -83,7 +85,8 @@
 		match="xh:body/xh:div[not(@class = 'footer')]/xh:div[@class = 'titlepage']"
 		mode="ctxsl:all-xhtml2xhtml">
 		<xsl:copy>
-			<xsl:attribute name="id">header</xsl:attribute>
+				<xsl:attribute name="{$ctxsl:id-name}"
+					namespace="{$ctxsl:id-ns}">header</xsl:attribute>
 			<xsl:apply-templates select="@*|node()" mode="ctxsl:all-xhtml2xhtml" />
 		</xsl:copy>
 	</xsl:template>
@@ -96,7 +99,7 @@
 				Move the ID out from the a element in the title to the main element.
 			-->
 			<xsl:if test="xh:div[@class='titlepage']//xh:*[@class='title']/xh:a[@id]">
-				<xsl:attribute name="id">
+				<xsl:attribute name="{$ctxsl:id-name}" namespace="{$ctxsl:id-ns}">
 					<xsl:value-of
 						select="xh:div[@class='titlepage']//xh:*[@class='title']/xh:a/@id"/>
 				</xsl:attribute>
@@ -117,8 +120,8 @@
 		mode="ctxsl:all-xhtml2xhtml">
 		<xsl:copy>
 			<xsl:copy-of select="@*"/>
-			<xsl:if test="not(@id)">
-				<xsl:attribute name="id">
+			<xsl:if test="not(@id) and not(@xml:id)">
+				<xsl:attribute name="{$ctxsl:id-name}" namespace="{$ctxsl:id-ns}">
 					<xsl:text>colophon</xsl:text>
 				</xsl:attribute>
 			</xsl:if>
