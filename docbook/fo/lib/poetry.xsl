@@ -74,10 +74,45 @@
 
 	-->
 	<!--
-	Items that are imported first have the lowest priority, followed by
-	later imports, followed by this sheet.
+	This is fairly subtle.  Normally, using padding-start with ctxsl:tab-indent
+	works fine when we're using the FO to generate a PDF.  Unfortunately, FOP
+	does a bad job of handling this when we're generating an RTF (which is needed
+	for e.g. Glass Mountain); specifically, no indentation occurs.
+
+	However, if we replace the padding-start with an appropriate number of em
+	spaces or en spaces, this works well in both the PDF and RTF formats.
+	Unfortunately, it's a bit less flexible, since we can only output a whole em
+	or en worth of space.
+
+	Here, we use en spaces and multiply the number of ems by two, so that we can
+	deal with integral numbers of ens (and consequently, full and half ems.)
+	Since ctxsl:repeat-content will only function if the total parameter is an
+	integer, we'll fall back to using padding-start if we have an unusual size.
 	-->
 	<xsl:param name="ctxsl:tab-indent" select="'2em'" />
+	<xsl:param name="ctxsl:tab-characters">
+		<xsl:call-template name="ctxsl:repeat-content">
+			<xsl:with-param name="content">&#x2002;</xsl:with-param>
+			<xsl:with-param name="total"
+				select="number(substring-before($ctxsl:tab-indent, 'em')) * 2" />
+		</xsl:call-template>
+	</xsl:param>
+	<xsl:param name="ctxsl:tab-use-characters"
+		select="(string-length($ctxsl:tab-characters) != 0)" />
+
+	<xsl:template name="ctxsl:repeat-content">
+		<xsl:param name="content" select="''"/>
+		<xsl:param name="count" select="0"/>
+		<xsl:param name="total" select="0"/>
+		<xsl:if test="($count &lt; $total) and floor($total) = $total">
+			<xsl:value-of select="$content"/>
+			<xsl:call-template name="ctxsl:repeat-content">
+				<xsl:with-param name="content" select="$content" />
+				<xsl:with-param name="count" select="$count + 1" />
+				<xsl:with-param name="total" select="$total" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
 
 	<xsl:template name="ctxsl:indent-tab-lines">
 		<xsl:param name="content" select="''" />
@@ -90,9 +125,19 @@
 
 				<xsl:copy-of select="$line" />
 				<fo:inline>
-					<xsl:attribute name="padding-start">
-						<xsl:value-of select="$ctxsl:tab-indent" />
-					</xsl:attribute>
+					<fo:inline>
+						<xsl:choose>
+							<xsl:when test="$ctxsl:tab-use-characters">
+								<xsl:value-of select="$ctxsl:tab-characters" />
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:attribute name="padding-start">
+									<xsl:value-of select="$ctxsl:tab-indent" />
+								</xsl:attribute>
+								<xsl:text>&#x200b;</xsl:text>
+							</xsl:otherwise>
+						</xsl:choose>
+					</fo:inline>
 					<xsl:choose>
 						<xsl:when test="string-length($rest) = 0">
 							<xsl:text>&#x200b;</xsl:text>
