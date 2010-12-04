@@ -17,6 +17,7 @@
 	<xsl:template match="@clear" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="@shape" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="@profile" mode="ctxsl:all-xhtml2xhtml"/>
+	<xsl:template match="@title" mode="ctxsl:all-xhtml2xhtml"/>
 
 	<xsl:template match="xhtml:h1/xhtml:a" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="xhtml:h2/xhtml:a" mode="ctxsl:all-xhtml2xhtml"/>
