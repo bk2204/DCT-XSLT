@@ -22,6 +22,8 @@ docbook/html::
 	only be converted to HTML by the post-processing transformation.
 docbook/xhtml::
 	A DocBook 5 to XHTML+RDFa 1.0 transformation.
+docbook/xhtml5::
+	A DocBook 5 to XHTML5 transformation.
 
 In general, you'll want to use a path such as 'docbook/fo/style/base/cvt.xsl'.
 The 'cvt.xsl' stylesheet will convert from DocBook into the desired output
