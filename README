@@ -5,6 +5,20 @@ This is a collection of XSLT 1.0 stylesheets that is designed to pick up where
 other stylesheets leave off.  Most of the stylesheets extend the DocBook XSL-NS
 Stylesheets.
 
+Setup and Installation
+----------------------
+
+There is a small build process to generate some stylesheets from their sources.
+For this, you will need GNU make and one of Xalan-J, Saxon, or xsltproc.  The
+default processor is Xalan-J; you can change this in the Makefile.  You will
+also need either Internet access or a local copy of the DocBook XSL-NS
+stylesheets; if the latter, edit the Makefile accordingly.
+
+To build, simply type +make+.  Once this process is completed, the stylesheets
+can be used as-is with any XSLT 1.0 processor that supports the EXSLT Common
+extensions.  Note that the files in the +docbook+ directory depend on access to
+a copy of the DocBook XSL-NS stylesheets in order to function correctly.
+
 Use
 ---
 
