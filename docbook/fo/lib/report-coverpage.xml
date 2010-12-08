@@ -1,16 +1,16 @@
 <!DOCTYPE t:templates [
 <!ENTITY hsize0 "10pt">
-<!ENTITY hsize1 "12pt">
-<!ENTITY hsize2 "14.4pt">
-<!ENTITY hsize3 "17.28pt">
-<!ENTITY hsize4 "20.736pt">
-<!ENTITY hsize5 "24.8832pt">
+<!ENTITY hsize1 "10">
+<!ENTITY hsize2 "10pt">
+<!ENTITY hsize3 "10pt">
+<!ENTITY hsize4 "10pt">
+<!ENTITY hsize5 "10pt">
 <!ENTITY hsize0space "7.5pt"> <!-- 0.75 * hsize0 -->
-<!ENTITY hsize1space "9pt"> <!-- 0.75 * hsize1 -->
-<!ENTITY hsize2space "10.8pt"> <!-- 0.75 * hsize2 -->
-<!ENTITY hsize3space "12.96pt"> <!-- 0.75 * hsize3 -->
-<!ENTITY hsize4space "15.552pt"> <!-- 0.75 * hsize4 -->
-<!ENTITY hsize5space "18.6624pt"> <!-- 0.75 * hsize5 -->
+<!ENTITY hsize1space "7.5pt"> <!-- 0.75 * hsize1 -->
+<!ENTITY hsize2space "7.5pt"> <!-- 0.75 * hsize2 -->
+<!ENTITY hsize3space "7.5pt"> <!-- 0.75 * hsize3 -->
+<!ENTITY hsize4space "7.5pt"> <!-- 0.75 * hsize4 -->
+<!ENTITY hsize5space "7.5pt"> <!-- 0.75 * hsize5 -->
 ]>
 <t:templates xmlns:t="http://nwalsh.com/docbook/xsl/template/1.0"
 	     xmlns:param="http://nwalsh.com/docbook/xsl/template/1.0/param"
@@ -627,10 +627,12 @@ IN THE SOFTWARE.
 	     t:named-template="component.title"
 	     param:node="ancestor-or-self::appendix[1]"
 	     margin-left="{$title.margin.left}"
+	     text-align="center"
 	     font-size="&hsize5;"
 	     font-weight="bold"
 	     font-family="{$title.fontset}"/>
       <subtitle
+	    text-align="center"
 		font-family="{$title.fontset}"/>
       <corpauthor/>
       <authorgroup/>
@@ -1100,10 +1102,12 @@ IN THE SOFTWARE.
 	     t:named-template="component.title"
 	     param:node="ancestor-or-self::colophon[1]"
 	     margin-left="{$title.margin.left}"
+	     text-align="center"
 	     font-size="&hsize5;"
 	     font-family="{$title.fontset}"
 	     font-weight="bold"/>
       <subtitle
+	    text-align="center"
 		font-family="{$title.fontset}"/>
     </t:titlepage-content>
 
