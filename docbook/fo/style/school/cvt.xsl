@@ -41,9 +41,9 @@
 	<!-- Indent the first line of each paragraph. -->
 	<xsl:attribute-set name="normal.para.spacing">
 		<xsl:attribute name="text-indent">2.5em</xsl:attribute>
-		<xsl:attribute name="space-before.optimum">1em</xsl:attribute>
-		<xsl:attribute name="space-before.minimum">0.8em</xsl:attribute>
-		<xsl:attribute name="space-before.maximum">1.2em</xsl:attribute>
+		<xsl:attribute name="space-before.optimum">0em</xsl:attribute>
+		<xsl:attribute name="space-before.minimum">0em</xsl:attribute>
+		<xsl:attribute name="space-before.maximum">0em</xsl:attribute>
 	</xsl:attribute-set>
 
 	<xsl:template match="db:bibliography">

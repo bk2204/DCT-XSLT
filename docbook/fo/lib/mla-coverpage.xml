@@ -133,6 +133,7 @@ IN THE SOFTWARE.
   </t:titlepage-content>
 
   <t:titlepage-separator>
+	  <fo:block space-before="1.0em"/>
   </t:titlepage-separator>
 
   <t:titlepage-before t:side="recto">
