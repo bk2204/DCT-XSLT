@@ -4,6 +4,7 @@
 	xmlns:fo="http://www.w3.org/1999/XSL/Format"
 	xmlns:ctxsl="http://crustytoothpaste.ath.cx/ns/xsl"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:date="http://exslt.org/dates-and-times"
 	exclude-result-prefixes="db ctxsl xsl">
 	<!--
 	These stylesheets were derived in part from the DocBook XSL stylesheets,
@@ -94,6 +95,17 @@
 				<xsl:apply-templates select="(db:email|db:affiliation/db:address/db:email)[1]"/>
 			</xsl:if>
 		</fo:block>
+	</xsl:template>
+	<xsl:template match="db:date" mode="titlepage.mode">
+		<xsl:choose>
+			<xsl:when test="date:month-name(.) != ''">
+				<xsl:value-of
+					select="concat(date:day-in-month(.), ' ', date:month-name(.), ' ', date:year(.))"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:apply-templates />
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 	<xsl:template match="db:confsponsor" mode="titlepage.mode">
 		<xsl:if test="not(@role = 'instructor')">
