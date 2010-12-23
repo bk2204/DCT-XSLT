@@ -124,6 +124,14 @@
 		</fo:block>
 	</xsl:template>
 
+	<xsl:template match="db:footnote/db:para[position() != 1]
+		|db:footnote/db:simpara[position() != 1]
+		|db:footnote/db:formalpara[position() != 1]" priority="2">
+		<fo:block>
+			<xsl:apply-templates/>
+		</fo:block>
+	</xsl:template>
+
 	<xsl:template name="footer.content" />
 	
 	<!--
