@@ -16,7 +16,7 @@ stylesheets; if the latter, edit the Makefile accordingly.
 
 To build, simply type +make+.  Once this process is completed, the stylesheets
 can be used as-is with any XSLT 1.0 processor that supports the EXSLT Common
-extensions.  Note that the files in the +docbook+ directory depend on access to
+extensions.  Note that the files in the 'docbook' directory depend on access to
 a copy of the DocBook XSL-NS stylesheets in order to function correctly.
 
 Use
@@ -82,6 +82,7 @@ are copyrighted by those authors.  Such files are noted with copyright and
 license statements in them.  The rest of the stylesheets, as well as the
 modifications thereto, are licensed under the MIT License:
 
+=====
   Copyright © 2006–2010 brian m. carlson
   
   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -101,5 +102,6 @@ modifications thereto, are licensed under the MIT License:
   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
+=====
 
 // vim: set ft=asciidoc:
