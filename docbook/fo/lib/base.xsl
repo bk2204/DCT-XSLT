@@ -6,6 +6,9 @@
 	<xsl:param name="body.start.indent" select="'0pt'" />
 	<xsl:param name="header.rule" select="0" />
 	<xsl:param name="footer.rule" select="0" />
+	<xsl:param name="appendix.autolabel" select="0" />
+	<xsl:param name="chapter.autolabel" select="0" />
+	<xsl:param name="part.autolabel" select="0" />
 	<xsl:param name="copy.comments" select="0" />
 	<xsl:template match="comment()">
 		<xsl:if test="$copy.comments">
