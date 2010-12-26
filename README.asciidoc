@@ -78,7 +78,8 @@ License
 -------
 
 Some stylesheets are derived from the DocBook XSL-NS stylesheets and therefore
-are copyrighted by those authors.  The rest of the stylesheets, as well as the
+are copyrighted by those authors.  Such files are noted with copyright and
+license statements in them.  The rest of the stylesheets, as well as the
 modifications thereto, are licensed under the MIT License:
 
   Copyright © 2006–2010 brian m. carlson
