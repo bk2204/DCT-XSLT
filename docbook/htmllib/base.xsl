@@ -32,4 +32,7 @@
 	<xsl:param name="para.propagates.style" select="1" />
 	<xsl:param name="phrase.propagates.style" select="1" />
 	<xsl:param name="entry.propagates.style" select="1" />
+	<xsl:param name="appendix.autolabel" select="0" />
+	<xsl:param name="chapter.autolabel" select="0" />
+	<xsl:param name="part.autolabel" select="0" />
 </xsl:stylesheet>
