@@ -4,7 +4,7 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	exclude-result-prefixes="xsl ctxsl">
 	<xsl:param name="ctxsl:project-name">DCT XSLT</xsl:param>
-	<xsl:param name="ctxsl:project-uri">http://www.crustytoothpaste.net/cgi-bin/cgit/xsl-sheets/</xsl:param>
+	<xsl:param name="ctxsl:project-uri">https://github.com/bk2204/DCT-XSLT</xsl:param>
 	<xsl:param name="ctxsl:project-version">unreleased (pre-v3)</xsl:param>
 	<xsl:param name="ctxsl:project-id-short">
 		<xsl:value-of select="$ctxsl:project-name"/>
