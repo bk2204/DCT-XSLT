@@ -216,4 +216,56 @@
 	<xsl:attribute-set name="normal.para.spacing">
 		<xsl:attribute name="text-indent">2.5em</xsl:attribute>
 	</xsl:attribute-set>
+
+	<!-- (Unnumbered) section titles adjusted for MLA-compatible formatting. 
+			 Information from http://owl.english.purdue.edu/owl/resource/747/01/ -->
+	<xsl:attribute-set name="section.title.level1.properties">
+		<xsl:attribute name="font-size">
+			<xsl:value-of select="$body.font.master"/><xsl:text>pt</xsl:text>
+		</xsl:attribute>
+		<xsl:attribute name="font-weight">bold</xsl:attribute>
+		<xsl:attribute name="font-style">normal</xsl:attribute>
+		<xsl:attribute name="text-align">start</xsl:attribute>
+		<xsl:attribute name="text-decoration">none</xsl:attribute>
+	</xsl:attribute-set>
+
+	<xsl:attribute-set name="section.title.level2.properties">
+		<xsl:attribute name="font-size">
+			<xsl:value-of select="$body.font.master"/><xsl:text>pt</xsl:text>
+		</xsl:attribute>
+		<xsl:attribute name="font-weight">normal</xsl:attribute>
+		<xsl:attribute name="font-style">italic</xsl:attribute>
+		<xsl:attribute name="text-align">start</xsl:attribute>
+		<xsl:attribute name="text-decoration">none</xsl:attribute>
+	</xsl:attribute-set>
+
+	<xsl:attribute-set name="section.title.level3.properties">
+		<xsl:attribute name="font-size">
+			<xsl:value-of select="$body.font.master"/><xsl:text>pt</xsl:text>
+		</xsl:attribute>
+		<xsl:attribute name="font-weight">bold</xsl:attribute>
+		<xsl:attribute name="font-style">normal</xsl:attribute>
+		<xsl:attribute name="text-align">center</xsl:attribute>
+		<xsl:attribute name="text-decoration">none</xsl:attribute>
+	</xsl:attribute-set>
+
+	<xsl:attribute-set name="section.title.level4.properties">
+		<xsl:attribute name="font-size">
+			<xsl:value-of select="$body.font.master"/><xsl:text>pt</xsl:text>
+		</xsl:attribute>
+		<xsl:attribute name="font-weight">normal</xsl:attribute>
+		<xsl:attribute name="font-style">italic</xsl:attribute>
+		<xsl:attribute name="text-align">center</xsl:attribute>
+		<xsl:attribute name="text-decoration">none</xsl:attribute>
+	</xsl:attribute-set>
+
+	<xsl:attribute-set name="section.title.level5.properties">
+		<xsl:attribute name="font-size">
+			<xsl:value-of select="$body.font.master"/><xsl:text>pt</xsl:text>
+		</xsl:attribute>
+		<xsl:attribute name="font-weight">normal</xsl:attribute>
+		<xsl:attribute name="font-style">normal</xsl:attribute>
+		<xsl:attribute name="text-align">start</xsl:attribute>
+		<xsl:attribute name="text-decoration">underline</xsl:attribute>
+	</xsl:attribute-set>
 </xsl:stylesheet>
