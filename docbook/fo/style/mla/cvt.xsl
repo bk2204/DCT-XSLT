@@ -76,6 +76,10 @@
 	<xsl:import href="../school/cvt.xsl" />
 	<xsl:import href="../../lib/font-times.xsl" />
 	<xsl:import href="../../lib/mla-coverpage.xsl" />
+
+	<xsl:param name="alignment">start</xsl:param>
+	<xsl:param name="hyphenate">false</xsl:param>
+
 	<!-- Put the author in the right place. -->
 	<xsl:template match="db:bookinfo/db:author|db:info/db:author" mode="titlepage.mode" priority="2">
 		<fo:block xsl:use-attribute-sets="article.titlepage.recto.style">
@@ -214,7 +218,7 @@
 	</xsl:attribute-set>
 	<!-- indent the first line of each paragraph. -->
 	<xsl:attribute-set name="normal.para.spacing">
-		<xsl:attribute name="text-indent">2.5em</xsl:attribute>
+		<xsl:attribute name="text-indent">0.5in</xsl:attribute>
 	</xsl:attribute-set>
 
 	<!-- (Unnumbered) section titles adjusted for MLA-compatible formatting. 
