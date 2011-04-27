@@ -19,4 +19,33 @@
 		<xsl:attribute name="text-align">inherit</xsl:attribute>
 	</xsl:attribute-set>
 
+	<xsl:template match="db:*" mode="ctxsl:inline">
+		<xsl:apply-templates select="."/>
+	</xsl:template>
+
+	<!-- This prevents the generation of extra padding and spacing. -->
+	<xsl:template match="db:para" mode="ctxsl:inline">
+		<fo:block>
+			<xsl:apply-templates/>
+		</fo:block>
+	</xsl:template>
+
+	<xsl:template match="db:annotation[not(@annotates)]">
+		<fo:block font-style="italic" space-before="0.5em">
+			<xsl:apply-templates mode="ctxsl:inline"/>
+		</fo:block>
+	</xsl:template>
+
+	<xsl:template match="db:dedication[parent::db:article]">
+		<fo:block text-align="center" font-style="italic" space-before="0.5em">
+			<xsl:apply-templates mode="ctxsl:inline"/>
+		</fo:block>
+	</xsl:template>
+
+	<xsl:template match="db:acknowledgments[parent::db:article]">
+		<fo:block font-style="italic" space-before="0.5em">
+			<xsl:apply-templates mode="ctxsl:inline"/>
+		</fo:block>
+	</xsl:template>
+
 </xsl:stylesheet>
