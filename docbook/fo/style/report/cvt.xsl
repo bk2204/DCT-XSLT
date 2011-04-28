@@ -42,7 +42,7 @@
 		</fo:block>
 	</xsl:template>
 
-	<xsl:template match="db:acknowledgments[parent::db:article]">
+	<xsl:template match="db:acknowledgements[parent::db:article]">
 		<fo:block font-style="italic" space-before="0.5em">
 			<xsl:apply-templates mode="ctxsl:inline"/>
 		</fo:block>
