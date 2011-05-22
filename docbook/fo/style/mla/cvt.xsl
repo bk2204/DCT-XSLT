@@ -136,6 +136,18 @@
 		</fo:block>
 	</xsl:template>
 
+	<xsl:template match="db:blockquote/db:para">
+		<fo:block xsl:use-attribute-sets="blockquote.para.spacing">
+			<xsl:apply-templates/>
+		</fo:block>
+	</xsl:template>
+
+	<xsl:attribute-set name="blockquote.properties">
+		<xsl:attribute name="space-after.minimum">0</xsl:attribute>
+		<xsl:attribute name="space-after.optimum">0</xsl:attribute>
+		<xsl:attribute name="space-after.maximum">0</xsl:attribute>
+	</xsl:attribute-set>
+
 	<xsl:template name="footer.content" />
 	
 	<!--
@@ -216,9 +228,15 @@
 	<xsl:attribute-set name="article.appendix.title.properties"
 		use-attribute-sets="component.title.properties">
 	</xsl:attribute-set>
-	<!-- indent the first line of each paragraph. -->
+	<!-- indent the first line of each paragraph... -->
 	<xsl:attribute-set name="normal.para.spacing">
 		<xsl:attribute name="text-indent">0.5in</xsl:attribute>
+	</xsl:attribute-set>
+
+	<!-- ...unless it's in a block quotation. -->
+	<xsl:attribute-set name="blockquote.para.spacing"
+		use-attribute-sets="normal.para.spacing">
+		<xsl:attribute name="text-indent">0</xsl:attribute>
 	</xsl:attribute-set>
 
 	<!-- (Unnumbered) section titles adjusted for MLA-compatible formatting. 
