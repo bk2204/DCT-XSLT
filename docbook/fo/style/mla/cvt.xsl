@@ -290,4 +290,58 @@
 		<xsl:attribute name="text-align">start</xsl:attribute>
 		<xsl:attribute name="text-decoration">underline</xsl:attribute>
 	</xsl:attribute-set>
+
+	<xsl:template match="db:biblioentry|db:bibliomixed" mode="xref-to-prefix"/>
+	<xsl:template match="db:biblioentry|db:bibliomixed" mode="xref-to-suffix"/>
+
+	<xsl:template match="db:bibliomixed">
+		<xsl:param name="label"/>
+
+		<xsl:variable name="id">
+			<xsl:call-template name="object.id"/>
+		</xsl:variable>
+
+		<xsl:choose>
+			<xsl:when test="string(.) = ''">
+				<xsl:variable name="bib" select="document($bibliography.collection,.)"/>
+				<xsl:variable name="entry" select="$bib/db:bibliography//
+					*[@id=$id or @xml:id=$id][1]"/>
+				<xsl:choose>
+					<xsl:when test="$entry">
+						<xsl:choose>
+							<xsl:when test="$bibliography.numbered != 0">
+								<xsl:apply-templates select="$entry">
+									<xsl:with-param name="label" select="$label"/>
+								</xsl:apply-templates>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:apply-templates select="$entry"/>
+							</xsl:otherwise>
+						</xsl:choose>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:message>
+							<xsl:text>No bibliography entry: </xsl:text>
+							<xsl:value-of select="$id"/>
+							<xsl:text> found in </xsl:text>
+							<xsl:value-of select="$bibliography.collection"/>
+						</xsl:message>
+						<fo:block id="{$id}" xsl:use-attribute-sets="normal.para.spacing">
+							<xsl:text>Error: no bibliography entry: </xsl:text>
+							<xsl:value-of select="$id"/>
+							<xsl:text> found in </xsl:text>
+							<xsl:value-of select="$bibliography.collection"/>
+						</fo:block>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:when>
+			<xsl:otherwise>
+				<fo:block id="{$id}" xsl:use-attribute-sets="biblioentry.properties">
+					<xsl:copy-of select="$label"/>
+					<xsl:apply-templates mode="bibliomixed.mode"/>
+				</fo:block>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
 </xsl:stylesheet>
