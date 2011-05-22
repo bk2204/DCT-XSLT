@@ -30,7 +30,7 @@
 		</fo:block>
 	</xsl:template>
 
-	<xsl:template match="db:annotation[not(@annotates)]">
+	<xsl:template match="db:annotation[not(@annotates) and not(@xml:id)]">
 		<fo:block font-style="italic" space-before="0.5em">
 			<xsl:apply-templates mode="ctxsl:inline"/>
 		</fo:block>
