@@ -10,15 +10,18 @@
 
 	<xsl:import href="format-xhtml.xsl"/>
 
-	<xsl:variable name="ctxsl:id-name">id</xsl:variable>
-	<xsl:variable name="ctxsl:id-ns"/>
+	<xsl:variable name="ctxsl:id-name">xml:id</xsl:variable>
+	<xsl:variable name="ctxsl:id-ns">http://www.w3.org/XML/1998/namespace</xsl:variable>
 
 	<xsl:template name="ctxsl:xhtml-version" />
 
 	<xsl:template match="@border" mode="ctxsl:all-xhtml2xhtml"/>
 
 	<xsl:template match="@id" mode="ctxsl:all-xhtml2xhtml">
-		<xsl:copy/>
+		<xsl:attribute name="xml:id"
+			namespace="http://www.w3.org/XML/1998/namespace">
+			<xsl:value-of select="."/>
+		</xsl:attribute>
 	</xsl:template>
 
 	<xsl:template name="ctxsl:load-meta-links">
