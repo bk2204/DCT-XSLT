@@ -24,8 +24,26 @@
 		</xsl:attribute>
 	</xsl:template>
 
-	<xsl:template match="xhtml:head/rdf:RDF" mode="ctxsl:all-xhtml2xhtml">
-		<xsl:copy-of select="."/>
+	<xsl:template name="ctxsl:load-meta-links">
+		<xsl:if test="count(//xhtml:head/xhtml:link[@rel='meta']) >= 1">
+			<rdf:RDF>
+				<rdf:Description rdf:about="">
+					<xsl:for-each select="//xhtml:head/xhtml:link[@rel='meta']">
+						<rdf:seeAlso rdf:resource="{@href}"/>
+					</xsl:for-each>
+				</rdf:Description>
+			</rdf:RDF>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="xhtml:head/xhtml:link[@rel='meta']"
+		mode="ctxsl:all-xhtml2xhtml"/>
+
+	<xsl:template match="xhtml:head" mode="ctxsl:all-xhtml2xhtml">
+		<xsl:copy>
+			<xsl:apply-templates mode="ctxsl:all-xhtml2xhtml" />
+			<xsl:call-template name="ctxsl:load-meta-links"/>
+		</xsl:copy>
 	</xsl:template>
 
 	<xsl:template match="xhtml:colgroup[@span][xhtml:col[@span]]"
