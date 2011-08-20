@@ -39,6 +39,12 @@
 	<xsl:template match="xhtml:head/xhtml:link[@rel='meta']"
 		mode="ctxsl:all-xhtml2xhtml"/>
 
+	<xsl:template match="rdf:RDF" mode="ctxsl:all-xhtml2xhtml">
+		<xsl:copy>
+			<xsl:copy-of select="@*[name()!='xml:base']|*"/>
+		</xsl:copy>
+	</xsl:template>
+
 	<xsl:template match="xhtml:head" mode="ctxsl:all-xhtml2xhtml">
 		<xsl:copy>
 			<xsl:apply-templates mode="ctxsl:all-xhtml2xhtml" />
