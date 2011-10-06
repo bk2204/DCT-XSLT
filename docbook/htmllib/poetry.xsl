@@ -73,7 +73,10 @@
 	IN THE SOFTWARE.
 
 	-->
+	<xsl:param name="ctxsl:tab-indent-use-space" select="0" />
 	<xsl:param name="ctxsl:tab-indent-class" select="'indent'" />
+	<xsl:param name="ctxsl:tab-indent-space"
+		select="'&#x2002;&#x2002;&#x2002;&#x2002;'" />
 
 	<xsl:template name="ctxsl:indent-tab-lines">
 		<xsl:param name="content" select="''" />
@@ -89,7 +92,14 @@
 					<xsl:attribute name="class">
 						<xsl:value-of select="$ctxsl:tab-indent-class" />
 					</xsl:attribute>
-					<xsl:text>&#x09;</xsl:text>
+					<xsl:choose>
+						<xsl:when test="$ctxsl:tab-indent-use-space">
+							<xsl:value-of select="$ctxsl:tab-indent-space"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:text>&#x09;</xsl:text>
+						</xsl:otherwise>
+					</xsl:choose>
 					<xsl:call-template name="ctxsl:indent-tab-lines">
 						<xsl:with-param name="content" select="$rest" />
 						<xsl:with-param name="count" select="$count + 1" />
