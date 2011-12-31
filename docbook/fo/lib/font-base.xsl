@@ -3,7 +3,7 @@
 	<xsl:import href="font-list.xsl" />
 
 	<xsl:param name="monospace.font.family"
-		select="'Courier New,Nimbus Mono L,Courier'" />
+		select="$font.family.Courier" />
 	<xsl:param name="sans.font.family"
-		select="'Helvetica,Nimbus Sans L,Arial'" />
+		select="$font.family.Helvetica" />
 </xsl:stylesheet>
