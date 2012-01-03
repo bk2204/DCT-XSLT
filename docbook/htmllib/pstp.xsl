@@ -58,6 +58,20 @@
 		</xsl:choose>
 	</xsl:template>
 
+	<!-- This works around a bug in the 1.76.1 version of the stylesheets. -->
+	<xsl:template match="xhtml:strong" mode="ctxsl:all-xhtml2xhtml">
+		<xsl:choose>
+			<xsl:when test="starts-with(text(), 'fsfunc')">
+				<strong class="fsfunc">
+					<xsl:value-of select="substring-after(text(), 'fsfunc')"/>
+				</strong>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:copy-of select="." />
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
 	<!-- Get rid of empty divs. -->
 	<xsl:template match="xhtml:div[not(@class) and not(@id) and not(@xml:id)]"
 		mode="ctxsl:all-xhtml2xhtml">
