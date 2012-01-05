@@ -127,8 +127,8 @@
 					<xsl:if test="//xhtml:head/rdf:RDF/cc:Work[@rdf:about = '']/cc:license">
 						This page is licensed under
 						<xsl:for-each
-							select="//xhtml:head/rdf:RDF/cc:Work[@rdf:about = '']/cc:license">
-							<xsl:variable name="uri" select="@rdf:resource" />
+							select="//xhtml:head/rdf:RDF/cc:Work[@rdf:about = '']/cc:license/rdf:Alt/rdf:li|//xhtml:head/rdf:RDF/cc:Work[@rdf:about = '']/cc:license[@rdf:resource]">
+							<xsl:variable name="uri" select="@rdf:resource"/>
 							<xsl:variable name="position" select="position()" />
 							<xsl:variable name="last" select="last()" />
 							<xsl:for-each
