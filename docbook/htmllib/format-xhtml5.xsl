@@ -63,6 +63,16 @@
 		<xsl:apply-templates select="node()"/>
 	</xsl:template>
 
+	<xsl:template match="xhtml:acronym">
+		<abbr>
+			<xsl:copy>
+				<xsl:apply-templates select="@*|node()"/>
+			</xsl:copy>
+		</abbr>
+	</xsl:template>
+
+	<xsl:template match="@cellspacing|@cellpadding|@summary"/>
+
 	<xsl:template name="ctxsl:footer-cb">
 		<xsl:call-template name="ctxsl:footer">
 			<xsl:with-param name="ctxsl:structure">
