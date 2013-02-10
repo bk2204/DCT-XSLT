@@ -38,6 +38,8 @@
 	</xsl:param>
 	<xsl:param name="font.family.Garamond"
 		select="'ITC Garamond,Garamond,URW Garamond,GaramondNo8'" />
+	<xsl:param name="font.family.Gentium"
+		select="'Gentium Book Basic,Gentium Basic,Gentium'" />
 	<xsl:param name="font.family.Times">
 		<xsl:choose>
 			<xsl:when test="$free.fonts.only != 0">
