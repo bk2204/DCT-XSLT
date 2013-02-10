@@ -21,4 +21,13 @@
 			<xsl:value-of select="$ctxsl:project-id-short"/>
 		</xsl:copy>
 	</xsl:template>
+
+	<!--
+			 Poppler ignores all sections with empty titles.  As a workaround,
+			 generate a title with a single U+200B (ZERO WIDTH SPACE) to fix this
+			 problem.
+	-->
+	<xsl:template match="fo:bookmark-title[string-length(text())=0]">
+		<fo:bookmark-title>&#x200b;</fo:bookmark-title>
+	</xsl:template>
 </xsl:stylesheet>
