@@ -1,6 +1,6 @@
 <!DOCTYPE t:templates [
 <!ENTITY hsize0 "10pt">
-<!ENTITY hsize1 "10">
+<!ENTITY hsize1 "10pt">
 <!ENTITY hsize2 "10pt">
 <!ENTITY hsize3 "10pt">
 <!ENTITY hsize4 "10pt">
@@ -186,9 +186,9 @@ IN THE SOFTWARE.
       <title
 	     t:named-template="division.title"
 	     param:node="ancestor-or-self::book[1]"
-	     text-align="center"
+		 text-align="center"
+		 space-before="(({$page.height}  - 0.5in) div 2) - {$page.margin.top} - {$body.margin.top}"
 	     font-size="&hsize0;"
-	     space-before="4in"
 	     font-weight="bold"
 	     font-family="{$title.fontset}"/>
       <subtitle
