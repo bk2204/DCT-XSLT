@@ -91,6 +91,14 @@
 		</xsl:copy>
 	</xsl:template>
 
+	<xsl:template
+		match="xh:body/xh:div[not(@class = 'footer')]/xh:div[@class = 'titlepage']//xh:h2"
+		mode="ctxsl:all-xhtml2xhtml">
+		<h1>
+			<xsl:apply-templates select="@*|node()" mode="ctxsl:all-xhtml2xhtml" />
+		</h1>
+	</xsl:template>
+
 	<xsl:template match="xh:div[@class and ./xh:div[@class = 'titlepage']
 		and not(local-name(..)='body')]"
 		mode="ctxsl:all-xhtml2xhtml">
