@@ -23,8 +23,9 @@
 				<xsl:copy-of select="."/>
 			</xsl:when>
 			<xsl:otherwise>
-				<link type="text/css" title="Default" rel="stylesheet" href="/css/docbook-xhtml/default.css"/>
-				<link type="text/css" title="New (testing only)" rel="alternate stylesheet" href="/css/docbook-xhtml/new.css"/>
+				<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+				<link type="text/css" rel="stylesheet" href="/css/bootstrap/bootstrap.css"/>
+				<link type="text/css" rel="stylesheet" href="/css/bootstrap/ct-blue.css"/>
 			</xsl:otherwise>
 		</xsl:choose>
 		<!--
