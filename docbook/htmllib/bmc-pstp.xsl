@@ -107,7 +107,7 @@
 	<xsl:template name="ctxsl:footer">
 		<xsl:param name="ctxsl:structure"/>
 		<!-- Insert a footer. -->
-		<xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
+		<xsl:element name="footer" namespace="http://www.w3.org/1999/xhtml">
 			<xsl:attribute name="{$ctxsl:id-name}" namespace="{$ctxsl:id-ns}"><xsl:text>footer</xsl:text></xsl:attribute>
 			<xsl:attribute name="class"><xsl:text>footer</xsl:text></xsl:attribute>
 			<hr />
