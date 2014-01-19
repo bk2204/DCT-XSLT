@@ -110,7 +110,7 @@
 								<xsl:choose>
 									<xsl:when test="$authors[self::db:authorgroup]">
 										<xsl:call-template name="person.name.list">
-											<xsl:with-param name="person.list" 
+											<xsl:with-param name="person.list"
 												select="$authors/*[self::db:author|self::db:corpauthor|
 												self::db:othercredit|self::db:editor]"/>
 										</xsl:call-template>

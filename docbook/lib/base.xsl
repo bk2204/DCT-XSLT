@@ -14,7 +14,7 @@
 	<xsl:param name="toc.list.type" select="'ul'" />
 	<!--
 	Don't use the tablecolumns extension since we don't use saxon for processing,
-	and therefore it won't work anyway. 
+	and therefore it won't work anyway.
 	-->
 	<xsl:param name="tablecolumns.extension" select="0" />
 	<!-- Use the better of two bad styles for cross-references. -->

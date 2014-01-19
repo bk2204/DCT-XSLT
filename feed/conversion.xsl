@@ -1,5 +1,5 @@
-<?xml version="1.0"?> 
-<xsl:stylesheet version="1.0" 
+<?xml version="1.0"?>
+<xsl:stylesheet version="1.0"
 	exclude-result-prefixes="xsl atom xhtml rdf rss"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:atom="http://www.w3.org/2005/Atom"

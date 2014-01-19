@@ -6,7 +6,7 @@
   xmlns:sverb="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.Verbatim"
   xmlns:xverb="com.nwalsh.xalan.Verbatim"
 	xmlns:lxslt="http://xml.apache.org/xslt"
-	xmlns:set="http://exslt.org/sets" 
+	xmlns:set="http://exslt.org/sets"
   xmlns:exsl="http://exslt.org/common"
 	xmlns:ctxsl="http://crustytoothpaste.ath.cx/ns/xsl"
 	exclude-result-prefixes="xsl sverb xverb lxslt set exsl ctxsl">
@@ -20,27 +20,27 @@
 	Copyright © 2003 Jiří Kosek.
 	Copyright © 2004-2007 Steve Ball.
 	Copyright © 2005-2007 The DocBook Project.
-	
+
 	Permission is hereby granted, free of charge, to any person obtaining a copy
 	of this software and associated documentation files (the "Software"), to
 	deal in the Software without restriction, including without limitation the
 	rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
 	sell copies of the Software, and to permit persons to whom the Software is
 	furnished to do so, subject to the following conditions:
-	
+
 	The above copyright notice and this permission notice shall be included in
 	all copies or substantial portions of the Software.
-	
+
 	Except as contained in this notice, the names of individuals credited with
 	contribution to this software shall not be used in advertising or otherwise
 	to promote the sale, use or other dealings in this Software without prior
 	written authorization from the individuals in question.
-	
+
 	Any stylesheet derived from this Software that is publically distributed
 	will be identified with a different name and the version strings in any
 	derived Software will be changed so that no possibility of confusion between
 	the derived package and this Software will exist.
-	
+
 	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -53,17 +53,17 @@
 	above are licensed as follows:
 
 	Copyright © 2009 brian m. carlson
-	
+
 	Permission is hereby granted, free of charge, to any person obtaining a
 	copy of this software and associated documentation files (the "Software"),
 	to deal in the Software without restriction, including without limitation
 	the rights to use, copy, modify, merge, publish, distribute, sublicense,
 	and/or sell copies of the Software, and to permit persons to whom the
 	Software is furnished to do so, subject to the following conditions:
-	
+
 	The above copyright notice and this permission notice shall be included
 	in all copies or substantial portions of the Software.
-	
+
 	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE

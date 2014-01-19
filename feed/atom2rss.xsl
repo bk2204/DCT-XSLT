@@ -1,11 +1,11 @@
-<?xml version="1.0"?> 
+<?xml version="1.0"?>
 
 <!--
 Atom to RSS 1.0 Transformation, written by Rene Puls (rpuls@kcore.de)
 
 Available under the GPLv2 (according to http://kiza.kcore.de/software/snownews/snowscripts/extensions?file=atom2rss
 -->
-<xsl:stylesheet version="1.0" 
+<xsl:stylesheet version="1.0"
 	exclude-result-prefixes="xsl atom xhtml"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:atom="http://www.w3.org/2005/Atom"

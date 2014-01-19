@@ -13,7 +13,7 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	exclude-result-prefixes="db xlink ctxsl xsl xi xh dc cc rdf">
 
-	<!-- 
+	<!--
 		The idea of this stylesheet is to restructure the DocBook output slightly
 		so we get a more useful structural framework for styling.
 
@@ -85,8 +85,8 @@
 		match="xh:body/xh:div[not(@class = 'footer')]/xh:div[@class = 'titlepage']"
 		mode="ctxsl:all-xhtml2xhtml">
 		<xsl:copy>
-				<xsl:attribute name="{$ctxsl:id-name}"
-					namespace="{$ctxsl:id-ns}">header</xsl:attribute>
+			<xsl:attribute name="{$ctxsl:id-name}"
+				namespace="{$ctxsl:id-ns}">header</xsl:attribute>
 			<xsl:apply-templates select="@*|node()" mode="ctxsl:all-xhtml2xhtml" />
 		</xsl:copy>
 	</xsl:template>
