@@ -10,10 +10,11 @@
 		</xsl:copy>
 	</xsl:template>
 
-	<xsl:template match="db:article[count(*) = 2 and
-		db:info and db:blockquote/db:literallayout]">
+	<xsl:template match="db:article[db:info and
+		count(db:para) = 0 and count(db:simpara) = 0 and count(db:blockquote) = 1
+		and db:blockquote/db:literallayout]">
 		<xsl:copy>
-			<xsl:apply-templates select="@*|db:info"/>
+			<xsl:apply-templates select="@*|db:*[not(local-name() = 'blockquote')]"/>
 			<xsl:choose>
 				<xsl:when test="db:blockquote[count(*) = 1]">
 					<xsl:apply-templates select="db:blockquote/db:literallayout"/>
