@@ -10,19 +10,12 @@
 
 	<xsl:import href="format-xhtml.xsl"/>
 
-	<xsl:variable name="ctxsl:id-name">xml:id</xsl:variable>
-	<xsl:variable name="ctxsl:id-ns">http://www.w3.org/XML/1998/namespace</xsl:variable>
+	<xsl:variable name="ctxsl:id-name">id</xsl:variable>
+	<xsl:variable name="ctxsl:id-ns"/>
 
 	<xsl:template name="ctxsl:xhtml-version" />
 
 	<xsl:template match="@border" mode="ctxsl:all-xhtml2xhtml"/>
-
-	<xsl:template match="@id" mode="ctxsl:all-xhtml2xhtml">
-		<xsl:attribute name="xml:id"
-			namespace="http://www.w3.org/XML/1998/namespace">
-			<xsl:value-of select="."/>
-		</xsl:attribute>
-	</xsl:template>
 
 	<xsl:template name="ctxsl:load-meta-links">
 		<xsl:if test="count(//xhtml:head/xhtml:link[@rel='meta']) >= 1">
@@ -45,41 +38,7 @@
 		</xsl:copy>
 	</xsl:template>
 
-	<xsl:template name="ctxsl:insert-xml-id-js">
-		<script>
-			//<![CDATA[
-			// Make id attributes for browsers that don't understand xml:id.
-			(function () {
-				var id_fixup = function () {
-					var xml_ns = "http://www.w3.org/XML/1998/namespace";
-					if (document.getElementById("content"))
-						return;
-					var treewalker = document.createTreeWalker(
-						document.body,
-						NodeFilter.SHOW_ELEMENT,
-						{
-							acceptNode: function(node) {
-								return node.getAttributeNS(xml_ns, "id") ?
-									NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
-							}
-						},
-						false
-					);
-					while (treewalker.nextNode()) {
-						var cur = treewalker.currentNode;
-						var value = cur.getAttributeNS(xml_ns, "id");
-						// Only one ID attribute can be present, and for this browser it's
-						// the HTML one.
-						cur.removeAttributeNS(xml_ns, "id");
-						cur.setAttributeNS(null, "id", value);
-
-					}
-				};
-				window.addEventListener("load", id_fixup, false);
-			})();
-			//]]>
-		</script>
-	</xsl:template>
+	<xsl:template name="ctxsl:insert-xml-id-js" />
 
 	<xsl:template match="xhtml:head" mode="ctxsl:all-xhtml2xhtml">
 		<xsl:copy>
