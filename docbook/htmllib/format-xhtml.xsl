@@ -17,7 +17,7 @@
 		<xsl:copy-of select="." />
 	</xsl:template>
 
-	<xsl:template match="*" mode="ctxsl:maybensnuke">
+	<xsl:template match="*|processing-instruction()" mode="ctxsl:maybensnuke">
 		<xsl:copy>
 			<xsl:copy-of select="@*" />
 			<xsl:apply-templates mode="ctxsl:maybensnuke" />
