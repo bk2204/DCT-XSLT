@@ -30,7 +30,7 @@
 	<xsl:template name="ctxsl:create-metadata">
 		<xsl:if test="//xhtml:head/rdf:RDF">
 			<xsl:processing-instruction name="xpacket"
-				>begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"</xsl:processing-instruction>
+				>begin="&#xfeff;" id="W5M0MpCehiHzreSzNTczkc9d"</xsl:processing-instruction>
 			<!-- Emit the namespace here to ensure the XMP is self-contained. -->
 			<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 				<xsl:copy-of
