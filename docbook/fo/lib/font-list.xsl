@@ -37,7 +37,7 @@
 		</xsl:choose>
 	</xsl:param>
 	<xsl:param name="font.family.Garamond"
-		select="'ITC Garamond,Garamond,URW Garamond,GaramondNo8'" />
+		select="'EB Garamond,ITC Garamond,Garamond,URW Garamond,GaramondNo8'" />
 	<xsl:param name="font.family.Gentium"
 		select="'Gentium Book Basic,Gentium Basic,Gentium'" />
 	<xsl:param name="font.family.Times">
