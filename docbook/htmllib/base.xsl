@@ -35,4 +35,5 @@
 	<xsl:param name="appendix.autolabel" select="0" />
 	<xsl:param name="chapter.autolabel" select="0" />
 	<xsl:param name="part.autolabel" select="0" />
+	<xsl:param name="generate.consistent.ids" select="1" />
 </xsl:stylesheet>

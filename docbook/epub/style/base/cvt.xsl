@@ -19,4 +19,5 @@
 	<xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/epub/docbook.xsl" />
 	<xsl:import href="../../../htmllib/poetry.xsl" />
 	<xsl:param name="ctxsl:tab-indent-use-space" select="1" />
+	<xsl:param name="generate.consistent.ids" select="1" />
 </xsl:stylesheet>
