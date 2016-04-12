@@ -84,7 +84,7 @@ with copyright and license statements in them.  The rest of the stylesheets, as
 well as the modifications thereto, are licensed under the MIT License:
 
 =====
-  Copyright © 2006–2011 brian m. carlson
+  Copyright © 2006–2016 brian m. carlson
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
