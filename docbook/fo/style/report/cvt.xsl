@@ -19,6 +19,12 @@
 		<xsl:attribute name="text-align">inherit</xsl:attribute>
 	</xsl:attribute-set>
 
+	<xsl:attribute-set name="section.title.level1.properties">
+		<xsl:attribute name="font-size">
+			<xsl:value-of select="$body.font.master" /><xsl:text>pt</xsl:text>
+		</xsl:attribute>
+	</xsl:attribute-set>
+
 	<xsl:template match="db:*" mode="ctxsl:inline">
 		<xsl:apply-templates select="."/>
 	</xsl:template>
@@ -47,5 +53,4 @@
 			<xsl:apply-templates mode="ctxsl:inline"/>
 		</fo:block>
 	</xsl:template>
-
 </xsl:stylesheet>
