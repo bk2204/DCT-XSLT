@@ -22,6 +22,8 @@
 	<xsl:import href="poetry.xsl" />
 	<!-- Don't use CSS attributes on items; we'll do it ourselves. -->
 	<xsl:param name="css.decoration" select="0" />
+	<xsl:param name="docbook.css.link" select="0" />
+	<xsl:param name="docbook.css.source" />
 	<!-- If we have an abstract, use it as the META description. -->
 	<xsl:param name="generate.meta.abstract" select="1" />
 	<!-- Try hard to make the HTML valid and pretty. -->
