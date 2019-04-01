@@ -26,6 +26,7 @@
 	<xsl:param name="generate.meta.abstract" select="1" />
 	<!-- Try hard to make the HTML valid and pretty. -->
 	<xsl:param name="make.valid.html" select="1" />
+	<xsl:param name="make.clean.html" select="1" />
 	<xsl:param name="html.cleanup" select="1" />
 	<!-- Pass the role attribute through to the class attribute. -->
 	<xsl:param name="emphasis.propagates.style" select="1" />
