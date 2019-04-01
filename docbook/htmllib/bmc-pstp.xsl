@@ -15,26 +15,6 @@
 	<xsl:import href="pstp.xsl"/>
 	<xsl:import href="restructure.xsl"/>
 
-	<xsl:param name="dry-run" select="0" />
-	<xsl:param name="no-replace-stylesheet" select="0" />
-	<xsl:template match="xhtml:link[@rel = 'stylesheet']" mode="ctxsl:all-xhtml2xhtml">
-		<xsl:choose>
-			<xsl:when test="$dry-run or $no-replace-stylesheet">
-				<xsl:copy-of select="."/>
-			</xsl:when>
-			<xsl:otherwise>
-				<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-				<link type="text/css" rel="stylesheet" href="/css/bootstrap/bootstrap.css"/>
-				<link type="text/css" rel="stylesheet" href="/css/bootstrap/ct-blue.css"/>
-			</xsl:otherwise>
-		</xsl:choose>
-		<!--
-		<xi:include href="stylesheet.xml" parse="xml"
-			xpointer="xmlns(sht=http://crustytoothpaste.ath.cx/ns/stylesheet)xpointer(sht:result/*)">
-			<xi:fallback><xsl:message terminate="yes">Can't XInclude stylesheet list whilst processing</xsl:message></xi:fallback>
-		</xi:include>
-		-->
-	</xsl:template>
 	<xsl:template match="xhtml:div/@style" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="@xml:space" mode="ctxsl:all-xhtml2xhtml"/>
 	<xsl:template match="xhtml:hr" mode="ctxsl:all-xhtml2xhtml"/>
