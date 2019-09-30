@@ -5,7 +5,7 @@
 	exclude-result-prefixes="xsl ctxsl">
 	<xsl:param name="ctxsl:project-name">DCT XSLT</xsl:param>
 	<xsl:param name="ctxsl:project-uri">https://github.com/bk2204/DCT-XSLT</xsl:param>
-	<xsl:param name="ctxsl:project-version">unreleased (pre-v4)</xsl:param>
+	<xsl:param name="ctxsl:project-version">v4</xsl:param>
 	<xsl:param name="ctxsl:project-id-short">
 		<xsl:value-of select="$ctxsl:project-name"/>
 		<xsl:text> </xsl:text>
