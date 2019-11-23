@@ -72,8 +72,6 @@ base::
 	+none+.
 bmc::
 	This generates output designed for use on http://www.crustytoothpaste.net/.
-0x89c::
-	This generates output designed for use on http://0x89c.crustytoothpaste.net/.
 
 License
 -------
