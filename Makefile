@@ -1,7 +1,7 @@
 # Set this to the location of the DocBook XSL-NS stylesheets.
 XSL_NS			:= http://docbook.sourceforge.net/release/xsl-ns/current
 # Set this to one of xalan, saxon, or xsltproc
-PROCESSOR		?= xalan
+PROCESSOR		?= xsltproc
 # Set this to the java executable if using xalan or saxon.
 JAVA			?= java
 # Set this to the location of your jar files.
