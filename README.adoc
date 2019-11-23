@@ -60,7 +60,8 @@ mla::
 	This modifies articles to produce output in the MLA format, which is widely
 	used at high schools and colleges in the United States.
 report::
-	This style produces output much like the +-me+ macros for troff.
+	This style produces output much like the +-me+ macros for troff.  It is not,
+	however, guaranteed to be suitable for a Ph.D. thesis at Berkeley.
 
 There are also a few different styles for HTML and XHTML:
 
@@ -72,6 +73,8 @@ base::
 	+none+.
 bmc::
 	This generates output designed for use on http://www.crustytoothpaste.net/.
+	It is similar to the base style, but cleans up spacing and some uncommon
+	elements, such as `hr`, that the DocBook stylesheets include.
 
 License
 -------
