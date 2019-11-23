@@ -1,13 +1,13 @@
 # Set this to the location of the DocBook XSL-NS stylesheets.
 XSL_NS			:= http://docbook.sourceforge.net/release/xsl-ns/current
 # Set this to one of xalan, saxon, or xsltproc
-PROCESSOR		:= xalan
+PROCESSOR		?= xalan
 # Set this to the java executable if using xalan or saxon.
-JAVA			:= java
+JAVA			?= java
 # Set this to the location of your jar files.
-JAVA_DIR		:= /usr/share/java
+JAVA_DIR		?= /usr/share/java
 # Set this to a the location of the CatalogManager.properties file.
-CAT_MGR			:= /etc/xml/resolver
+CAT_MGR			?= /etc/xml/resolver
 
 # You shouldn't need to edit anything below here.
 COVER_GEN_SHEET	:= $(XSL_NS)/template/titlepage.xsl
