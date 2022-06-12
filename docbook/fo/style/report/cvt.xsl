@@ -53,4 +53,10 @@
 			<xsl:apply-templates mode="ctxsl:inline"/>
 		</fo:block>
 	</xsl:template>
+
+	<xsl:template match="processing-instruction('asciidoc-hr')">
+		<fo:block text-align="center">
+			<fo:leader leader-pattern="rule" leader-length="10%" rule-style="solid" rule-thickness="0.5pt"/>
+		</fo:block>
+	</xsl:template>
 </xsl:stylesheet>
