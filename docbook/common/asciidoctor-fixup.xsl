@@ -10,7 +10,7 @@
 		</xsl:copy>
 	</xsl:template>
 
-	<xsl:template match="db:article[db:info and
+	<xsl:template match="db:*[(db:info|db:title) and
 		count(db:para) = 0 and count(db:simpara) = 0
 		and count(db:blockquote[not(@role = 'epigraph')]) = 1
 		and db:blockquote/db:literallayout]">
