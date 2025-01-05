@@ -5,13 +5,13 @@
 	<!-- By "free" here, we mean compliant to the DFSG. -->
 	<xsl:param name="free.fonts.only" select="0"/>
 	<xsl:param name="font.family.Courier.free"
-		select="'Nimbus Mono L,FreeMono'" />
+		select="'Nimbus Mono L,TeXGyreCursor,FreeMono'" />
 	<xsl:param name="font.family.Helvetica.free"
-		select="'Nimbus Sans L,FreeSans,Liberation Sans'" />
+		select="'Nimbus Sans L,TeXGyreHeros,FreeSans,Liberation Sans'" />
 	<xsl:param name="font.family.Times.free"
-		select="'Nimbus Roman No9 L,FreeSerif,Liberation Serif'" />
+		select="'Nimbus Roman No9 L,TeXGyreTermes,FreeSerif,Liberation Serif'" />
 	<xsl:param name="font.family.Palatino.free"
-		select="'URW Palladio L'" />
+		select="'URW Palladio L,TeXGyrePagella,P052'" />
 	<xsl:param name="font.family.Courier">
 		<xsl:choose>
 			<xsl:when test="$free.fonts.only != 0">
