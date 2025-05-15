@@ -243,6 +243,34 @@
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
+      <xsl:when test="parent::db:footnote and not(preceding-sibling::db:*)">
+        <xsl:choose>
+          <xsl:when test="$shade.verbatim != 0">
+            <fo:block id="{$id}"
+                      xsl:use-attribute-sets="verbatim.properties shade.verbatim.style">
+              <xsl:call-template name="format.footnote.mark">
+                <xsl:with-param name="mark">
+                  <xsl:apply-templates select="ancestor::db:footnote" mode="footnote.number"/>
+                </xsl:with-param>
+              </xsl:call-template>
+              <xsl:apply-templates select="exsl:node-set($content)"
+                                   mode="ctxsl:indent" />
+            </fo:block>
+          </xsl:when>
+          <xsl:otherwise>
+            <fo:block id="{$id}"
+                      xsl:use-attribute-sets="verbatim.properties">
+              <xsl:call-template name="format.footnote.mark">
+                <xsl:with-param name="mark">
+                  <xsl:apply-templates select="ancestor::db:footnote" mode="footnote.number"/>
+                </xsl:with-param>
+              </xsl:call-template>
+              <xsl:apply-templates select="exsl:node-set($content)"
+                                   mode="ctxsl:indent" />
+            </fo:block>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:choose>
           <xsl:when test="$shade.verbatim != 0">
